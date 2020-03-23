@@ -91,17 +91,16 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 
 // Returns true if specified variant should be removed from filter
 func (h *HLSFilter) validateVariants(filters *parsers.MediaFilters, v *m3u8.Variant) (bool, error) {
-	if filters.DefinesBitrateFilter() {
-		if !(h.validateBandwidthVariant(filters.MinBitrate, filters.MaxBitrate, v)) {
+	variantCodecs := strings.Split(v.Codecs, ",")
+	if DefinesBitrateFilter(filters) {
+		if !(h.validateBandwidthVariant(int(v.VariantParams.Bandwidth), variantCodecs, filters)) {
 			return true, nil
 		}
 	}
 
-	variantCodecs := strings.Split(v.Codecs, ",")
-
-	if filters.Audios != nil {
+	if filters.AudioFilters.Codecs != nil {
 		supportedAudioTypes := map[string]struct{}{}
-		for _, at := range filters.Audios {
+		for _, at := range filters.AudioFilters.Codecs {
 			supportedAudioTypes[string(at)] = struct{}{}
 		}
 		res, err := validateVariantCodecs(audioContentType, variantCodecs, supportedAudioTypes, matchFunctions)
@@ -110,9 +109,9 @@ func (h *HLSFilter) validateVariants(filters *parsers.MediaFilters, v *m3u8.Vari
 		}
 	}
 
-	if filters.Videos != nil {
+	if filters.VideoFilters.Codecs != nil {
 		supportedVideoTypes := map[string]struct{}{}
-		for _, vt := range filters.Videos {
+		for _, vt := range filters.VideoFilters.Codecs {
 			supportedVideoTypes[string(vt)] = struct{}{}
 		}
 		res, err := validateVariantCodecs(videoContentType, variantCodecs, supportedVideoTypes, matchFunctions)
@@ -160,12 +159,27 @@ func validateVariantCodecs(filterType ContentType, variantCodecs []string, suppo
 	return variantFound, nil
 }
 
-func (h *HLSFilter) validateBandwidthVariant(minBitrate int, maxBitrate int, v *m3u8.Variant) bool {
-	bw := int(v.VariantParams.Bandwidth)
-	if bw > maxBitrate || bw < minBitrate {
-		return false
+func (h *HLSFilter) validateBandwidthVariant(bw int, variantCodecs []string, filters *parsers.MediaFilters) bool {
+	var lowerBitrate int
+	var higherBitrate int
+	for _, codec := range variantCodecs {
+		audio := isAudioCodec(codec)
+		video := isVideoCodec(codec)
+		switch {
+		case audio:
+			lowerBitrate = filters.AudioFilters.MinBitrate
+			higherBitrate = filters.AudioFilters.MaxBitrate
+		case video:
+			lowerBitrate = filters.VideoFilters.MinBitrate
+			higherBitrate = filters.VideoFilters.MaxBitrate
+		default:
+			lowerBitrate = filters.MinBitrate
+			higherBitrate = filters.MaxBitrate
+		}
+		if bw > higherBitrate || bw < lowerBitrate {
+			return false
+		}
 	}
-
 	return true
 }
 

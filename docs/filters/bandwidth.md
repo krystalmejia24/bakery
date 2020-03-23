@@ -26,8 +26,8 @@ Range is supplied with `,` and no space in between
     // Define minimum bitrate as 500 Kbps
     $ http http://bakery.dev.cbsivideo.com/b(500)/star_trek_discovery/S01/E01.m3u8
 
-    // Define a maximum bitrate 1MG
+    // Define a maximum bitrate 1MB
     $ http http://bakery.dev.cbsivideo.com/b(0,1000)/star_trek_discovery/S01/E01.m3u8
 
     // Define an inclusive range of 1MB and 5MB
-    $ http http://bakery.dev.cbsivideo.com/b(10000,5000/star_trek_discovery/S01/E01.m3u8
+    $ http http://bakery.dev.cbsivideo.com/b(1000,5000)/star_trek_discovery/S01/E01.m3u8

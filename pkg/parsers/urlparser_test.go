@@ -19,9 +19,15 @@ func TestURLParseUrl(t *testing.T) {
 			"one video type",
 			"/v(hdr10)/",
 			MediaFilters{
-				Videos:     []VideoType{"hev1.2", "hvc1.2"},
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{"hev1.2", "hvc1.2"},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/",
 			false,
@@ -30,9 +36,15 @@ func TestURLParseUrl(t *testing.T) {
 			"two video types",
 			"/v(hdr10,hevc)/",
 			MediaFilters{
-				Videos:     []VideoType{"hev1.2", "hvc1.2", videoHEVC},
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{"hev1.2", "hvc1.2", codecHEVC},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/",
 			false,
@@ -41,10 +53,16 @@ func TestURLParseUrl(t *testing.T) {
 			"two video types and two audio types",
 			"/v(hdr10,hevc)/a(aac,noAd)/",
 			MediaFilters{
-				Videos:     []VideoType{"hev1.2", "hvc1.2", videoHEVC},
-				Audios:     []AudioType{audioAAC, audioNoAudioDescription},
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{"hev1.2", "hvc1.2", codecHEVC},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{codecAAC, codecNoAudioDescription},
+				},
 			},
 			"/",
 			false,
@@ -53,12 +71,18 @@ func TestURLParseUrl(t *testing.T) {
 			"videos, audio, captions and bitrate range",
 			"/v(hdr10,hevc)/a(aac)/al(pt-BR,en)/c(en)/b(100,4000)/",
 			MediaFilters{
-				Videos:           []VideoType{"hev1.2", "hvc1.2", videoHEVC},
-				Audios:           []AudioType{audioAAC},
 				AudioLanguages:   []AudioLanguage{audioLangPTBR, audioLangEN},
 				CaptionLanguages: []CaptionLanguage{captionEN},
 				MaxBitrate:       4000,
 				MinBitrate:       100,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{"hev1.2", "hvc1.2", codecHEVC},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{codecAAC},
+				},
 			},
 			"/",
 			false,
@@ -69,6 +93,12 @@ func TestURLParseUrl(t *testing.T) {
 			MediaFilters{
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 100,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/",
 			false,
@@ -79,6 +109,12 @@ func TestURLParseUrl(t *testing.T) {
 			MediaFilters{
 				MaxBitrate: 3000,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/",
 			false,
@@ -98,6 +134,48 @@ func TestURLParseUrl(t *testing.T) {
 			true,
 		},
 		{
+			"audio bitrate range with minimum equal to maximum throws error",
+			"/a(b(1000,1000))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"video bitrate range with minimum greater than maximum throws error",
+			"/v(b(2000,1000))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"audio bitrate range with inavlid, negative minimum",
+			"/a(b(-100,1000))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"video bitrate range with invalid, greater than math.MaxInt32 minimum",
+			"/v(b(2147483648))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"audio bitrate range with invalid, greater than math.MaxInt32 maximum",
+			"/a(b(10,2147483648))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"video bitrate range with invalid, negative maximum",
+			"/v(b(10,-100))/",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
 			"trim filter",
 			"/t(100,1000)/path/to/test.m3u8",
 			MediaFilters{
@@ -107,6 +185,12 @@ func TestURLParseUrl(t *testing.T) {
 				Trim: &Trim{
 					Start: 100,
 					End:   1000,
+				},
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
 				},
 			},
 			"/path/to/test.m3u8",
@@ -134,6 +218,12 @@ func TestURLParseUrl(t *testing.T) {
 				MinBitrate: 0,
 				Protocol:   ProtocolHLS,
 				Plugins:    []string{"plugin1"},
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/some/path/master.m3u8",
 			false,
@@ -142,13 +232,89 @@ func TestURLParseUrl(t *testing.T) {
 			"detect plugins for execution from url",
 			"/v(hdr10,hevc)/[plugin1,plugin2,plugin3]/some/path/master.m3u8",
 			MediaFilters{
-				Videos:     []VideoType{"hev1.2", "hvc1.2", videoHEVC},
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
-				Protocol:   ProtocolHLS,
-				Plugins:    []string{"plugin1", "plugin2", "plugin3"},
+				VideoFilters: NestedFilters{
+					Codecs:     []Codec{"hev1.2", "hvc1.2", codecHEVC},
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				Protocol: ProtocolHLS,
+				Plugins:  []string{"plugin1", "plugin2", "plugin3"},
 			},
 			"/some/path/master.m3u8",
+			false,
+		},
+		{
+			"nested audio and video bitrate filters",
+			"/a(b(100,))/v(b(,5000))/",
+			MediaFilters{
+				MaxBitrate: math.MaxInt32,
+				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: 5000,
+				},
+				AudioFilters: NestedFilters{
+					MinBitrate: 100,
+					MaxBitrate: math.MaxInt32,
+				},
+			},
+			"/",
+			false,
+		},
+		{
+			"nested codec and bitrate filters in audio",
+			"/a(b(100,200),co(ac-3,aac))/",
+			MediaFilters{
+				MaxBitrate: math.MaxInt32,
+				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MinBitrate: 100,
+					MaxBitrate: 200,
+					Codecs:     []Codec{codecAC3, codecAAC},
+				},
+			},
+			"/",
+			false,
+		},
+		{
+			"nested codec and bitrate filters in video, plus overall bitrate filters",
+			"/v(co(avc,hdr10),b(1000,2000))/",
+			MediaFilters{
+				MaxBitrate: math.MaxInt32,
+				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: 2000,
+					MinBitrate: 1000,
+					Codecs:     []Codec{codecH264, "hev1.2", "hvc1.2"},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+			},
+			"/",
+			false,
+		},
+		{
+			"nested bitrate and old format of codec filter",
+			"/a(mp4a,ac-3,b(0,10))/",
+			MediaFilters{
+				MaxBitrate: math.MaxInt32,
+				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: 10,
+					Codecs:     []Codec{"mp4a", codecAC3},
+				},
+			},
+			"/",
 			false,
 		},
 		{
@@ -158,6 +324,12 @@ func TestURLParseUrl(t *testing.T) {
 				Protocol:   ProtocolHLS,
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/path/here/with/master.m3u8",
 			false,
@@ -169,6 +341,12 @@ func TestURLParseUrl(t *testing.T) {
 				Protocol:   ProtocolDASH,
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/path/here/with/manifest.mpd",
 			false,
@@ -177,11 +355,17 @@ func TestURLParseUrl(t *testing.T) {
 			"detect filters for propeller channels and set path properly",
 			"/v(avc)/a(aac)/propeller/orgID/master.m3u8",
 			MediaFilters{
-				Videos:     []VideoType{videoH264},
-				Audios:     []AudioType{audioAAC},
 				Protocol:   ProtocolHLS,
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{codecH264},
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+					Codecs:     []Codec{codecAAC},
+				},
 			},
 			"/propeller/orgID/master.m3u8",
 			false,
@@ -193,6 +377,12 @@ func TestURLParseUrl(t *testing.T) {
 				Protocol:   ProtocolHLS,
 				MaxBitrate: math.MaxInt32,
 				MinBitrate: 0,
+				VideoFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
+				AudioFilters: NestedFilters{
+					MaxBitrate: math.MaxInt32,
+				},
 			},
 			"/propeller/orgID/master.m3u8",
 			false,
@@ -221,7 +411,7 @@ func TestURLParseUrl(t *testing.T) {
 			}
 
 			if test.expectedManifestPath != masterManifestPath {
-				t.Errorf("wrong master manifest generated.\nwant %#v\ngot %#v", test.expectedManifestPath, masterManifestPath)
+				t.Errorf("wrong master manifest generated.\nwant %#v\n\ngot %#v", test.expectedManifestPath, masterManifestPath)
 			}
 
 			if !reflect.DeepEqual(jsonOutput, jsonExpected) {

@@ -56,6 +56,10 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 	filteredManifest := m3u8.NewMasterPlaylist()
 
 	for _, v := range manifest.Variants {
+		if filters.IFrame && v.Iframe {
+			continue
+		}
+
 		absolute, aErr := getAbsoluteURL(h.manifestURL)
 		if aErr != nil {
 			return h.manifestContent, aErr
@@ -66,12 +70,12 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 			return "", err
 		}
 
-		validatedFilters, err := h.validateVariants(filters, normalizedVariant)
+		filteredVariants, err := h.filterVariants(filters, normalizedVariant)
 		if err != nil {
 			return "", err
 		}
 
-		if validatedFilters {
+		if filteredVariants {
 			continue
 		}
 
@@ -90,52 +94,89 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 }
 
 // Returns true if specified variant should be removed from filter
-func (h *HLSFilter) validateVariants(filters *parsers.MediaFilters, v *m3u8.Variant) (bool, error) {
+func (h *HLSFilter) filterVariants(filters *parsers.MediaFilters, v *m3u8.Variant) (bool, error) {
 	variantCodecs := strings.Split(v.Codecs, ",")
-	if DefinesBitrateFilter(filters) {
-		if !(h.validateBandwidthVariant(int(v.VariantParams.Bandwidth), variantCodecs, filters)) {
+
+	if filters.Videos.Bitrate != nil || filters.Audios.Bitrate != nil {
+		if h.filterVariantBandwidth(int(v.VariantParams.Bandwidth), variantCodecs, filters) {
 			return true, nil
 		}
 	}
 
-	if filters.AudioFilters.Codecs != nil {
-		supportedAudioTypes := map[string]struct{}{}
-		for _, at := range filters.AudioFilters.Codecs {
-			supportedAudioTypes[string(at)] = struct{}{}
-		}
-		res, err := validateVariantCodecs(audioContentType, variantCodecs, supportedAudioTypes, matchFunctions)
-		if res {
-			return true, err
-		}
-	}
-
-	if filters.VideoFilters.Codecs != nil {
+	if filters.Videos.Codecs != nil {
 		supportedVideoTypes := map[string]struct{}{}
-		for _, vt := range filters.VideoFilters.Codecs {
+		for _, vt := range filters.Videos.Codecs {
 			supportedVideoTypes[string(vt)] = struct{}{}
 		}
-		res, err := validateVariantCodecs(videoContentType, variantCodecs, supportedVideoTypes, matchFunctions)
+		res, err := filterVariantCodecs(videoContentType, variantCodecs, supportedVideoTypes, matchFunctions)
 		if res {
 			return true, err
 		}
 	}
 
-	if filters.CaptionTypes != nil {
-		supportedCaptionTypes := map[string]struct{}{}
-		for _, ct := range filters.CaptionTypes {
-			supportedCaptionTypes[string(ct)] = struct{}{}
+	if filters.Audios.Codecs != nil {
+		supportedAudioTypes := map[string]struct{}{}
+		for _, at := range filters.Audios.Codecs {
+			supportedAudioTypes[string(at)] = struct{}{}
 		}
-		res, err := validateVariantCodecs(captionContentType, variantCodecs, supportedCaptionTypes, matchFunctions)
+		res, err := filterVariantCodecs(audioContentType, variantCodecs, supportedAudioTypes, matchFunctions)
 		if res {
 			return true, err
 		}
+	}
+
+	if filters.Captions.Codecs != nil {
+		supportedCaptions := map[string]struct{}{}
+		for _, ct := range filters.Captions.Codecs {
+			supportedCaptions[string(ct)] = struct{}{}
+		}
+		res, err := filterVariantCodecs(captionContentType, variantCodecs, supportedCaptions, matchFunctions)
+		if res {
+			return true, err
+		}
+	}
+
+	if filters.Audios.Language != nil || filters.Captions.Language != nil {
+		h.filterVariantLanguage(v, filters)
 	}
 
 	return false, nil
 }
 
-// Returns true if the given variant (variantCodecs) should be allowed filtered out for supportedCodecs of filterType
-func validateVariantCodecs(filterType ContentType, variantCodecs []string, supportedCodecs map[string]struct{}, supportedFilterTypes map[ContentType]func(string) bool) (bool, error) {
+// Returns true if the provided variant is out of range since filters are removed when true.
+func (h *HLSFilter) filterVariantBandwidth(b int, variantCodecs []string, filters *parsers.MediaFilters) bool {
+	for _, codec := range variantCodecs {
+		var min, max int
+
+		switch {
+		case isAudioCodec(codec):
+			if filters.Audios.Bitrate == nil {
+				continue
+			}
+
+			min = filters.Audios.Bitrate.Min
+			max = filters.Audios.Bitrate.Max
+		case isVideoCodec(codec):
+			if filters.Videos.Bitrate == nil {
+				continue
+			}
+
+			min = filters.Videos.Bitrate.Min
+			max = filters.Videos.Bitrate.Max
+		default:
+			continue
+		}
+
+		if !inRange(min, max, b) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// Returns true if the given variant (variantCodecs) should be filtered out
+func filterVariantCodecs(filterType ContentType, variantCodecs []string, supportedCodecs map[string]struct{}, supportedFilterTypes map[ContentType]func(string) bool) (bool, error) {
 	var matchFilterType func(string) bool
 
 	matchFilterType, found := supportedFilterTypes[filterType]
@@ -159,28 +200,51 @@ func validateVariantCodecs(filterType ContentType, variantCodecs []string, suppo
 	return variantFound, nil
 }
 
-func (h *HLSFilter) validateBandwidthVariant(bw int, variantCodecs []string, filters *parsers.MediaFilters) bool {
-	var lowerBitrate int
-	var higherBitrate int
-	for _, codec := range variantCodecs {
-		audio := isAudioCodec(codec)
-		video := isVideoCodec(codec)
-		switch {
-		case audio:
-			lowerBitrate = filters.AudioFilters.MinBitrate
-			higherBitrate = filters.AudioFilters.MaxBitrate
-		case video:
-			lowerBitrate = filters.VideoFilters.MinBitrate
-			higherBitrate = filters.VideoFilters.MaxBitrate
-		default:
-			lowerBitrate = filters.MinBitrate
-			higherBitrate = filters.MaxBitrate
-		}
-		if bw > higherBitrate || bw < lowerBitrate {
+// Returns true if a given variant matches the provided language filter
+func (h *HLSFilter) filterVariantLanguage(v *m3u8.Variant, filters *parsers.MediaFilters) {
+	if v.Alternatives == nil {
+		return
+	}
+
+	match := func(alt *m3u8.Alternative, langs []parsers.Language) bool {
+		if langs == nil {
 			return false
 		}
+
+		for _, lang := range langs {
+			if string(lang) == alt.Language {
+				return true
+			}
+		}
+
+		return false
 	}
-	return true
+
+	var alts []*m3u8.Alternative
+	var groupIDs = map[string]struct{}{}
+	for _, alt := range v.Alternatives {
+		remove := true
+		switch alt.Type {
+		case "AUDIO":
+			remove = match(alt, filters.Audios.Language)
+		case "SUBTITLES":
+			remove = match(alt, filters.Captions.Language)
+		}
+
+		if !remove {
+			alts = append(alts, alt)
+			groupIDs[alt.GroupId] = struct{}{}
+		}
+
+	}
+
+	v.Alternatives = alts
+	if _, audio := groupIDs[v.Audio]; !audio {
+		v.Audio = ""
+	}
+	if _, subs := groupIDs[v.Subtitles]; !subs {
+		v.Subtitles = ""
+	}
 }
 
 func (h *HLSFilter) normalizeVariant(v *m3u8.Variant, absolute url.URL) (*m3u8.Variant, error) {
@@ -255,7 +319,7 @@ func (h *HLSFilter) filterRenditionManifest(filters *parsers.MediaFilters, m *m3
 			return "", fmt.Errorf("Program Date Time not set on segments")
 		}
 
-		if inRange(filters.Trim.Start, filters.Trim.End, segment.ProgramDateTime.Unix()) {
+		if inRange(filters.Trim.Start, filters.Trim.End, int(segment.ProgramDateTime.Unix())) {
 			absolute, err := getAbsoluteURL(h.manifestURL)
 			if err != nil {
 				return "", fmt.Errorf("formatting segment URLs: %w", err)
@@ -276,10 +340,6 @@ func (h *HLSFilter) filterRenditionManifest(filters *parsers.MediaFilters, m *m3
 	filteredPlaylist.Close()
 
 	return filteredPlaylist.Encode().String(), nil
-}
-
-func inRange(start int64, end int64, value int64) bool {
-	return (start <= value) && (value <= end)
 }
 
 //Returns absolute url of given manifest as a string

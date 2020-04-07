@@ -39,7 +39,8 @@ http://existing.base/uri/link_3.m3u8
 `
 
 	manifestRemovedLowerBW := `#EXTM3U
-#EXT-X-VERSION:3
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CODECS="ec-3",CLOSED-CAPTIONS="CC"
 http://existing.base/uri/link_2.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CODECS="avc",CLOSED-CAPTIONS="CC"
@@ -54,73 +55,68 @@ http://existing.base/uri/link_3.m3u8
 		expectErr             bool
 	}{
 		{
-			name: "when no bitrate filters given, expect unfiltered manifest",
-			filters: &parsers.MediaFilters{
-				MinBitrate: 0, MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-			},
+			name:                  "when no bitrate filters given, expect unfiltered manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       baseManifest,
 			expectManifestContent: baseManifest,
 		},
 		{
-			name: "when only hitting lower boundary (MinBitrate = 0), expect results to be filtered",
+			name: "when setting lower boundary (Min = 0) overall, expect video and audio results to be filtered",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 0, MaxBitrate: 3000,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 0, Max: 3000,
+					},
+				},
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 0, Max: 3000,
+					},
+				},
 			},
 			manifestContent:       baseManifest,
 			expectManifestContent: manifestRemovedHigherBW,
 		},
 		{
-			name: "when only hitting upper boundary (MaxBitrate = math.MaxInt32), expect results to be filtered",
+			name: "when setting upper boundary (Max = math.MaxInt32) overall, expect video and audio results to be filtered",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 3000, MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 3000, Max: math.MaxInt32,
+					},
+				},
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 3000, Max: math.MaxInt32,
+					},
+				},
 			},
 			manifestContent:       baseManifest,
 			expectManifestContent: manifestRemovedLowerBW,
 		},
 		{
-			name: "when filtering valid bitrate range in audio only, expect filtered manifest",
+			name: "when setting audio only bitrate, expect STREAM with video + audio to be filtered",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 0, MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MinBitrate: 10, MaxBitrate: 3000},
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 3000, Max: 4000,
+					},
+				},
+			},
+			manifestContent:       baseManifest,
+			expectManifestContent: manifestRemovedLowerBW,
+		},
+		{
+			name: "when setting audio bitrate, expect audio to be filtered",
+			filters: &parsers.MediaFilters{
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 1000, Max: 2000,
+					},
+				},
 			},
 			manifestContent:       baseManifest,
 			expectManifestContent: manifestRemovedHigherBWOnlyAudio,
-		},
-		{
-			name: "when filtering a valid audio bitrate range touching upper bound (math.MaxInt32), expect audio to be filtered",
-			filters: &parsers.MediaFilters{
-				MinBitrate: 0, MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MinBitrate: 2000, MaxBitrate: math.MaxInt32},
-			},
-			manifestContent:       baseManifest,
-			expectManifestContent: manifestRemovedLowerBW,
-		},
-		{
-			name: "when given valid overall bitrate range and an valid bitrate range for video/audio overlapping, but not within overall range, expect manifest to be filtered according to overall bitrate range",
-			filters: &parsers.MediaFilters{
-				MinBitrate: 0, MaxBitrate: 3000,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32}},
-			manifestContent:       baseManifest,
-			expectManifestContent: manifestRemovedHigherBW,
-		},
-		{
-			name: "when given valid overall bitrate range and a valid, non-overlapping bitrate range for audio, expect manifest to be filtered according to overall bitrate range",
-			filters: &parsers.MediaFilters{
-				MinBitrate: 100, MaxBitrate: 1000,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MinBitrate: 3000, MaxBitrate: 4000},
-			},
-			manifestContent:       baseManifest,
-			expectManifestContent: manifestRemovedHigherBW,
 		},
 	}
 
@@ -260,13 +256,8 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when all audio codecs are supplied, expect audio to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"mp4a", "ec-3", "ac-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"mp4a", "ec-3", "ac-3"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
@@ -275,13 +266,8 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when filter is supplied with ac-3 and mp4a, expect variants with ac-3 and/or mp4a to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"mp4a", "ac-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"mp4a", "ac-3"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
@@ -290,13 +276,8 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when filter is supplied with ac-3, expect variants with ac-3 to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ac-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ac-3"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
@@ -305,13 +286,8 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when filter is supplied with mp4a, expect variants with mp4a to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"mp4a"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
@@ -320,13 +296,8 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when filter is supplied with ec-3 and ac-3, expect variants with ec-3 and ac-3 to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ec-3", "ac-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ec-3", "ac-3"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
@@ -335,29 +306,16 @@ http://existing.base/uri/link_8.m3u8
 		{
 			name: "when filter is supplied with ec-3 and mp4a, expect variants with ec-3 and/or mp4a to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"mp4a", "ec-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"mp4a", "ec-3"},
 				},
 			},
 			manifestContent:       manifestWithAllAudio,
 			expectManifestContent: manifestFilterInAC3,
 		},
 		{
-			name: "when no audio filters are given, expect unfiltered manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-			},
+			name:                  "when no audio filters are given, expect unfiltered manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAllAudio,
 			expectManifestContent: manifestWithAllAudio,
 		},
@@ -507,13 +465,8 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when all video codecs are supplied, expect variants with avc, hevc, and/or dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"avc", "hvc", "dvh"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"avc", "hvc", "dvh"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
@@ -522,13 +475,8 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when filter is supplied with avc, expect variants with avc to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"avc"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"avc"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
@@ -537,13 +485,8 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when filter is supplied with hevc, expect hevc to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
@@ -552,13 +495,8 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when filter is supplied with dvh, expect dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"dvh"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"dvh"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
@@ -567,13 +505,8 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when filter is supplied with avc and hevc, expect variants with avc and hevc to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"avc", "hvc"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"avc", "hvc"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
@@ -582,29 +515,16 @@ http://existing.base/uri/link_9.m3u8
 		{
 			name: "when filter is supplied with avc and dvh, expect variants with avc and dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"avc", "dvh"},
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"avc", "dvh"},
 				},
 			},
 			manifestContent:       manifestWithAllVideo,
 			expectManifestContent: manifestFilterWithoutAVCAndDVH,
 		},
 		{
-			name: "when no video filters are given, expect unfiltered manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-			},
+			name:                  "when no video filters are given, expect unfiltered manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAllVideo,
 			expectManifestContent: manifestWithAllVideo,
 		},
@@ -698,10 +618,9 @@ http://existing.base/uri/link_7.m3u8
 		{
 			name: "when all caption filters are supplied, expect all caption variants with captions to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"stpp", "wvtt"},
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp", "wvtt"},
+				},
 			},
 			manifestContent:       manifestWithAllCaptions,
 			expectManifestContent: manifestWithNoCaptions,
@@ -709,10 +628,9 @@ http://existing.base/uri/link_7.m3u8
 		{
 			name: "when filter is supplied with wvtt, expect variants with wvtt to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"wvtt"},
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"wvtt"},
+				},
 			},
 			manifestContent:       manifestWithAllCaptions,
 			expectManifestContent: manifestFilterWithoutWVTT,
@@ -720,21 +638,16 @@ http://existing.base/uri/link_7.m3u8
 		{
 			name: "when filter is supplied with stpp, expect variants with wvtt to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"stpp"},
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp"},
+				},
 			},
 			manifestContent:       manifestWithAllCaptions,
 			expectManifestContent: manifestFilterWithoutSTPP,
 		},
 		{
-			name: "when no caption filter is given, expect original manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-			},
+			name:                  "when no caption filter is given, expect original manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAllCaptions,
 			expectManifestContent: manifestWithAllCaptions,
 		},
@@ -884,26 +797,19 @@ http://existing.base/uri/link_14.m3u8
 		expectErr             bool
 	}{
 		{
-			name: "when empty filters are given, expect original manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-			},
+			name:                  "when empty filters are given, expect original manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAllCodecs,
 			expectManifestContent: manifestWithAllCodecs,
 		},
 		{
 			name: "when filter is supplied with audio (ec-3 and mp4a) and video (hevc and dvh), expect variants with ec-3, mp4a, hevc, and/or dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc", "dvh"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc", "dvh"},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ec-3", "mp4a"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ec-3", "mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllCodecs,
@@ -912,14 +818,11 @@ http://existing.base/uri/link_14.m3u8
 		{
 			name: "when filter is supplied with audio (mp4a) and video (hevc and dvh), expect variants with mp4a, hevc, and/or dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc", "dvh"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc", "dvh"},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"mp4a"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllCodecs,
@@ -928,12 +831,11 @@ http://existing.base/uri/link_14.m3u8
 		{
 			name: "when filter is supplied with audio (ec-3 and mp4a) and captions (stpp), expect variants with ec-3, mp4a, and/or stpp to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"stpp"},
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ec-3", "mp4a"},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp"},
+				},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ec-3", "mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllCodecs,
@@ -942,15 +844,14 @@ http://existing.base/uri/link_14.m3u8
 		{
 			name: "when filter is supplied with audio (ec-3 and mp4a), video (hevc and dvh), and captions (stpp), expect variants with ec-3, mp4a, hevc, dvh, and/or stpp to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"stpp"},
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc", "dvh"},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp"},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ec-3", "mp4a"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc", "dvh"},
+				},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ec-3", "mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllCodecs,
@@ -959,15 +860,14 @@ http://existing.base/uri/link_14.m3u8
 		{
 			name: "when filtering out all codecs except avc video, expect variants with ac-3, ec-3, mp4a, hevc, and/or dvh to be stripped out",
 			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				CaptionTypes: []parsers.CaptionType{"wvtt", "stpp"},
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc", "dvh"},
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp", "wvtt"},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ac-3", "ec-3", "mp4a"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc", "dvh"},
+				},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ac-3", "ec-3", "mp4a"},
 				},
 			},
 			manifestContent:       manifestWithAllCodecs,
@@ -1030,6 +930,8 @@ http://existing.base/uri/link_2.m3u8
 http://existing.base/uri/link_4.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4100,AVERAGE-BANDWIDTH=4100,CODECS="ac-3,avc1.77.30,dvh1.05.01"
 http://existing.base/uri/link_5.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=500,AVERAGE-BANDWIDTH=500,CODECS="wvtt"
+http://existing.base/uri/link_14.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5300,AVERAGE-BANDWIDTH=5300
 http://existing.base/uri/link_13.m3u8
 `
@@ -1038,6 +940,8 @@ http://existing.base/uri/link_13.m3u8
 #EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5900,AVERAGE-BANDWIDTH=5900,CODECS="ac-3,ec-3"
 http://existing.base/uri/link_7b.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=500,AVERAGE-BANDWIDTH=500,CODECS="wvtt"
+http://existing.base/uri/link_14.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5300,AVERAGE-BANDWIDTH=5300
 http://existing.base/uri/link_13.m3u8
 `
@@ -1048,6 +952,8 @@ http://existing.base/uri/link_13.m3u8
 http://existing.base/uri/link_2.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4500,AVERAGE-BANDWIDTH=4500,CODECS="ec-3,avc1.640029"
 http://existing.base/uri/link_6.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=500,AVERAGE-BANDWIDTH=500,CODECS="wvtt"
+http://existing.base/uri/link_14.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5300,AVERAGE-BANDWIDTH=5300
 http://existing.base/uri/link_13.m3u8
 `
@@ -1066,6 +972,8 @@ http://existing.base/uri/link_6.m3u8
 http://existing.base/uri/link_7a.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5900,AVERAGE-BANDWIDTH=5900,CODECS="ac-3,ec-3"
 http://existing.base/uri/link_7b.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=500,AVERAGE-BANDWIDTH=500,CODECS="wvtt"
+http://existing.base/uri/link_14.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5300,AVERAGE-BANDWIDTH=5300
 http://existing.base/uri/link_13.m3u8
 `
@@ -1074,6 +982,8 @@ http://existing.base/uri/link_13.m3u8
 #EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.77.30"
 http://existing.base/uri/link_2.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=500,AVERAGE-BANDWIDTH=500,CODECS="wvtt"
+http://existing.base/uri/link_14.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5300,AVERAGE-BANDWIDTH=5300
 http://existing.base/uri/link_13.m3u8
 `
@@ -1086,26 +996,26 @@ http://existing.base/uri/link_13.m3u8
 		expectErr             bool
 	}{
 		{
-			name: "when no filters are given, expect original manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate:   math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-				AudioFilters: parsers.NestedFilters{MaxBitrate: math.MaxInt32},
-			},
+			name:                  "when no filters are given, expect original manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
 			expectManifestContent: manifestWithAllCodecsAndBandwidths,
 		},
 		{
-			name: "when filtering out audio (ec-3) and filtering in bandwidth range 4000-6000, expect variants with ec-3, mp4a, and/or not in range to be stripped out",
+			name: "when filtering out audio (ec-3) and setting bandwidth range 4000-6000, expect variants with ec-3, mp4a, and/or not in range to be stripped out",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 4000,
-				MaxBitrate: 6000,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ec-3"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ec-3"},
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
 			},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
@@ -1114,14 +1024,18 @@ http://existing.base/uri/link_13.m3u8
 		{
 			name: "when filtering out video (avc and hevc) and filtering in bandwidth range 4000-6000, expect variants with avc, hevc, and/or not in range to be stripped out",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 4000,
-				MaxBitrate: 6000,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"avc", "hvc"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"avc", "hvc"},
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
 			},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
@@ -1130,15 +1044,19 @@ http://existing.base/uri/link_13.m3u8
 		{
 			name: "when filtering out audio (ac-3, mp4a) and video (hevc and dvh) and filtering in bandwidth range 4000-6000, expect variants with ac-3, mp4a, hevc, dvh, and/or not in range to be stripped out",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 4000,
-				MaxBitrate: 6000,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"hvc", "dvh"},
+				Videos: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"hvc", "dvh"},
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ac-3", "mp4a"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ac-3", "mp4a"},
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
 			},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
@@ -1147,14 +1065,20 @@ http://existing.base/uri/link_13.m3u8
 		{
 			name: "when filtering out captions (stpp) and filtering in bandwidth range 4000-6000, expect variants with stpp and/or not in range to be stripped out",
 			filters: &parsers.MediaFilters{
-				CaptionTypes: []parsers.CaptionType{"stpp"},
-				MinBitrate:   4000,
-				MaxBitrate:   6000,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Captions: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"stpp"},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
+				},
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
 			},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
@@ -1163,14 +1087,18 @@ http://existing.base/uri/link_13.m3u8
 		{
 			name: "when filtering out audio and filtering in bandwidth range 4000-6000, expect variants with ac-3, ec-3, mp4a, and/or not in range to be stripped out",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 4000,
-				MaxBitrate: 6000,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-					Codecs:     []parsers.Codec{"ac-3", "ec-3", "mp4a"},
+				Audios: parsers.NestedFilters{
+					Codecs: []parsers.Codec{"ac-3", "ec-3", "mp4a"},
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
 			},
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
@@ -1205,10 +1133,9 @@ func TestHLSFilter_FilterManifest_NormalizeVariant(t *testing.T) {
 
 	manifestWithRelativeOnly := `#EXTM3U
 #EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="audio.m3u8"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="video.m3u8"
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="audio.mp3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU2",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="../../audio_nested.mp3u8"
-#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="video.mp3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CLOSED-CAPTIONS="CC"
@@ -1219,10 +1146,9 @@ link_2.m3u8
 
 	manifestWithAbsoluteOnly := `#EXTM3U
 #EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/audio.m3u8"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/video.m3u8"
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/audio.mp3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU2",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/audio_nested.mp3u8"
-#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/video.mp3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 http://existing.base/uri/nested/folders/link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CLOSED-CAPTIONS="CC"
@@ -1233,10 +1159,9 @@ http://existing.base/uri/link_3.m3u8
 
 	manifestWithRelativeAndAbsolute := `#EXTM3U
 #EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/audio.m3u8"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/video.m3u8"
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="audio.mp3u8"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU2",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="../../audio_nested.mp3u8"
-#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/video.mp3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CLOSED-CAPTIONS="CC"
@@ -1247,9 +1172,9 @@ http://existing.base/uri/nested/folders/link_2.m3u8
 
 	manifestWithDifferentAbsolute := `#EXTM3U
 #EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="audio.m3u8"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://different.base/uri/video.m3u8"
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="audio.mp3u8"
-#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://different.base/uri/video.mp3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CLOSED-CAPTIONS="CC"
@@ -1258,9 +1183,9 @@ http://different.base/uri/link_2.m3u8
 
 	manifestWithDifferentAbsoluteExpected := `#EXTM3U
 #EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/audio.m3u8"
+#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://different.base/uri/video.m3u8"
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://existing.base/uri/nested/folders/audio.mp3u8"
-#EXT-X-MEDIA:TYPE=VIDEO,GROUP-ID="VID",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://different.base/uri/video.mp3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 http://existing.base/uri/nested/folders/link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CLOSED-CAPTIONS="CC"
@@ -1270,7 +1195,7 @@ http://different.base/uri/link_2.m3u8
 	manifestWithIllegalAlternativeURLs := `#EXTM3U
 #EXT-X-VERSION:4
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://exist\ing.base/uri/illegal.mp3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="http://exist\ing.base/uri/illegal.m3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 http://existing.base/uri/nested/folders/link_1.m3u8
 `
@@ -1278,7 +1203,7 @@ http://existing.base/uri/nested/folders/link_1.m3u8
 	manifestWithIllegalVariantURLs := `#EXTM3U
 #EXT-X-VERSION:4
 #EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
-#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="\nillegal.mp3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="AU",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG",URI="\nillegal.m3u8"
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,AUDIO="AU",VIDEO="VID",CLOSED-CAPTIONS="CC"
 http://existi\ng.base/uri/link_1.m3u8
 `
@@ -1291,50 +1216,38 @@ http://existi\ng.base/uri/link_1.m3u8
 		expectErr             bool
 	}{
 		{
-			name: "when manifest contains only absolute uris, expect same manifest",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:                  "when manifest contains only absolute uris, expect same manifest",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithAbsoluteOnly,
 			expectManifestContent: manifestWithAbsoluteOnly,
 		},
 		{
-			name: "when manifest contains only relative urls, expect all urls to become absolute",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:                  "when manifest contains only relative urls, expect all urls to become absolute",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithRelativeOnly,
 			expectManifestContent: manifestWithAbsoluteOnly,
 		},
 		{
-			name: "when manifest contains both absolute and relative urls, expect all urls to be absolute",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:                  "when manifest contains both absolute and relative urls, expect all urls to be absolute",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithRelativeAndAbsolute,
 			expectManifestContent: manifestWithAbsoluteOnly,
 		},
 		{
-			name: "when manifest contains relative urls and absolute urls (with different base url), expect only relative urls to be changes to have base url as base",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:                  "when manifest contains relative urls and absolute urls (with different base url), expect only relative urls to be changes to have base url as base",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       manifestWithDifferentAbsolute,
 			expectManifestContent: manifestWithDifferentAbsoluteExpected,
 		},
 		{
-			name: "when manifest contains invalid absolute urls, expect error to be returned",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:            "when manifest contains invalid absolute urls, expect error to be returned",
+			filters:         &parsers.MediaFilters{},
 			manifestContent: manifestWithIllegalAlternativeURLs,
 			expectErr:       true,
 		},
 		{
-			name: "when manifest contains invalid relative urls, expect error to be returned",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-			},
+			name:            "when manifest contains invalid relative urls, expect error to be returned",
+			filters:         &parsers.MediaFilters{},
 			manifestContent: manifestWithIllegalVariantURLs,
 			expectErr:       true,
 		},
@@ -1405,8 +1318,7 @@ http://existi\ng.base/uri/link_1.m3u8
 func TestHLSFilter_FilterManifest_TrimFilter_MasterManifest(t *testing.T) {
 
 	masterManifestWithAbsoluteURLs := `#EXTM3U
-#EXT-X-VERSION:4
-#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2"
 https://existing.base/path/link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2"
@@ -1420,8 +1332,7 @@ https://existing.base/path/link_6.m3u8
 `
 
 	masterManifestWithRelativeURLs := `#EXTM3U
-#EXT-X-VERSION:4
-#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2"
 link_1.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2"
@@ -1435,8 +1346,7 @@ link_6.m3u8
 `
 
 	manifestWithBase64EncodedVariantURLS := `#EXTM3U
-#EXT-X-VERSION:4
-#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-VERSION:3
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2"
 https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3BhdGgvbGlua18xLm0zdTg.m3u8
 #EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2"
@@ -1474,32 +1384,18 @@ https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3BhdGgvbG
 		expectErr             bool
 	}{
 		{
-			name: "when trim filter is given and master has absolute urls, variant level manifest will point to" +
+			name: "when trim filter is given and master has absolute urls, variant level manifest will point to " +
 				"bakery with trim filter and base64 encoding string in the manifest",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
 				Trim: trim,
 			},
 			manifestContent:       masterManifestWithAbsoluteURLs,
 			expectManifestContent: manifestWithBase64EncodedVariantURLS,
 		},
 		{
-			name: "when trim filter is given and master has relative urls, variant level manifest will point to" +
+			name: "when trim filter is given and master has relative urls, variant level manifest will point to " +
 				"bakery with trim filter and base64 encoding string in the manifest",
 			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
 				Trim: trim,
 			},
 			manifestContent:       masterManifestWithRelativeURLs,
@@ -1507,32 +1403,28 @@ https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3BhdGgvbG
 		},
 		{
 			name: "when bitrate and trim filter are given, variant level manifest will point to" +
-				"bakery with only included bitrates, the trim filter, and base64 encoding string in the manifest",
+				"bakery with only included bitrates, the trim filter, and base64 encoding string in the manifest ",
 			filters: &parsers.MediaFilters{
-				MinBitrate: 4000,
-				MaxBitrate: 6000,
-				Trim:       trim,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
+				Audios: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 4000,
+						Max: 6000,
+					},
 				},
+				Trim: trim,
 			},
 			manifestContent:       masterManifestWithRelativeURLs,
 			expectManifestContent: manifestWithFilteredBitrateAndBase64EncodedVariantURLS,
 		},
 		{
-			name: "when no filter is given, variant level manifest will hold absolute urls only",
-			filters: &parsers.MediaFilters{
-				MaxBitrate: math.MaxInt32,
-				VideoFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-				AudioFilters: parsers.NestedFilters{
-					MaxBitrate: math.MaxInt32,
-				},
-			},
+			name:                  "when no filter is given, variant level manifest will hold absolute urls only",
+			filters:               &parsers.MediaFilters{},
 			manifestContent:       masterManifestWithRelativeURLs,
 			expectManifestContent: masterManifestWithAbsoluteURLs,
 		},
@@ -1714,6 +1606,231 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
 			manifestContent:       variantManifestWithNoPDT,
 			expectManifestContent: "",
 			expectErr:             true,
+		},
+	}
+
+	for _, tt := range tests {
+		tt := tt
+		t.Run(tt.name, func(t *testing.T) {
+			filter := NewHLSFilter("https://existing.base/path/master.m3u8", tt.manifestContent, config.Config{Hostname: "bakery.cbsi.video"})
+			manifest, err := filter.FilterManifest(tt.filters)
+
+			if err != nil && !tt.expectErr {
+				t.Errorf("FilterManifest() didnt expect an error to be returned, got: %v", err)
+				return
+			} else if err == nil && tt.expectErr {
+				t.Error("FilterManifest() expected an error, got nil")
+				return
+			}
+
+			if g, e := manifest, tt.expectManifestContent; g != e {
+				t.Errorf("FilterManifest() wrong manifest returned)\ngot %v\nexpected: %v\ndiff: %v", g, e,
+					cmp.Diff(g, e))
+			}
+
+		})
+	}
+}
+
+func TestHLSFilter_FilterManifest_LanguageFilter(t *testing.T) {
+
+	masterManifestWithMultipleLangs := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="English",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="en",URI="https://existing.base/path/index-f8-a1.m3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Dansk",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="da",URI="https://existing.base/path/index-f10-a1.m3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Deutsch",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="de",URI="https://existing.base/path/index-f11-a1.m3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Spanish (Latin America)",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="es",URI="https://existing.base/path/index-f12-a1.m3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Brazilian Portuguese",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="pt",URI="https://existing.base/path/index-f16-a1.m3u8"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs0",NAME="English",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="en",URI="https://existing.base/path/index-f19.m3u8"
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=277965,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=384x216,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f1-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=479857,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=512x288,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f2-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=786893,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=640x360,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f3-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1015563,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=768x432,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f4-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1421115,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=960x540,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f5-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1956642,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1280x720,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f6-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=3712583,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1920x1080,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f7-v1.m3u8
+`
+
+	masterManifestWithEnglishOnly := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="English",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="en",URI="https://existing.base/path/index-f8-a1.m3u8"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs0",NAME="English",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="en",URI="https://existing.base/path/index-f19.m3u8"
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=277965,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=384x216,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f1-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=479857,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=512x288,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f2-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=786893,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=640x360,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f3-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1015563,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=768x432,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f4-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1421115,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=960x540,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f5-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1956642,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1280x720,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f6-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=3712583,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1920x1080,AUDIO="audio0",SUBTITLES="subs0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f7-v1.m3u8
+`
+
+	masterManifestWithSpanishAndPortugeseAndNoCaptions := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Spanish (Latin America)",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="es",URI="https://existing.base/path/index-f12-a1.m3u8"
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio0",NAME="Brazilian Portuguese",DEFAULT=NO,AUTOSELECT=NO,LANGUAGE="pt",URI="https://existing.base/path/index-f16-a1.m3u8"
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=277965,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=384x216,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f1-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=479857,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=512x288,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f2-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=786893,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=640x360,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f3-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1015563,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=768x432,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f4-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1421115,CODECS="avc1.4d401e,mp4a.40.2",RESOLUTION=960x540,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f5-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=1956642,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1280x720,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f6-v1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=3712583,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1920x1080,AUDIO="audio0",FRAME-RATE=25.000,VIDEO-RANGE=SDR
+https://existing.base/path/index-f7-v1.m3u8
+`
+
+	tests := []struct {
+		name                  string
+		filters               *parsers.MediaFilters
+		manifestContent       string
+		expectManifestContent string
+		expectErr             bool
+	}{
+		{
+			name:                  "when no filters are passed, nothing is removed",
+			filters:               &parsers.MediaFilters{},
+			manifestContent:       masterManifestWithMultipleLangs,
+			expectManifestContent: masterManifestWithMultipleLangs,
+		},
+		{
+			name: "when multiple audio languages are passed in, remove all those languages of type audio",
+			filters: &parsers.MediaFilters{
+				Audios: parsers.NestedFilters{
+					Language: []parsers.Language{"da", "de", "es", "pt"},
+				},
+			},
+			manifestContent:       masterManifestWithMultipleLangs,
+			expectManifestContent: masterManifestWithEnglishOnly,
+		},
+		{
+			name: "when multiple audio and caption languages are passed in, remove provided audio and caption languages ",
+			filters: &parsers.MediaFilters{
+				Audios: parsers.NestedFilters{
+					Language: []parsers.Language{"da", "de", "en"},
+				},
+				Captions: parsers.NestedFilters{
+					Language: []parsers.Language{"en"},
+				},
+			},
+			manifestContent:       masterManifestWithMultipleLangs,
+			expectManifestContent: masterManifestWithSpanishAndPortugeseAndNoCaptions,
+		},
+	}
+
+	for _, tt := range tests {
+		tt := tt
+		t.Run(tt.name, func(t *testing.T) {
+			filter := NewHLSFilter("https://existing.base/path/master.m3u8", tt.manifestContent, config.Config{Hostname: "bakery.cbsi.video"})
+			manifest, err := filter.FilterManifest(tt.filters)
+
+			if err != nil && !tt.expectErr {
+				t.Errorf("FilterManifest() didnt expect an error to be returned, got: %v", err)
+				return
+			} else if err == nil && tt.expectErr {
+				t.Error("FilterManifest() expected an error, got nil")
+				return
+			}
+
+			if g, e := manifest, tt.expectManifestContent; g != e {
+				t.Errorf("FilterManifest() wrong manifest returned)\ngot %v\nexpected: %v\ndiff: %v", g, e,
+					cmp.Diff(g, e))
+			}
+
+		})
+	}
+}
+
+func TestHLSFilter_FilterManifest_IFrameFilter(t *testing.T) {
+	masterManifestWithSingleIFrame := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_2.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_4.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4100,AVERAGE-BANDWIDTH=4100,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_5.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4500,AVERAGE-BANDWIDTH=4500,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_6.m3u8
+#EXT-X-I-FRAME-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=250,CODECS="avc1.4d401e",RESOLUTION=384x216,URI="https://existing.base/path/link_1.m3u8"
+`
+
+	masterManifestWithMultipleIFrame := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_2.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_4.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4100,AVERAGE-BANDWIDTH=4100,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_5.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4500,AVERAGE-BANDWIDTH=4500,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_6.m3u8
+#EXT-X-I-FRAME-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=250,CODECS="avc1.4d401e",RESOLUTION=384x216,URI="link_1.m3u8",
+#EXT-X-I-FRAME-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=550,CODECS="avc1.4d401e",RESOLUTION=512x288,URI="link_2.m3u8",
+`
+
+	masterManifestWithNoIframe := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=CLOSED-CAPTIONS,GROUP-ID="CC",NAME="ENGLISH",DEFAULT=NO,LANGUAGE="ENG"
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=1000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4200,AVERAGE-BANDWIDTH=4200,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_2.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4000,AVERAGE-BANDWIDTH=4000,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_4.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4100,AVERAGE-BANDWIDTH=4100,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_5.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4500,AVERAGE-BANDWIDTH=4500,CODECS="avc1.64001f,mp4a.40.2",CLOSED-CAPTIONS="CC"
+https://existing.base/path/link_6.m3u8
+`
+	tests := []struct {
+		name                  string
+		filters               *parsers.MediaFilters
+		manifestContent       string
+		expectManifestContent string
+		expectErr             bool
+	}{
+		{
+			name:                  "when empty filter is given, expect no filtering to be done",
+			filters:               &parsers.MediaFilters{},
+			manifestContent:       masterManifestWithSingleIFrame,
+			expectManifestContent: masterManifestWithSingleIFrame,
+		},
+		{
+			name:                  "when iframe filter has been set, iframe is removed given a playlist with a single iframe",
+			filters:               &parsers.MediaFilters{IFrame: true},
+			manifestContent:       masterManifestWithSingleIFrame,
+			expectManifestContent: masterManifestWithNoIframe,
+		},
+		{
+			name:                  "when iframe filter has been set, iframe is removed given a playlist with mutliple iframe",
+			filters:               &parsers.MediaFilters{IFrame: true},
+			manifestContent:       masterManifestWithMultipleIFrame,
+			expectManifestContent: masterManifestWithNoIframe,
 		},
 	}
 

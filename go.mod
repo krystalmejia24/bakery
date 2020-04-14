@@ -7,7 +7,7 @@ replace github.com/grafov/m3u8 => github.com/cbsinteractive/m3u8 v0.11.2-0.20200
 go 1.13
 
 require (
-	github.com/cbsinteractive/propeller-client-go v0.0.0-20200325144512-9e4b6cb70b7a
+	github.com/cbsinteractive/propeller-go v0.0.0-20200414163032-ca64404c26d8
 	github.com/google/go-cmp v0.4.0
 	github.com/grafov/m3u8 v0.11.1
 	github.com/kelseyhightower/envconfig v1.4.0

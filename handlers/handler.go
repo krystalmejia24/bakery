@@ -8,18 +8,26 @@ import (
 	"github.com/cbsinteractive/bakery/filters"
 	"github.com/cbsinteractive/bakery/origin"
 	"github.com/cbsinteractive/bakery/parsers"
+	"github.com/sirupsen/logrus"
 )
 
 // LoadHandler loads the handler for all the requests
 func LoadHandler(c config.Config) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		c.Client.SetContext(r)
-		if r.RequestURI == "/favicon.ico" {
-			return
-		}
+
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		logger := c.GetLogger()
-		logger.Infof("%s %s %s", r.Method, r.RequestURI, r.RemoteAddr)
+		logger.WithFields(logrus.Fields{
+			"method":      r.Method,
+			"uri":         r.RequestURI,
+			"remote-addr": r.RemoteAddr,
+		}).Info("received request")
+
+		if !c.Authenticate(r.Header.Get("x-bakery-origin-token")) {
+			httpError(c, w, fmt.Errorf("authentication"), "failed authenticating request", http.StatusForbidden)
+			return
+		}
 
 		// parse all the filters from the URL
 		masterManifestPath, mediaFilters, err := parsers.URLParse(r.URL.Path)

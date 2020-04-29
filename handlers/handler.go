@@ -14,39 +14,48 @@ import (
 // LoadHandler loads the handler for all the requests
 func LoadHandler(c config.Config) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		//set context on client which is copied over
+		//when fetching manifest and configuring origins
 		c.Client.SetContext(r)
 
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		logger := c.GetLogger()
-		logger.WithFields(logrus.Fields{
-			"method":      r.Method,
-			"uri":         r.RequestURI,
-			"remote-addr": r.RemoteAddr,
-		}).Info("received request")
+		ctxLog := logger.WithFields(logrus.Fields{
+			"method": r.Method,
+			"uri":    r.RequestURI,
+			"raddr":  r.RemoteAddr,
+			"ref":    r.Referer(),
+			"ua":     r.UserAgent(),
+		})
+		ctxLog.Info("received request")
 
 		if !c.Authenticate(r.Header.Get("x-bakery-origin-token")) {
-			httpError(c, w, fmt.Errorf("authentication"), "failed authenticating request", http.StatusForbidden)
+			e := NewErrorResponse("failed authenticating request", fmt.Errorf("authentication"))
+			e.HandleError(ctxLog, w, http.StatusForbidden)
 			return
 		}
 
 		// parse all the filters from the URL
 		masterManifestPath, mediaFilters, err := parsers.URLParse(r.URL.Path)
 		if err != nil {
-			httpError(c, w, err, "failed parsing url", http.StatusInternalServerError)
+			e := NewErrorResponse("failed parsing filters", err)
+			e.HandleError(ctxLog, w, http.StatusInternalServerError)
 			return
 		}
 
 		//configure origin from path
 		manifestOrigin, err := origin.Configure(c, masterManifestPath)
 		if err != nil {
-			httpError(c, w, err, "failed configuring origin", http.StatusInternalServerError)
+			e := NewErrorResponse("failed configuring origin", err)
+			e.HandleError(ctxLog, w, http.StatusInternalServerError)
 			return
 		}
 
 		// fetch manifest from origin
-		manifestContent, err := manifestOrigin.FetchManifest(c)
+		manifestContent, err := manifestOrigin.FetchManifest(c.Client)
 		if err != nil {
-			httpError(c, w, err, "failed fetching origin manifest content", http.StatusInternalServerError)
+			e := NewErrorResponse("failed fetching manifest", err)
+			e.HandleError(ctxLog, w, http.StatusInternalServerError)
 			return
 		}
 
@@ -62,18 +71,20 @@ func LoadHandler(c config.Config) http.Handler {
 			w.Header().Set("Content-Type", "application/dash+xml")
 		default:
 			err := fmt.Errorf("unsupported protocol %q", mediaFilters.Protocol)
-			httpError(c, w, err, "failed to select filter", http.StatusBadRequest)
+			e := NewErrorResponse("failed to select filter", err)
+			e.HandleError(ctxLog, w, http.StatusBadRequest)
 			return
 		}
 
 		// apply the filters to the origin manifest
 		filteredManifest, err := f.FilterManifest(mediaFilters)
 		if err != nil {
-			httpError(c, w, err, "failed to filter manifest", http.StatusInternalServerError)
+			e := NewErrorResponse("failed to filter manifest", err)
+			e.HandleError(ctxLog, w, http.StatusInternalServerError)
 			return
 		}
 
-		// set cache-control if servering hls media playlist
+		// set cache-control if serving hls media playlist
 		if maxAge := f.GetMaxAge(); maxAge != "" && maxAge != "0" {
 			w.Header().Set("Cache-Control", fmt.Sprintf("max-age=%v", maxAge))
 		}
@@ -81,10 +92,4 @@ func LoadHandler(c config.Config) http.Handler {
 		// write the filtered manifest to the response
 		fmt.Fprint(w, filteredManifest)
 	})
-}
-
-func httpError(c config.Config, w http.ResponseWriter, err error, message string, code int) {
-	logger := c.GetLogger()
-	logger.WithError(err).Infof(message)
-	http.Error(w, message+": "+err.Error(), code)
 }

@@ -19,15 +19,17 @@ func LoadHandler(c config.Config) http.Handler {
 		c.Client.SetContext(r)
 
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		logger := c.GetLogger()
-		ctxLog := logger.WithFields(logrus.Fields{
+		//context log with fields to be used
+		ctxLog := c.GetLogger().WithFields(logrus.Fields{
 			"method": r.Method,
 			"uri":    r.RequestURI,
-			"raddr":  r.RemoteAddr,
-			"ref":    r.Referer(),
-			"ua":     r.UserAgent(),
 		})
-		ctxLog.Info("received request")
+		//log initial request w/ additional fields
+		ctxLog.WithFields(logrus.Fields{
+			"raddr": r.RemoteAddr,
+			"ref":   r.Referer(),
+			"ua":    r.UserAgent(),
+		}).Info("received request")
 
 		if !c.Authenticate(r.Header.Get("x-bakery-origin-token")) {
 			e := NewErrorResponse("failed authenticating request", fmt.Errorf("authentication"))
@@ -39,7 +41,7 @@ func LoadHandler(c config.Config) http.Handler {
 		masterManifestPath, mediaFilters, err := parsers.URLParse(r.URL.Path)
 		if err != nil {
 			e := NewErrorResponse("failed parsing filters", err)
-			e.HandleError(ctxLog, w, http.StatusInternalServerError)
+			e.HandleError(ctxLog, w, http.StatusBadRequest)
 			return
 		}
 
@@ -69,11 +71,6 @@ func LoadHandler(c config.Config) http.Handler {
 		case parsers.ProtocolDASH:
 			f = filters.NewDASHFilter(manifestOrigin.GetPlaybackURL(), manifestContent, c)
 			w.Header().Set("Content-Type", "application/dash+xml")
-		default:
-			err := fmt.Errorf("unsupported protocol %q", mediaFilters.Protocol)
-			e := NewErrorResponse("failed to select filter", err)
-			e.HandleError(ctxLog, w, http.StatusBadRequest)
-			return
 		}
 
 		// apply the filters to the origin manifest

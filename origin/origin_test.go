@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
 	"net/url"
 	"testing"
 	"time"
@@ -160,6 +161,9 @@ func TestOrigin_Configure(t *testing.T) {
 		t.Error("Unable to make test urls")
 	}
 
+	cfg, teardown := configMockPropellerAPI(t)
+	defer teardown()
+
 	tests := []struct {
 		name      string
 		path      string
@@ -168,11 +172,22 @@ func TestOrigin_Configure(t *testing.T) {
 		expectErr bool
 	}{
 		{
-			name:      "when origin is of type propeller in wrong format, return error",
-			path:      "/propeller/chanID.m3u8",
-			c:         config.Config{LogLevel: "panic"},
-			expected:  &Propeller{},
-			expectErr: true,
+			name:     "when origin path is of type propeller for channel manifest",
+			path:     "/propeller/org123/channel-123.m3u8",
+			c:        cfg,
+			expected: &Propeller{URL: "http://cdn.com/ch.m3u8"},
+		},
+		{
+			name:     "when origin path is of type propeller for channel output manifest",
+			path:     "/propeller/org123/channel-with-output/output-123.m3u8",
+			c:        cfg,
+			expected: &Propeller{URL: "http://cdn.com/output-123.m3u8"},
+		},
+		{
+			name:     "when origin path is of type propeller for clip manifest",
+			path:     "/propeller/org123/clip/clip-123.m3u8",
+			c:        cfg,
+			expected: &Propeller{URL: "http://cdn.com/clip-123.m3u8"},
 		},
 		{
 			name:      "when origin is of type propeller in wrong format, return error",
@@ -187,7 +202,6 @@ func TestOrigin_Configure(t *testing.T) {
 			c:        config.Config{LogLevel: "panic", OriginHost: "host"},
 			expected: &DefaultOrigin{Origin: "host", URL: *absTestURL},
 		},
-
 		{
 			name:     "when origin path is at root but not base64 encoded, return default origin type",
 			path:     relTestURL.String(),
@@ -201,7 +215,7 @@ func TestOrigin_Configure(t *testing.T) {
 			got, err := Configure(tc.c, tc.path)
 
 			if err != nil && !tc.expectErr {
-				t.Errorf("Configure() didnt expect an error to be returned, got: %v", err)
+				t.Errorf("Configure() didnt expect an error to be returned, got: %q", err)
 				return
 			} else if err == nil && tc.expectErr {
 				t.Error("Configure() expected an error, got nil")
@@ -209,11 +223,51 @@ func TestOrigin_Configure(t *testing.T) {
 			}
 
 			if !cmp.Equal(got, tc.expected) {
-				t.Errorf("Wrong Origin returned\ngot %v\nexpected: %v\ndiff: %v",
+				t.Errorf("Wrong Origin returned\ngot %q\nexpected: %q\ndiff: %v",
 					got, tc.expected, cmp.Diff(got, tc.expected))
 			}
 
 		})
 
 	}
+}
+
+// configMockPropellerAPI returns a config.Config object with a mocked version of Propeller
+// API that returns hard-coded responses
+//
+// Make sure to call teardown() when the test is over
+func configMockPropellerAPI(tb testing.TB) (cfg config.Config, teardown func()) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.String() {
+		case "/v1/organization/org123/channel/channel-123":
+			fmt.Fprint(w, `{
+				"playback_url": "http://cdn.com/ch.m3u8"
+			}`)
+		case "/v1/organization/org123/channel/channel-with-output":
+			fmt.Fprint(w, `{
+				"playback_url": "http://cdn.com/ch.m3u8",
+				"outputs": [{
+					"id": "output-123",
+					"playback_url": "http://cdn.com/output-123.m3u8"
+				}]
+			}`)
+		case "/v1/organization/org123/clip/clip-123":
+			fmt.Fprint(w, `{
+				"status": "created",
+				"url": "http://cdn.com/clip-123.m3u8"
+			}`)
+		default:
+			w.WriteHeader(404)
+			fmt.Fprintf(w, "unknown url to mock propeller api: %v", r.URL)
+		}
+	}))
+
+	tsURL, err := url.Parse(ts.URL)
+	if err != nil {
+		tb.Fatalf("go httptest server returned invalid url: %v (%v)", ts.URL, err)
+	}
+	cfg = config.Config{LogLevel: "panic"}
+	cfg.Propeller.Client.HostURL = tsURL
+
+	return cfg, ts.Close
 }

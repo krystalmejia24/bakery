@@ -3,7 +3,7 @@ package origin
 import (
 	"errors"
 	"fmt"
-	"strings"
+	"regexp"
 
 	"github.com/sirupsen/logrus"
 
@@ -11,23 +11,27 @@ import (
 	propeller "github.com/cbsinteractive/propeller-go/client"
 )
 
-//Propeller struct holds basic config of a Propeller Channel
+// propellerPaths defines the multiple path formats allowed for propeller entities in Bakery
+var propellerPaths = []*regexp.Regexp{
+	regexp.MustCompile(`/propeller/(?P<orgID>.+)/clip/(?P<clipID>.+).m3u8`),
+	regexp.MustCompile(`/propeller/(?P<orgID>.+)/(?P<channelID>.+)/(?P<outputID>.+).m3u8`),
+	regexp.MustCompile(`/propeller/(?P<orgID>.+)/(?P<channelID>.+).m3u8`),
+}
+
+// Propeller Origin holds the URL of a propeller entity (Channel, Clip)
 type Propeller struct {
 	URL string
 }
 
-type fetchURL func(*propeller.Client, string, string) (string, error)
-
+// configurePropeller builds a new Propeller Origin given the Bakery config and the current url path
+//
+// The path will be matched agains one of propellerPaths patterns to find out the specific entity
+// being requested (channel, clip) and a new Propeller Origin object is returned
+//
+// Return error if 'path' doesn't match with any of propellerPaths
 func configurePropeller(c config.Config, path string) (Origin, error) {
-	// Propeller channels can be requested in multiple formats.
-	// When split, the parts in the path should evaluate to the following:
-	// /propeller/orgID/channelID.m3u8
-	// /propeller/orgID/clip/clipID.m3u8
-	// /propeller/orgID/channelID/outputID.m3u8
-	parts := strings.Split(path, "/")
-
-	if len(parts) < 4 {
-		err := fmt.Errorf("propeller origin: request format is not `/propeller/orgID/channelID.m3u8`")
+	urlValues, err := parsePropellerPath(path)
+	if err != nil {
 		log := c.GetLogger()
 		log.WithFields(logrus.Fields{
 			"origin":  "propeller",
@@ -36,30 +40,27 @@ func configurePropeller(c config.Config, path string) (Origin, error) {
 		return &Propeller{}, err
 	}
 
-	orgID := parts[2]
+	orgID := urlValues["orgID"]
+	channelID := urlValues["channelID"]
+	outputID := urlValues["outputID"]
+	clipID := urlValues["clipID"]
 
-	if strings.Contains(parts[3], "clip") {
-		return NewPropeller(c, orgID, extractID(parts[len(parts)-1]), getPropellerClipURL)
+	var getter urlGetter
+	if clipID != "" {
+		getter = &clipURLGetter{orgID: orgID, clipID: clipID}
+	} else if outputID != "" {
+		getter = &outputURLGetter{orgID: orgID, channelID: channelID, outputID: outputID}
+	} else {
+		getter = &channelURLGetter{orgID: orgID, channelID: channelID}
 	}
-
-	return NewPropeller(c, orgID, extractID(parts[len(parts)-1]), getPropellerChannelURL)
+	return NewPropeller(c, orgID, channelID, getter)
 }
 
-//GetPlaybackURL will retrieve url
-func (p *Propeller) GetPlaybackURL() string {
-	return p.URL
-}
-
-//FetchManifest will grab manifest contents of configured origin
-func (p *Propeller) FetchManifest(c config.Client) (string, error) {
-	return fetch(c, p.URL)
-}
-
-//NewPropeller returns a propeller struct
-func NewPropeller(c config.Config, orgID string, endpointID string, get fetchURL) (*Propeller, error) {
+// NewPropeller returns a Propeller origin struct
+func NewPropeller(c config.Config, orgID string, endpointID string, getter urlGetter) (*Propeller, error) {
 	c.Propeller.UpdateContext(c.Client.Context)
 
-	propellerURL, err := get(&c.Propeller.Client, orgID, endpointID)
+	propellerURL, err := getter.GetURL(&c.Propeller.Client)
 	if err != nil {
 		err := fmt.Errorf("propeller origin: %w", err)
 		log := c.GetLogger()
@@ -76,64 +77,157 @@ func NewPropeller(c config.Config, orgID string, endpointID string, get fetchURL
 	}, nil
 }
 
-func getPropellerChannelURL(client *propeller.Client, orgID string, channelID string) (string, error) {
-	channel, err := client.GetChannel(orgID, channelID)
-	if err != nil {
-		var se propeller.StatusError
-		if errors.As(err, &se) && se.NotFound() {
-			return getPropellerClipURL(client, orgID, fmt.Sprintf("%v-archive", channelID))
-		}
-
-		return "", fmt.Errorf("fetching channel: %w", err)
-	}
-
-	return getChannelURL(channel)
+// GetPlaybackURL will retrieve url
+func (p *Propeller) GetPlaybackURL() string {
+	return p.URL
 }
 
-func getChannelURL(channel propeller.Channel) (string, error) {
-	//If a channel is "stopped", it will have an #EXT-X-ENDLIST tag
-	//in its manifest, causing the DAI live playlist to 404.
+// FetchManifest will grab manifest contents of configured origin
+func (p *Propeller) FetchManifest(c config.Client) (string, error) {
+	return fetch(c, p.URL)
+}
+
+// parsePropellerPath matches path against all proellerPaths patterns and return a map
+// of values extracted from that url
+//
+// Return error if path does not match with any url
+func parsePropellerPath(path string) (map[string]string, error) {
+	values := make(map[string]string)
+	for _, pattern := range propellerPaths {
+		match := pattern.FindStringSubmatch(path)
+		if len(match) == 0 {
+			continue
+		}
+		for i, name := range pattern.SubexpNames() {
+			if i != 0 {
+				values[name] = match[i]
+			}
+		}
+		return values, nil
+	}
+	return nil, fmt.Errorf("propeller origin: invalid url format %v", path)
+}
+
+// propellerClient interface is the subset of methods from propeller-go client used by this module
+type propellerClient interface {
+	GetChannel(orgID string, channelID string) (propeller.Channel, error)
+	GetClip(orgID string, clipID string) (propeller.Clip, error)
+}
+
+// urlGetter defines an interface for types that given a Propeller API Client know how to retrieve
+// the playback url of that entity
+type urlGetter interface {
+	GetURL(client propellerClient) (string, error)
+}
+
+// channelURLGetter is a urlGetter for a Propeller channel
+//
+// Finds the channel playback_url using the Propeller API. If the channel is not found try
+// to get the Archive url
+type channelURLGetter struct {
+	orgID     string
+	channelID string
+}
+
+func (g *channelURLGetter) GetURL(client propellerClient) (string, error) {
+	channel, err := client.GetChannel(g.orgID, g.channelID)
+	if err != nil {
+		return handleGetUrlChannelNotFound(err, g.orgID, g.channelID, client)
+	}
+	return g.getURL(channel)
+}
+
+func (g *channelURLGetter) getURL(channel propeller.Channel) (string, error) {
+	// If a channel is "stopped", it will have an #EXT-X-ENDLIST tag
+	// in its manifest, causing the DAI live playlist to 404.
 	if channel.Ads && channel.Status == "running" {
 		return channel.AdsURL, nil
 	}
-
 	if channel.Captions {
 		return channel.CaptionsURL, nil
 	}
-
 	playbackURL, err := channel.URL()
 	if err != nil {
 		return "", fmt.Errorf("parsing channel url: %w", err)
 	}
-
 	return playbackURL.String(), nil
 }
 
-func getPropellerClipURL(client *propeller.Client, orgID string, clipID string) (string, error) {
-	clip, err := client.GetClip(orgID, clipID)
+// outputURLGetter is a urlGetter for a Propeller channel output
+//
+// Finds the output playback_url using the Propeller API. If the channel is not found try
+// to get the Archive url
+type outputURLGetter struct {
+	orgID     string
+	channelID string
+	outputID  string
+}
+
+func (g *outputURLGetter) GetURL(client propellerClient) (string, error) {
+	channel, err := client.GetChannel(g.orgID, g.channelID)
+	if err != nil {
+		return handleGetUrlChannelNotFound(err, g.orgID, g.channelID, client)
+	}
+	output, err := channel.FindOutput(g.outputID)
+	if err != nil {
+		return "", fmt.Errorf("finding channel output: %w", err)
+	}
+	return g.getURL(&channel, output)
+}
+
+func (g *outputURLGetter) getURL(channel *propeller.Channel, output *propeller.ChannelOutput) (string, error) {
+	if output.AdsURL != "" && channel.Status == "running" {
+		return output.AdsURL, nil
+	}
+	if output.CaptionsURL != "" {
+		return output.CaptionsURL, nil
+	}
+	if output.PlaybackURL != "" {
+		return output.PlaybackURL, nil
+	}
+	return "", errors.New("Channel output not ready")
+}
+
+// handleGetUrlChannelNotFound is an error handler used when trying to GET a channel
+// in Propeller API and it failed
+//
+// When a channel is not found in Propeller we try to get the Clip archive URL
+func handleGetUrlChannelNotFound(err error, orgID string, channelID string, client propellerClient) (string, error) {
+	var se propeller.StatusError
+	if errors.As(err, &se) && se.NotFound() {
+		clipGetter := &clipURLGetter{
+			orgID:  orgID,
+			clipID: fmt.Sprintf("%v-archive", channelID),
+		}
+		return clipGetter.GetURL(client)
+	}
+	return "", err
+}
+
+// clipURLGetter is a urlGetter for a Propeller clip
+//
+// Finds the Clip playback_url using the Propeller API
+type clipURLGetter struct {
+	orgID  string
+	clipID string
+}
+
+func (g *clipURLGetter) GetURL(client propellerClient) (string, error) {
+	clip, err := client.GetClip(g.orgID, g.clipID)
 	if err != nil {
 		return "", fmt.Errorf("fetching clip: %w", err)
 	}
-
-	return getClipURL(clip)
+	return g.getURL(clip)
 }
 
-func getClipURL(clip propeller.Clip) (string, error) {
+func (g *clipURLGetter) getURL(clip propeller.Clip) (string, error) {
 	playbackURL, err := clip.URL()
 	if err != nil {
 		return "", fmt.Errorf("parsing clip url: %w", err)
 	}
-
 	playback := playbackURL.String()
 	if playback == "" {
 		return playback, fmt.Errorf("clip status: not ready")
 	}
-
 	return playback, nil
-
-}
-
-// extracID will extract the id from manifest name (id.m3u8)
-func extractID(s string) string {
-	return strings.Split(s, ".")[0]
 }

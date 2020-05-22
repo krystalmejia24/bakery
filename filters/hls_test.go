@@ -1413,6 +1413,45 @@ http://localhost:8080/t(10000,100000)/tags(ads)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3Bh
 http://localhost:8080/t(10000,100000)/tags(ads)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3BhdGgvbGlua182Lm0zdTg.m3u8
 `
 
+	masterManifestWithMediaTag := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:URI="https://devcarrier-hls.amlg.io/captions/734adfe1-0223-487a-960b-863f6f8273dc/en.m3u8",TYPE=SUBTITLES,GROUP-ID="subs",LANGUAGE="eng",NAME="English",DEFAULT=YES,AUTOSELECT=YES,FORCED=NO
+#EXT-X-STREAM-INF:BANDWIDTH=391534,AVERAGE-BANDWIDTH=380600,RESOLUTION=400x224,FRAME-RATE=29.97,CODECS="avc1.64000d,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_1.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=677468,AVERAGE-BANDWIDTH=655600,RESOLUTION=512x288,FRAME-RATE=29.97,CODECS="avc1.640015,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_2.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1055788,AVERAGE-BANDWIDTH=1020800,RESOLUTION=640x360,FRAME-RATE=29.97,CODECS="avc1.64001e,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_3.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1513283,AVERAGE-BANDWIDTH=1460800,RESOLUTION=768x432,FRAME-RATE=29.97,CODECS="avc1.64001e,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_4.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=2199524,AVERAGE-BANDWIDTH=2120800,RESOLUTION=960x540,FRAME-RATE=29.97,CODECS="avc1.64001f,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_5.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=4143876,AVERAGE-BANDWIDTH=3990800,RESOLUTION=1280x720,FRAME-RATE=29.97,CODECS="avc1.64001f,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_6.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=5859480,AVERAGE-BANDWIDTH=5640800,RESOLUTION=1920x1080,FRAME-RATE=29.97,CODECS="avc1.640028,mp4a.40.2",SUBTITLES="subs"
+https://cbss64eb-cbss64eb-ms-dev.global.ssl.fastly.net/cbssc0a7/master/cbssc0a7_7.m3u8
+`
+
+	masterManifestFilteredWithMediaTagAndBase64EncodedMediaURI := `#EXTM3U
+#EXT-X-VERSION:4
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",DEFAULT=YES,AUTOSELECT=YES,LANGUAGE="eng",FORCED="NO",URI="https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9kZXZjYXJyaWVyLWhscy5hbWxnLmlvL2NhcHRpb25zLzczNGFkZmUxLTAyMjMtNDg3YS05NjBiLTg2M2Y2ZjgyNzNkYy9lbi5tM3U4.m3u8"
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=391534,AVERAGE-BANDWIDTH=380600,CODECS="avc1.64000d,mp4a.40.2",RESOLUTION=400x224,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN18xLm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=677468,AVERAGE-BANDWIDTH=655600,CODECS="avc1.640015,mp4a.40.2",RESOLUTION=512x288,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN18yLm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1055788,AVERAGE-BANDWIDTH=1020800,CODECS="avc1.64001e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN18zLm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1513283,AVERAGE-BANDWIDTH=1460800,CODECS="avc1.64001e,mp4a.40.2",RESOLUTION=768x432,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN180Lm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2199524,AVERAGE-BANDWIDTH=2120800,CODECS="avc1.64001f,mp4a.40.2",RESOLUTION=960x540,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN181Lm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=4143876,AVERAGE-BANDWIDTH=3990800,CODECS="avc1.64001f,mp4a.40.2",RESOLUTION=1280x720,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN182Lm0zdTg.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=5859480,AVERAGE-BANDWIDTH=5640800,CODECS="avc1.640028,mp4a.40.2",RESOLUTION=1920x1080,SUBTITLES="subs",FRAME-RATE=29.970
+https://bakery.cbsi.video/t(10000,100000)/aHR0cHM6Ly9jYnNzNjRlYi1jYnNzNjRlYi1tcy1kZXYuZ2xvYmFsLnNzbC5mYXN0bHkubmV0L2Nic3NjMGE3L21hc3Rlci9jYnNzYzBhN183Lm0zdTg.m3u8
+`
+
+
 	trim := &parsers.Trim{
 		Start: 10000,
 		End:   100000,
@@ -1522,6 +1561,15 @@ http://localhost:8080/t(10000,100000)/tags(ads)/aHR0cHM6Ly9leGlzdGluZy5iYXNlL3Bh
 			filters:               &parsers.MediaFilters{},
 			manifestContent:       masterManifestWithRelativeURLs,
 			expectManifestContent: masterManifestWithAbsoluteURLs,
+			config:                config.Config{Hostname: "bakery.cbsi.video"},
+		},
+		{
+			name:                  "when media tag is present, filter and replace media url with base64 encoded string",
+			filters: &parsers.MediaFilters{
+				Trim: trim,
+			},
+			manifestContent:       masterManifestWithMediaTag,
+			expectManifestContent: masterManifestFilteredWithMediaTagAndBase64EncodedMediaURI,
 			config:                config.Config{Hostname: "bakery.cbsi.video"},
 		},
 	}
@@ -1671,6 +1719,31 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
 #EXT-X-ENDLIST
 `
 
+	variantManifestTrimmedUnalignedTrimFilters := `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-TARGETDURATION:6
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:51:54Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202748_1_00020.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:00Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202754_1_00021.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:06Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202801_1_00022.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:12Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202806_1_00023.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:18Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202813_1_00024.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:24Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
+#EXT-X-ENDLIST
+`
+
 	emptyVariantManifest := `#EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-MEDIA-SEQUENCE:0
@@ -1680,6 +1753,11 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
 
 	trim := &parsers.Trim{
 		Start: 1583887920, //2020-03-11T00:52:00
+		End:   1583887944, //2020-03-11T00:52:24
+	}
+
+	unalignedTrim := &parsers.Trim{
+		Start: 1583887919, //2020-03-11T00:51:59
 		End:   1583887944, //2020-03-11T00:52:24
 	}
 
@@ -1697,6 +1775,13 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
 			filters:               &parsers.MediaFilters{Trim: trim},
 			manifestContent:       variantManifestWithRelativeURLs,
 			expectManifestContent: variantManifestTrimmed,
+			expectAge:             "3",
+		},
+		{
+			name:                  "when trim filter start range is not aligned to a PDT, all segments with any content in the range are included",
+			filters:               &parsers.MediaFilters{Trim: unalignedTrim},
+			manifestContent:       variantManifestWithAbsoluteURLs,
+			expectManifestContent: variantManifestTrimmedUnalignedTrimFilters,
 			expectAge:             "3",
 		},
 		{
@@ -1868,8 +1953,67 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00029.ts
 #EXT-X-ENDLIST
 `
 
+	variantManifestTrimWithNoAdsWithUnalignedPDTsBeforeAdStart := `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-TARGETDURATION:6
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:00Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202801_1_00021.ts
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202806_1_00022.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:12Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202806_1_00023.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:18Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202813_1_00024.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:24Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:30Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202824_1_00026.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:36Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00027.ts
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202824_1_00028.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:48Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00029.ts
+#EXT-X-ENDLIST
+`
+
+	variantManifestTrimWithNoAdsWithUnalignedPDTsAfterAdStart := `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-TARGETDURATION:6
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:12Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202806_1_00023.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:18Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202813_1_00024.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:24Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00025.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:30Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202824_1_00026.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:36Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00027.ts
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202824_1_00028.ts
+#EXT-X-PROGRAM-DATE-TIME:2020-03-11T00:52:48Z
+#EXTINF:6.000,
+https://existing.base/path/chan_1/chan_1_20200311T202818_1_00029.ts
+#EXT-X-ENDLIST
+`
+
 	trim := &parsers.Trim{
-		Start: 1583887920, //2020-03-11T00:51:54
+		Start: 1583887920, //2020-03-11T00:52:00
 		End:   1583887968, //2020-03-11T00:52:48
 	}
 
@@ -1903,6 +2047,36 @@ https://existing.base/path/chan_1/chan_1_20200311T202818_1_00029.ts
 			},
 			manifestContent:       variantManifestWithAds,
 			expectManifestContent: variantManifestTrimWithNoAds,
+			expectAge:             "3",
+		},
+		{
+			name: "when trim filter is given, ads tag is enabled and PDTs are unaligned before Ad start, all content that is in range is included",
+			filters: &parsers.MediaFilters{
+				Trim: &parsers.Trim{
+					Start: 1583887921, //2020-03-11T00:52:01
+					End:   1583887968, //2020-03-11T00:52:48
+				},
+				Tags: &parsers.Tags{
+					Ads: true,
+				},
+			},
+			manifestContent:       variantManifestWithAds,
+			expectManifestContent: variantManifestTrimWithNoAdsWithUnalignedPDTsBeforeAdStart,
+			expectAge:             "3",
+		},
+		{
+			name: "when trim filter is given, ads tag is enabled and PDTs are unaligned after Ad start, all content that is in range is included",
+			filters: &parsers.MediaFilters{
+				Trim: &parsers.Trim{
+					Start: 1583887927, //2020-03-11T00:52:07
+					End:   1583887968, //2020-03-11T00:52:48
+				},
+				Tags: &parsers.Tags{
+					Ads: true,
+				},
+			},
+			manifestContent:       variantManifestWithAds,
+			expectManifestContent: variantManifestTrimWithNoAdsWithUnalignedPDTsAfterAdStart,
 			expectAge:             "3",
 		},
 	}

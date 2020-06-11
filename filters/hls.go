@@ -549,6 +549,10 @@ func healthCheckVariant(variantURL string, client config.Client) (bool, error) {
 		return false, fmt.Errorf("checking variant: returning http status of %v", sc)
 	}
 
+	if manifestInfo.LastModified.IsZero() {
+		return false, fmt.Errorf("checking variant: last modified time not set")
+	}
+
 	return evaluateStaleness(manifestInfo.Manifest, manifestInfo.LastModified)
 }
 

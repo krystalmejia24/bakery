@@ -47,11 +47,7 @@ func getMockResp(code int, msg string) func(*http.Request) (*http.Response, erro
 		resp := &http.Response{
 			StatusCode: code,
 			Body:       ioutil.NopCloser(bytes.NewBufferString(msg)),
-			Header:     http.Header{},
 		}
-
-		lastModified := time.Now().UTC().Format(http.TimeFormat)
-		resp.Header.Add("Last-Modified", lastModified)
 
 		return resp, nil
 	}

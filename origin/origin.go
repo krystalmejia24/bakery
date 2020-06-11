@@ -100,9 +100,12 @@ func fetch(client config.Client, manifestURL string) (ManifestInfo, error) {
 		return ManifestInfo{}, fmt.Errorf("reading manifest response body: %w", err)
 	}
 
-	lastModified, err := http.ParseTime(resp.Header.Get("Last-Modified"))
-	if err != nil {
-		return ManifestInfo{}, err
+	var lastModified time.Time
+	if header := resp.Header.Get("Last-Modified"); header != "" {
+		lastModified, err = http.ParseTime(header)
+		if err != nil {
+			return ManifestInfo{}, err
+		}
 	}
 
 	return ManifestInfo{

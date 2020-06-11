@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/cbsinteractive/bakery/config"
+	"github.com/cbsinteractive/bakery/origin"
 	"github.com/cbsinteractive/bakery/parsers"
 	"github.com/grafov/m3u8"
 )
@@ -30,6 +31,13 @@ var matchFunctions = map[ContentType]func(string) bool{
 	videoContentType:   isVideoCodec,
 	captionContentType: isCaptionCodec,
 }
+
+type pipelineType string
+
+const (
+	primaryPipeline pipelineType = "primary"
+	backupPipeline               = "backup"
+)
 
 // NewHLSFilter is the HLS filter constructor
 func NewHLSFilter(manifestURL, manifestContent string, c config.Config) *HLSFilter {
@@ -62,11 +70,26 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 	filteredManifest := m3u8.NewMasterPlaylist()
 	filteredManifest.Twitch = manifest.Twitch
 
+	//evaluate pipeline if DeWeaved filter is set
+	var pipeline pipelineType
+	if filters.DeWeave && pipeline == "" {
+		p, err := h.filterPipeline(manifest.Variants[0].URI)
+		if err != nil {
+			return "", fmt.Errorf("filtering pipeline: %w", err)
+		}
+
+		pipeline = p
+	}
+
 	//When parsed, Media Alternatives are held at the root of the object
 	//with each variant refrencing it. We hold a slice of trimmed
 	//alternatives to avoid processing a media alternative twice
-	var trimmedAlternatives []string
-	for _, v := range manifest.Variants {
+	trimmedAlternatives := make(map[string]struct{})
+	for i, v := range manifest.Variants {
+		if !isValidPipeline(pipeline, i) {
+			continue
+		}
+
 		if filters.SuppressIFrame() && v.Iframe {
 			continue
 		}
@@ -81,12 +104,12 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 			return "", err
 		}
 
-		filteredVariants, err := h.filterVariants(filters, normalizedVariant)
+		filteredVariant, err := h.filterVariant(filters, normalizedVariant)
 		if err != nil {
 			return "", err
 		}
 
-		if filteredVariants {
+		if filteredVariant {
 			continue
 		}
 
@@ -108,8 +131,31 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 	return filteredManifest.String(), nil
 }
 
+func (h *HLSFilter) filterPipeline(uri string) (pipelineType, error) {
+	absolute, err := getAbsoluteURL(h.manifestURL)
+	if err != nil {
+		return "", fmt.Errorf("formatting segment URLs: %w", err)
+	}
+
+	uri, err = combinedIfRelative(uri, *absolute)
+	if err != nil {
+		return "", fmt.Errorf("formatting segment URLs: %w", err)
+	}
+
+	healthy, err := healthCheckVariant(uri, h.config.Client)
+	if err != nil {
+		return "", err
+	}
+
+	if healthy {
+		return primaryPipeline, nil
+	}
+
+	return backupPipeline, nil
+}
+
 // Returns true if specified variant should be removed from filter
-func (h *HLSFilter) filterVariants(filters *parsers.MediaFilters, v *m3u8.Variant) (bool, error) {
+func (h *HLSFilter) filterVariant(filters *parsers.MediaFilters, v *m3u8.Variant) (bool, error) {
 	variantCodecs := strings.Split(v.Codecs, ",")
 
 	if filters.Videos.Bitrate != nil || filters.Audios.Bitrate != nil {
@@ -448,20 +494,11 @@ func getAbsoluteURL(path string) (*url.URL, error) {
 	return url.Parse(absoluteURL)
 }
 
-func alreadyProcessedAlternative(groupId string, processedGroupIds []string) bool {
-	for _, processedGroupId := range processedGroupIds {
-		if processedGroupId == groupId {
-			return true
-		}
-	}
-	return false
-}
-
 // Replaces the variant's subtitle alternative uris if they have not been trimmed already.
 // Returns a list of group ids that have already been trimmed (so they only get trimmed once)
-func (h *HLSFilter) normalizeTrimmedVariantAlternatives(filters *parsers.MediaFilters, v *m3u8.Variant, trimmedAlternatives []string) ([]string, error) {
+func (h *HLSFilter) normalizeTrimmedVariantAlternatives(filters *parsers.MediaFilters, v *m3u8.Variant, trimmedAlternatives map[string]struct{}) (map[string]struct{}, error) {
 	for _, alt := range v.Alternatives {
-		if alreadyProcessedAlternative(alt.GroupId, trimmedAlternatives) {
+		if _, found := trimmedAlternatives[alt.GroupId]; found {
 			continue
 		}
 		if alt.Type == "SUBTITLES" {
@@ -470,8 +507,65 @@ func (h *HLSFilter) normalizeTrimmedVariantAlternatives(filters *parsers.MediaFi
 				return trimmedAlternatives, err
 			}
 			alt.URI = auri
-			trimmedAlternatives = append(trimmedAlternatives, alt.GroupId)
+			trimmedAlternatives[alt.GroupId] = struct{}{}
 		}
 	}
 	return trimmedAlternatives, nil
+}
+
+func isPrimaryPipeline(index int) bool {
+	return index%2 == 0
+}
+
+func isValidPipeline(pipeline pipelineType, index int) bool {
+	if pipeline == primaryPipeline && !isPrimaryPipeline(index) {
+		return false
+	}
+
+	if pipeline == backupPipeline && isPrimaryPipeline(index) {
+		return false
+	}
+
+	return true
+}
+
+//Health check variant of redundant manifest
+func healthCheckVariant(variantURL string, client config.Client) (bool, error) {
+	manifestOrigin, err := origin.NewDefaultOrigin("", variantURL)
+	if err != nil {
+		return false, fmt.Errorf("health checking variant: %w", err)
+	}
+
+	manifestInfo, err := manifestOrigin.FetchManifest(client)
+	if err != nil {
+		return false, fmt.Errorf("health checking variant: %w", err)
+	}
+
+	if sc := manifestInfo.Status; sc/100 > 3 {
+		if sc == 404 {
+			return false, nil
+		}
+
+		return false, fmt.Errorf("checking variant: returning http status of %v", sc)
+	}
+
+	return evaluateStaleness(manifestInfo.Manifest, manifestInfo.LastModified)
+}
+
+func evaluateStaleness(variant string, lastModified time.Time) (bool, error) {
+	v, manifestType, err := m3u8.DecodeFrom(strings.NewReader(variant), true)
+	if err != nil {
+		return false, err
+	}
+
+	if manifestType != m3u8.MEDIA {
+		return false, fmt.Errorf("checking variant: not media playlist")
+	}
+
+	playlist := v.(*m3u8.MediaPlaylist)
+
+	segDurationX2 := time.Second * time.Duration(playlist.TargetDuration*2)
+	diff := time.Now().Sub(lastModified)
+
+	return segDurationX2 > diff, nil
 }

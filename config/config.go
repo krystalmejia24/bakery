@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/cbsinteractive/bakery/logging"
 	"github.com/justinas/alice"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/rs/zerolog"
@@ -90,27 +91,25 @@ func (c Config) SetupMiddleware() alice.Chain {
 			Int("status", status).
 			Int("size", size).
 			Dur("duration", duration).
+			Str("raddr", r.RemoteAddr).
+			Str("ref", r.Referer()).
+			Str("ua", r.UserAgent()).
 			Msg("served request")
 	}))
 	chain = chain.Append(hlog.RemoteAddrHandler("ip"))
 	chain = chain.Append(hlog.RequestIDHandler("req_id", "Request-Id"))
 
+	chain = chain.Append(c.authMiddleware())
+
 	return chain
 }
 
-//AuthMiddlewareFrom appends an authenticaion middlewear to your handler
-func (c Config) AuthMiddlewareFrom(chain alice.Chain) alice.Chain {
-	chain = chain.Append(func(next http.Handler) http.Handler {
+//authMiddlewareFrom appends an authentication middleware to your handler
+func (c Config) authMiddleware() func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			if r.Header.Get(c.OriginKey) != c.OriginToken {
-				c.Logger.Info().
-					Str("method", r.Method).
-					Str("uri", r.RequestURI).
-					Str("raddr", r.RemoteAddr).
-					Str("ref", r.Referer()).
-					Str("ua", r.UserAgent()).
-					Interface("headers", r.Header).
-					Msgf("failed authenticating request")
+				logging.UpdateCtx(r.Context(), logging.Params{"headers": r.Header, "error": "failed authenticating request"})
 
 				http.Error(w, fmt.Sprintf("you must pass a valid api token as %q", c.OriginKey),
 					http.StatusForbidden)
@@ -118,7 +117,5 @@ func (c Config) AuthMiddlewareFrom(chain alice.Chain) alice.Chain {
 			}
 			next.ServeHTTP(w, r)
 		})
-	})
-
-	return chain
+	}
 }

@@ -73,7 +73,7 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 	//evaluate pipeline if DeWeaved filter is set
 	var pipeline pipelineType
 	if filters.DeWeave && pipeline == "" {
-		p, err := h.filterPipeline(manifest.Variants[0].URI)
+		p, err := h.filterPipeline(manifest.Variants[0].URI, manifest.Variants[1].URI)
 		if err != nil {
 			return "", fmt.Errorf("filtering pipeline: %w", err)
 		}
@@ -131,18 +131,8 @@ func (h *HLSFilter) FilterManifest(filters *parsers.MediaFilters) (string, error
 	return filteredManifest.String(), nil
 }
 
-func (h *HLSFilter) filterPipeline(uri string) (pipelineType, error) {
-	absolute, err := getAbsoluteURL(h.manifestURL)
-	if err != nil {
-		return "", fmt.Errorf("formatting segment URLs: %w", err)
-	}
-
-	uri, err = combinedIfRelative(uri, *absolute)
-	if err != nil {
-		return "", fmt.Errorf("formatting segment URLs: %w", err)
-	}
-
-	healthy, err := healthCheckVariant(uri, h.config.Client)
+func (h *HLSFilter) filterPipeline(primaryURI string, backupURI string) (pipelineType, error) {
+	healthy, err := h.isHealthyPipeline(primaryURI)
 	if err != nil {
 		return "", err
 	}
@@ -151,7 +141,17 @@ func (h *HLSFilter) filterPipeline(uri string) (pipelineType, error) {
 		return primaryPipeline, nil
 	}
 
-	return backupPipeline, nil
+	//check backup healthy
+	healthy, err = h.isHealthyPipeline(backupURI)
+	if err != nil {
+		return "", err
+	}
+
+	if healthy {
+		return backupPipeline, nil
+	}
+
+	return pipelineType(""), nil
 }
 
 // Returns true if specified variant should be removed from filter
@@ -333,6 +333,7 @@ func (h *HLSFilter) filterVariantLanguage(v *m3u8.Variant, filters *parsers.Medi
 	}
 }
 
+//normalizeVariant will update urls to absolute for the variant and its associated media alternatives
 func (h *HLSFilter) normalizeVariant(v *m3u8.Variant, absolute url.URL) (*m3u8.Variant, error) {
 	for _, a := range v.VariantParams.Alternatives {
 		aURL, aErr := combinedIfRelative(a.URI, absolute)
@@ -470,15 +471,12 @@ func isEmpty(p string) (string, error) {
 
 //appends segment to provided media playlist with absolute urls
 func appendSegment(manifest string, s *m3u8.MediaSegment, p *m3u8.MediaPlaylist) error {
-	absolute, err := getAbsoluteURL(manifest)
+	uri, err := getManifestAbsoluteURLString(manifest, s.URI)
 	if err != nil {
 		return fmt.Errorf("formatting segment URLs: %w", err)
 	}
 
-	s.URI, err = combinedIfRelative(s.URI, *absolute)
-	if err != nil {
-		return fmt.Errorf("formatting segment URLs: %w", err)
-	}
+	s.URI = uri
 
 	err = p.AppendSegment(s)
 	if err != nil {
@@ -492,6 +490,16 @@ func appendSegment(manifest string, s *m3u8.MediaSegment, p *m3u8.MediaPlaylist)
 func getAbsoluteURL(path string) (*url.URL, error) {
 	absoluteURL, _ := filepath.Split(path)
 	return url.Parse(absoluteURL)
+}
+
+//Returns absolute url of given manifest as a string
+func getManifestAbsoluteURLString(manifest string, uri string) (string, error) {
+	absolute, err := getAbsoluteURL(manifest)
+	if err != nil {
+		return "", fmt.Errorf("formatting segment URLs: %w", err)
+	}
+
+	return combinedIfRelative(uri, *absolute)
 }
 
 // Replaces the variant's subtitle alternative uris if they have not been trimmed already.
@@ -529,6 +537,21 @@ func isValidPipeline(pipeline pipelineType, index int) bool {
 	return true
 }
 
+//isHealthyPipeline will check for for healthy of variant from interleaved manifests
+func (h *HLSFilter) isHealthyPipeline(uri string) (bool, error) {
+	uri, err := getManifestAbsoluteURLString(h.manifestURL, uri)
+	if err != nil {
+		return false, fmt.Errorf("formatting segment URLs: %w", err)
+	}
+
+	healthy, err := healthCheckVariant(uri, h.config.Client)
+	if err != nil {
+		return false, err
+	}
+
+	return healthy, nil
+}
+
 //Health check variant of redundant manifest
 func healthCheckVariant(variantURL string, client config.Client) (bool, error) {
 	manifestOrigin, err := origin.NewDefaultOrigin("", variantURL)
@@ -550,7 +573,7 @@ func healthCheckVariant(variantURL string, client config.Client) (bool, error) {
 	}
 
 	if manifestInfo.LastModified.IsZero() {
-		return false, fmt.Errorf("checking variant: last modified time not set")
+		return false, nil
 	}
 
 	return evaluateStaleness(manifestInfo.Manifest, manifestInfo.LastModified)

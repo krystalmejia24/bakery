@@ -587,6 +587,40 @@ func TestURLParseUrl(t *testing.T) {
 			"/propeller/orgID/master.m3u8",
 			false,
 		},
+		{
+			"ensure DeWeaved filter is set to true",
+			"dw(true)/some/path/to/manifest.m3u8",
+			MediaFilters{
+				Protocol: ProtocolHLS,
+				DeWeave:  true,
+			},
+			"/some/path/to/manifest.m3u8",
+			false,
+		},
+		{
+			"ensure DeWeaved filter is set to false",
+			"dw(false)/some/path/to/manifest.m3u8",
+			MediaFilters{
+				Protocol: ProtocolHLS,
+				DeWeave:  false,
+			},
+			"/some/path/to/manifest.m3u8",
+			false,
+		},
+		{
+			"ensure DeWeaved filter throws error if mutliple values are requested",
+			"dw(true,false)/some/path/to/manifest.m3u8",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"ensure DeWeaved filter throws error if value is not true or false",
+			"dw(flase)/some/path/to/manifest.m3u8",
+			MediaFilters{},
+			"",
+			true,
+		},
 	}
 	for _, test := range tests {
 		test := test

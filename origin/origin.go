@@ -19,6 +19,11 @@ type Origin interface {
 	FetchManifest(ctx context.Context, c config.Client) (ManifestInfo, error)
 }
 
+const (
+	jigsawOrigin    = "jigsaw"
+	propellerOrigin = "propeller"
+)
+
 //DefaultOrigin struct holds Origin and Path of DefaultOrigin
 //Variant level DefaultOrigins will be base64 encoded absolute Urls
 type DefaultOrigin struct {
@@ -35,8 +40,12 @@ type ManifestInfo struct {
 
 //Configure will return proper Origin interface
 func Configure(ctx context.Context, c config.Config, path string) (Origin, error) {
-	if strings.Contains(path, "propeller") {
+	if strings.Contains(path, propellerOrigin) {
 		return configurePropeller(ctx, c, path)
+	}
+
+	if strings.Contains(path, jigsawOrigin) {
+		return NewJigsaw(ctx, c, path)
 	}
 
 	//check if rendition URL

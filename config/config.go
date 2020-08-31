@@ -25,6 +25,7 @@ type Config struct {
 	Tracer
 	Client
 	Propeller
+	Jigsaw
 }
 
 // LoadConfig loads the configuration with environment variables injected

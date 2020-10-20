@@ -178,6 +178,9 @@ func (g *outputURLGetter) GetURL(ctx context.Context, client propellerClient) (s
 
 func (g *outputURLGetter) getURL(channel *propeller.Channel, output *propeller.ChannelOutput) (string, error) {
 	if output.AdsURL != "" && channel.Status == "running" {
+		if g.orgID == "uefahda8" {
+			return output.PlaybackURL, nil
+		}
 		return output.AdsURL, nil
 	}
 	if output.CaptionsURL != "" {

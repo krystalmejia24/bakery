@@ -14,6 +14,7 @@ import (
 // LoadHandler loads the handler for all the requests
 func LoadHandler(c config.Config) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 
 		// parse all the filters from the URL

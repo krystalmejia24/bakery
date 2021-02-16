@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"path"
 	"strings"
 	"time"
 
@@ -28,7 +29,7 @@ type DefaultOrigin struct {
 
 //OriginContentInfo holds http response info from manifest request
 type OriginContentInfo struct {
-	Manifest     string
+	Payload      string
 	LastModified time.Time
 	Status       int
 }
@@ -39,14 +40,13 @@ func Configure(ctx context.Context, c config.Config, path string) (Origin, error
 		return configurePropeller(ctx, c, path)
 	}
 
-	//check if rendition URL
-	parts := strings.Split(path, "/")
-	if len(parts) == 2 { //["", "base64.m3u8"]
-		variantURL, err := decodeVariantURL(parts[1])
+	// check if path is base64 encoded url
+	if strings.Count(path, "/") == 1 && (strings.HasSuffix(path, ".m3u8") || strings.HasSuffix(path, ".vtt")) {
+		decodedPath, err := trimAndDecodePath(strings.TrimPrefix(path, "/"))
 		if err != nil {
-			return &DefaultOrigin{}, fmt.Errorf("decoding variant manifest url %q: %w", path, err)
+			return &DefaultOrigin{}, fmt.Errorf("decoding base64 url %q: %w", path, err)
 		}
-		path = variantURL
+		path = decodedPath
 	}
 
 	return NewDefaultOrigin("", path)
@@ -80,10 +80,10 @@ func (d *DefaultOrigin) FetchOriginContent(ctx context.Context, c config.Client)
 	return fetch(ctx, c, d.GetPlaybackURL())
 }
 
-func fetch(ctx context.Context, client config.Client, manifestURL string) (OriginContentInfo, error) {
-	req, err := http.NewRequest(http.MethodGet, manifestURL, nil)
+func fetch(ctx context.Context, client config.Client, originURL string) (OriginContentInfo, error) {
+	req, err := http.NewRequest(http.MethodGet, originURL, nil)
 	if err != nil {
-		return OriginContentInfo{}, fmt.Errorf("generating request to fetch manifest: %w", err)
+		return OriginContentInfo{}, fmt.Errorf("generating request to fetch origin: %w", err)
 	}
 
 	ctx, cancel := context.WithTimeout(ctx, client.Timeout)
@@ -91,13 +91,13 @@ func fetch(ctx context.Context, client config.Client, manifestURL string) (Origi
 
 	resp, err := client.Do(req.WithContext(ctx))
 	if err != nil {
-		return OriginContentInfo{}, fmt.Errorf("fetching manifest: %w", err)
+		return OriginContentInfo{}, fmt.Errorf("fetching origin: %w", err)
 	}
 	defer resp.Body.Close()
 
-	manifest, err := ioutil.ReadAll(resp.Body)
+	origin, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return OriginContentInfo{}, fmt.Errorf("reading manifest response body: %w", err)
+		return OriginContentInfo{}, fmt.Errorf("reading origin response body: %w", err)
 	}
 
 	var lastModified time.Time
@@ -109,15 +109,15 @@ func fetch(ctx context.Context, client config.Client, manifestURL string) (Origi
 	}
 
 	return OriginContentInfo{
-		Manifest:     string(manifest),
+		Payload:     string(origin),
 		LastModified: lastModified,
 		Status:       resp.StatusCode,
 	}, nil
 }
 
-func decodeVariantURL(variant string) (string, error) {
-	variant = strings.TrimSuffix(variant, ".m3u8")
-	url, err := base64.RawURLEncoding.DecodeString(variant)
+func trimAndDecodePath(encodedPath string) (string, error) {
+	encodedPath = strings.TrimSuffix(encodedPath, path.Ext(encodedPath))
+	url, err := base64.RawURLEncoding.DecodeString(encodedPath)
 	if err != nil {
 		return "", err
 	}

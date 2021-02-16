@@ -278,7 +278,7 @@ func TestURLParseUrl(t *testing.T) {
 			true,
 		},
 		{
-			"detect a signle plugin for execution from url",
+			"detect a single plugin for execution from url",
 			"[plugin1]/some/path/master.m3u8",
 			MediaFilters{
 				Protocol: ProtocolHLS,
@@ -617,6 +617,33 @@ func TestURLParseUrl(t *testing.T) {
 		{
 			"ensure DeWeaved filter throws error if value is not true or false",
 			"dw(flase)/some/path/to/manifest.m3u8",
+			MediaFilters{},
+			"",
+			true,
+		},
+		{
+			"parse the http status error fallback filter and HLS protocol for m3u8",
+			"phe(true)/base64string.m3u8",
+			MediaFilters{
+				Protocol:               ProtocolHLS,
+				PreventHTTPStatusError: true,
+			},
+			"/base64string.m3u8",
+			false,
+		},
+		{
+			"parse the http status error fallback filter and VTT protocol for WebVTT",
+			"phe(true)/base64string.vtt",
+			MediaFilters{
+				Protocol:               ProtocolVTT,
+				PreventHTTPStatusError: true,
+			},
+			"/base64string.vtt",
+			false,
+		},
+		{
+			"parse the http status error fallback filter throws error if multiple values are passed",
+			"phe(true,false)/base64string.vtt",
 			MediaFilters{},
 			"",
 			true,

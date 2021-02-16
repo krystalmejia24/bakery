@@ -65,7 +65,6 @@ func TestOrigin_FetchOriginContent(t *testing.T) {
 		mockResp     func(*http.Request) (*http.Response, error)
 		expectStr    string
 		expectStatus int
-		expectErr    bool
 	}{
 		{
 			name:         "when fetching propeller channel, return response message if code < 300",
@@ -103,16 +102,13 @@ func TestOrigin_FetchOriginContent(t *testing.T) {
 
 			got, err := tc.origin.FetchOriginContent(context.Background(), c.Client)
 
-			if err != nil && !tc.expectErr {
+			if err != nil {
 				t.Errorf("Configure() didnt expect an error to be returned, got: %v", err)
-				return
-			} else if err == nil && tc.expectErr {
-				t.Error("Configure() expected an error, got nil")
 				return
 			}
 
-			if got.Manifest != tc.expectStr {
-				t.Errorf("Wrong Manifest response: expect: %q, got %q", tc.expectStr, got.Manifest)
+			if got.Payload != tc.expectStr {
+				t.Errorf("Wrong Payload response: expect: %q, got %q", tc.expectStr, got.Payload)
 			}
 
 			if got.Status != tc.expectStatus {
@@ -236,6 +232,13 @@ func TestOrigin_Configure(t *testing.T) {
 			path:     relTestURL.String(),
 			c:        config.Config{LogLevel: "panic", OriginHost: "host"},
 			expected: &DefaultOrigin{Host: "", URL: *relTestURL},
+		},
+		{
+			name:      "when origin path is at root but corrupt base64 encoded string",
+			path:      "/invalid_base64_string_here.m3u8",
+			c:         config.Config{LogLevel: "panic"},
+			expected:  &DefaultOrigin{},
+			expectErr: true,
 		},
 	}
 

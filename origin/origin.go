@@ -3,6 +3,7 @@ package origin
 import (
 	"context"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -49,12 +50,15 @@ func Configure(ctx context.Context, c config.Config, path string) (Origin, error
 		path = decodedPath
 	}
 
-	return NewDefaultOrigin("", path)
+	return NewDefaultOrigin(c.OriginHost, path)
 }
 
 //NewDefaultOrigin returns a new Origin struct
-//host is not required if path is absolute
 func NewDefaultOrigin(host string, p string) (*DefaultOrigin, error) {
+	if len(host) == 0 {
+		return &DefaultOrigin{}, errors.New("an origin host must be provided")
+	}
+
 	u, err := url.Parse(p)
 	if err != nil {
 		return &DefaultOrigin{}, err
@@ -109,7 +113,7 @@ func fetch(ctx context.Context, client config.Client, originURL string) (OriginC
 	}
 
 	return OriginContentInfo{
-		Payload:     string(origin),
+		Payload:      string(origin),
 		LastModified: lastModified,
 		Status:       resp.StatusCode,
 	}, nil

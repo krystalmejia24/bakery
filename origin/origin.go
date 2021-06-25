@@ -54,6 +54,7 @@ func Configure(ctx context.Context, c config.Config, path string) (Origin, error
 }
 
 //NewDefaultOrigin returns a new Origin struct
+//host is not required if path is absolute
 func NewDefaultOrigin(host string, p string) (*DefaultOrigin, error) {
 	u, err := url.Parse(p)
 	if err != nil {

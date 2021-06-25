@@ -55,13 +55,13 @@ func Configure(ctx context.Context, c config.Config, path string) (Origin, error
 
 //NewDefaultOrigin returns a new Origin struct
 func NewDefaultOrigin(host string, p string) (*DefaultOrigin, error) {
-	if len(host) == 0 {
-		return &DefaultOrigin{}, errors.New("an origin host must be provided")
-	}
-
 	u, err := url.Parse(p)
 	if err != nil {
 		return &DefaultOrigin{}, err
+	}
+
+	if len(host) == 0 && !u.IsAbs() {
+		return &DefaultOrigin{}, errors.New("an origin host must be provided for relative paths")
 	}
 
 	return &DefaultOrigin{

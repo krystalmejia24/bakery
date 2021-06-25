@@ -217,7 +217,7 @@ func TestOrigin_Configure(t *testing.T) {
 		{
 			name:      "when origin is of type propeller in wrong format, return error",
 			path:      "/propeller/chanID.m3u8",
-			c:         config.Config{LogLevel: "panic", OriginHost: "host"},
+			c:         config.Config{LogLevel: "panic"},
 			expected:  &Propeller{},
 			expectErr: true,
 		},

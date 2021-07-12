@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT2601.2236328125S" minBufferTime="PT2S">
+  <BaseURL>https://entclips.cbsaavideo.com/2021/07/06/1918394435616/720720_dash_ta/</BaseURL>
+  <Period id="0" duration="PT7M8.428S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1276" codecs="wvtt" id="0">
+        <SegmentTemplate initialization="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/vtt_init.m4v" media="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/seg_$Number$.m4s" startNumber="1" timescale="1000">
+          <SegmentTimeline>
+            <S t="0" d="6000" r="70"></S>
+            <S t="426000" d="2428"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="867" codecs="wvtt" id="1">
+        <SegmentTemplate initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="1" timescale="1000">
+          <SegmentTimeline>
+            <S t="0" d="6000" r="70"></S>
+            <S t="426000" d="2428"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="856" codecs="wvtt" id="3">
+        <SegmentTemplate initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="1" timescale="1000">
+          <SegmentTimeline>
+            <S t="0" d="6000" r="70"></S>
+            <S t="426000" d="2428"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="742" codecs="wvtt" id="4">
+        <SegmentTemplate initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="1" timescale="1000">
+          <SegmentTimeline>
+            <S t="0" d="6000" r="70"></S>
+            <S t="426000" d="2428"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1803865" codecs="avc1.640028" height="540" id="5" width="960">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="472010" codecs="avc1.640028" height="360" id="6" width="640">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2499542" codecs="avc1.640028" height="576" id="7" width="1024">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="946746" codecs="avc1.640028" height="432" id="8" width="768">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3526005" codecs="avc1.640028" height="720" id="9" width="1280">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5188994" codecs="avc1.640028" height="1080" id="10" width="1920">
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="70"></S>
+            <S t="10234224" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="5" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="135164" codecs="mp4a.40.2" id="11">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="1" timescale="48000">
+          <SegmentTimeline>
+            <S t="0" d="288768"></S>
+            <S t="288768" d="287744" r="2"></S>
+            <S t="1152000" d="288768"></S>
+            <S t="1440768" d="287744" r="2"></S>
+            <S t="2304000" d="288768"></S>
+            <S t="2592768" d="287744" r="2"></S>
+            <S t="3456000" d="288768"></S>
+            <S t="3744768" d="287744" r="2"></S>
+            <S t="4608000" d="288768"></S>
+            <S t="4896768" d="287744" r="2"></S>
+            <S t="5760000" d="288768"></S>
+            <S t="6048768" d="287744" r="2"></S>
+            <S t="6912000" d="288768"></S>
+            <S t="7200768" d="287744" r="2"></S>
+            <S t="8064000" d="288768"></S>
+            <S t="8352768" d="287744" r="2"></S>
+            <S t="9216000" d="288768"></S>
+            <S t="9504768" d="287744" r="2"></S>
+            <S t="10368000" d="288768"></S>
+            <S t="10656768" d="287744" r="2"></S>
+            <S t="11520000" d="288768"></S>
+            <S t="11808768" d="287744" r="2"></S>
+            <S t="12672000" d="288768"></S>
+            <S t="12960768" d="287744" r="2"></S>
+            <S t="13824000" d="288768"></S>
+            <S t="14112768" d="287744" r="2"></S>
+            <S t="14976000" d="288768"></S>
+            <S t="15264768" d="287744" r="2"></S>
+            <S t="16128000" d="288768"></S>
+            <S t="16416768" d="287744" r="2"></S>
+            <S t="17280000" d="288768"></S>
+            <S t="17568768" d="287744" r="2"></S>
+            <S t="18432000" d="288768"></S>
+            <S t="18720768" d="287744" r="2"></S>
+            <S t="19584000" d="288768"></S>
+            <S t="19872768" d="287744" r="1"></S>
+            <S t="20448256" d="116736"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="1" duration="PT7M40.46S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1060" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="428428" initialization="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/vtt_init.m4v" media="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/seg_$Number$.m4s" startNumber="73" timescale="1000">
+          <SegmentTimeline>
+            <S t="428428" d="6000" r="75"></S>
+            <S t="884428" d="4460"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="782" codecs="wvtt" id="1">
+        <SegmentTemplate presentationTimeOffset="428428" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="73" timescale="1000">
+          <SegmentTimeline>
+            <S t="428428" d="6000" r="75"></S>
+            <S t="884428" d="4460"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="743" codecs="wvtt" id="3">
+        <SegmentTemplate presentationTimeOffset="428428" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="73" timescale="1000">
+          <SegmentTimeline>
+            <S t="428428" d="6000" r="75"></S>
+            <S t="884428" d="4460"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="751" codecs="wvtt" id="4">
+        <SegmentTemplate presentationTimeOffset="428428" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="73" timescale="1000">
+          <SegmentTimeline>
+            <S t="428428" d="6000" r="75"></S>
+            <S t="884428" d="4460"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="4" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="134529" codecs="mp4a.40.2" id="5">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="20564544" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="73" timescale="48000">
+          <SegmentTimeline>
+            <S t="20564992" d="287744"></S>
+            <S t="20852736" d="288768"></S>
+            <S t="21141504" d="287744" r="2"></S>
+            <S t="22004736" d="288768"></S>
+            <S t="22293504" d="287744" r="2"></S>
+            <S t="23156736" d="288768"></S>
+            <S t="23445504" d="287744" r="2"></S>
+            <S t="24308736" d="288768"></S>
+            <S t="24597504" d="287744" r="2"></S>
+            <S t="25460736" d="288768"></S>
+            <S t="25749504" d="287744" r="2"></S>
+            <S t="26612736" d="288768"></S>
+            <S t="26901504" d="287744" r="2"></S>
+            <S t="27764736" d="288768"></S>
+            <S t="28053504" d="287744" r="2"></S>
+            <S t="28916736" d="288768"></S>
+            <S t="29205504" d="287744" r="2"></S>
+            <S t="30068736" d="288768"></S>
+            <S t="30357504" d="287744" r="2"></S>
+            <S t="31220736" d="288768"></S>
+            <S t="31509504" d="287744" r="2"></S>
+            <S t="32372736" d="288768"></S>
+            <S t="32661504" d="287744" r="2"></S>
+            <S t="33524736" d="288768"></S>
+            <S t="33813504" d="287744" r="2"></S>
+            <S t="34676736" d="288768"></S>
+            <S t="34965504" d="287744" r="2"></S>
+            <S t="35828736" d="288768"></S>
+            <S t="36117504" d="287744" r="2"></S>
+            <S t="36980736" d="288768"></S>
+            <S t="37269504" d="287744" r="2"></S>
+            <S t="38132736" d="288768"></S>
+            <S t="38421504" d="287744" r="2"></S>
+            <S t="39284736" d="288768"></S>
+            <S t="39573504" d="287744" r="2"></S>
+            <S t="40436736" d="288768"></S>
+            <S t="40725504" d="287744" r="2"></S>
+            <S t="41588736" d="288768"></S>
+            <S t="41877504" d="287744" r="1"></S>
+            <S t="42452992" d="214016"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="5" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1784752" codecs="avc1.640028" height="540" id="6" width="960">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="473119" codecs="avc1.640028" height="360" id="7" width="640">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2434543" codecs="avc1.640028" height="576" id="8" width="1024">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="942982" codecs="avc1.640028" height="432" id="9" width="768">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3439237" codecs="avc1.640028" height="720" id="10" width="1280">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5288836" codecs="avc1.640028" height="1080" id="11" width="1920">
+        <SegmentTemplate presentationTimeOffset="10282272" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="73" timescale="24000">
+          <SegmentTimeline>
+            <S t="10282272" d="144144" r="75"></S>
+            <S t="21237216" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="2" duration="PT6M50.409999999S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1150" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="888888" initialization="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/vtt_init.m4v" media="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/seg_$Number$.m4s" startNumber="150" timescale="1000">
+          <SegmentTimeline>
+            <S t="888888" d="6000" r="67"></S>
+            <S t="1296888" d="2410"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="826" codecs="wvtt" id="1">
+        <SegmentTemplate presentationTimeOffset="888888" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="150" timescale="1000">
+          <SegmentTimeline>
+            <S t="888888" d="6000" r="67"></S>
+            <S t="1296888" d="2410"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="815" codecs="wvtt" id="3">
+        <SegmentTemplate presentationTimeOffset="888888" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="150" timescale="1000">
+          <SegmentTimeline>
+            <S t="888888" d="6000" r="67"></S>
+            <S t="1296888" d="2410"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="744" codecs="wvtt" id="4">
+        <SegmentTemplate presentationTimeOffset="888888" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="150" timescale="1000">
+          <SegmentTimeline>
+            <S t="888888" d="6000" r="67"></S>
+            <S t="1296888" d="2410"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="4" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="134457" codecs="mp4a.40.2" id="5">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="42666624" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="150" timescale="48000">
+          <SegmentTimeline>
+            <S t="42667008" d="287744"></S>
+            <S t="42954752" d="288768"></S>
+            <S t="43243520" d="287744" r="2"></S>
+            <S t="44106752" d="288768"></S>
+            <S t="44395520" d="287744" r="2"></S>
+            <S t="45258752" d="288768"></S>
+            <S t="45547520" d="287744" r="2"></S>
+            <S t="46410752" d="288768"></S>
+            <S t="46699520" d="287744" r="2"></S>
+            <S t="47562752" d="288768"></S>
+            <S t="47851520" d="287744" r="2"></S>
+            <S t="48714752" d="288768"></S>
+            <S t="49003520" d="287744" r="2"></S>
+            <S t="49866752" d="288768"></S>
+            <S t="50155520" d="287744" r="2"></S>
+            <S t="51018752" d="288768"></S>
+            <S t="51307520" d="287744" r="2"></S>
+            <S t="52170752" d="288768"></S>
+            <S t="52459520" d="287744" r="2"></S>
+            <S t="53322752" d="288768"></S>
+            <S t="53611520" d="287744" r="2"></S>
+            <S t="54474752" d="288768"></S>
+            <S t="54763520" d="287744" r="2"></S>
+            <S t="55626752" d="288768"></S>
+            <S t="55915520" d="287744" r="2"></S>
+            <S t="56778752" d="288768"></S>
+            <S t="57067520" d="287744" r="2"></S>
+            <S t="57930752" d="288768"></S>
+            <S t="58219520" d="287744" r="2"></S>
+            <S t="59082752" d="288768"></S>
+            <S t="59371520" d="287744" r="2"></S>
+            <S t="60234752" d="288768"></S>
+            <S t="60523520" d="287744" r="2"></S>
+            <S t="61386752" d="288768"></S>
+            <S t="61675520" d="287744" r="1"></S>
+            <S t="62251008" d="115712"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="5" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1749971" codecs="avc1.640028" height="540" id="6" width="960">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="474293" codecs="avc1.640028" height="360" id="7" width="640">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2496020" codecs="avc1.640028" height="576" id="8" width="1024">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="944870" codecs="avc1.640028" height="432" id="9" width="768">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3537368" codecs="avc1.640028" height="720" id="10" width="1280">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5312503" codecs="avc1.640028" height="1080" id="11" width="1920">
+        <SegmentTemplate presentationTimeOffset="21333312" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="150" timescale="24000">
+          <SegmentTimeline>
+            <S t="21333312" d="144144" r="67"></S>
+            <S t="31135104" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="3" duration="PT14M10.85S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1276" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="1299298" initialization="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/vtt_init.m4v" media="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/seg_$Number$.m4s" startNumber="219" timescale="1000">
+          <SegmentTimeline>
+            <S t="1299298" d="6000" r="140"></S>
+            <S t="2145298" d="4850"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="858" codecs="wvtt" id="1">
+        <SegmentTemplate presentationTimeOffset="1299298" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="219" timescale="1000">
+          <SegmentTimeline>
+            <S t="1299298" d="6000" r="140"></S>
+            <S t="2145298" d="4850"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="844" codecs="wvtt" id="3">
+        <SegmentTemplate presentationTimeOffset="1299298" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="219" timescale="1000">
+          <SegmentTimeline>
+            <S t="1299298" d="6000" r="140"></S>
+            <S t="2145298" d="4850"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="859" codecs="wvtt" id="4">
+        <SegmentTemplate presentationTimeOffset="1299298" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="219" timescale="1000">
+          <SegmentTimeline>
+            <S t="1299298" d="6000" r="140"></S>
+            <S t="2145298" d="4850"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="4" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="134355" codecs="mp4a.40.2" id="5">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="62366304" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="219" timescale="48000">
+          <SegmentTimeline>
+            <S t="62366720" d="287744"></S>
+            <S t="62654464" d="288768"></S>
+            <S t="62943232" d="287744" r="2"></S>
+            <S t="63806464" d="288768"></S>
+            <S t="64095232" d="287744" r="2"></S>
+            <S t="64958464" d="288768"></S>
+            <S t="65247232" d="287744" r="2"></S>
+            <S t="66110464" d="288768"></S>
+            <S t="66399232" d="287744" r="2"></S>
+            <S t="67262464" d="288768"></S>
+            <S t="67551232" d="287744" r="2"></S>
+            <S t="68414464" d="288768"></S>
+            <S t="68703232" d="287744" r="2"></S>
+            <S t="69566464" d="288768"></S>
+            <S t="69855232" d="287744" r="2"></S>
+            <S t="70718464" d="288768"></S>
+            <S t="71007232" d="287744" r="2"></S>
+            <S t="71870464" d="288768"></S>
+            <S t="72159232" d="287744" r="2"></S>
+            <S t="73022464" d="288768"></S>
+            <S t="73311232" d="287744" r="2"></S>
+            <S t="74174464" d="288768"></S>
+            <S t="74463232" d="287744" r="2"></S>
+            <S t="75326464" d="288768"></S>
+            <S t="75615232" d="287744" r="2"></S>
+            <S t="76478464" d="288768"></S>
+            <S t="76767232" d="287744" r="2"></S>
+            <S t="77630464" d="288768"></S>
+            <S t="77919232" d="287744" r="2"></S>
+            <S t="78782464" d="288768"></S>
+            <S t="79071232" d="287744" r="2"></S>
+            <S t="79934464" d="288768"></S>
+            <S t="80223232" d="287744" r="2"></S>
+            <S t="81086464" d="288768"></S>
+            <S t="81375232" d="287744" r="2"></S>
+            <S t="82238464" d="288768"></S>
+            <S t="82527232" d="287744" r="2"></S>
+            <S t="83390464" d="288768"></S>
+            <S t="83679232" d="287744" r="2"></S>
+            <S t="84542464" d="288768"></S>
+            <S t="84831232" d="287744" r="2"></S>
+            <S t="85694464" d="288768"></S>
+            <S t="85983232" d="287744" r="2"></S>
+            <S t="86846464" d="288768"></S>
+            <S t="87135232" d="287744" r="2"></S>
+            <S t="87998464" d="288768"></S>
+            <S t="88287232" d="287744" r="2"></S>
+            <S t="89150464" d="288768"></S>
+            <S t="89439232" d="287744" r="2"></S>
+            <S t="90302464" d="288768"></S>
+            <S t="90591232" d="287744" r="2"></S>
+            <S t="91454464" d="288768"></S>
+            <S t="91743232" d="287744" r="2"></S>
+            <S t="92606464" d="288768"></S>
+            <S t="92895232" d="287744" r="2"></S>
+            <S t="93758464" d="288768"></S>
+            <S t="94047232" d="287744" r="2"></S>
+            <S t="94910464" d="288768"></S>
+            <S t="95199232" d="287744" r="2"></S>
+            <S t="96062464" d="288768"></S>
+            <S t="96351232" d="287744" r="2"></S>
+            <S t="97214464" d="288768"></S>
+            <S t="97503232" d="287744" r="2"></S>
+            <S t="98366464" d="288768"></S>
+            <S t="98655232" d="287744" r="2"></S>
+            <S t="99518464" d="288768"></S>
+            <S t="99807232" d="287744" r="2"></S>
+            <S t="100670464" d="288768"></S>
+            <S t="100959232" d="287744" r="2"></S>
+            <S t="101822464" d="288768"></S>
+            <S t="102111232" d="287744" r="2"></S>
+            <S t="102974464" d="232448"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="5" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1740335" codecs="avc1.640028" height="540" id="6" width="960">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="490461" codecs="avc1.640028" height="360" id="7" width="640">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2485202" codecs="avc1.640028" height="576" id="8" width="1024">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="976568" codecs="avc1.640028" height="432" id="9" width="768">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3623927" codecs="avc1.640028" height="720" id="10" width="1280">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5341556" codecs="avc1.640028" height="1080" id="11" width="1920">
+        <SegmentTemplate presentationTimeOffset="31183152" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="219" timescale="24000">
+          <SegmentTimeline>
+            <S t="31183152" d="144144" r="140"></S>
+            <S t="51507456" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="4" duration="PT7M4.424S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1059" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="2150148" initialization="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/vtt_init.m4v" media="__uY_KkrqgQ6kijnbvxZVUOwzgVFA54A_1625601429444/seg_$Number$.m4s" startNumber="361" timescale="1000">
+          <SegmentTimeline>
+            <S t="2150148" d="6000" r="69"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="792" codecs="wvtt" id="1">
+        <SegmentTemplate presentationTimeOffset="2150148" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="361" timescale="1000">
+          <SegmentTimeline>
+            <S t="2150148" d="6000" r="69"></S>
+            <S t="2570148" d="4424"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="796" codecs="wvtt" id="3">
+        <SegmentTemplate presentationTimeOffset="2150148" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="361" timescale="1000">
+          <SegmentTimeline>
+            <S t="2150148" d="6000" r="69"></S>
+            <S t="2570148" d="4424"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="726" codecs="wvtt" id="4">
+        <SegmentTemplate presentationTimeOffset="2150148" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="361" timescale="1000">
+          <SegmentTimeline>
+            <S t="2150148" d="6000" r="69"></S>
+            <S t="2570148" d="4424"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="4" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="134387" codecs="mp4a.40.2" id="5">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="103207104" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="361" timescale="48000">
+          <SegmentTimeline>
+            <S t="103206912" d="288768"></S>
+            <S t="103495680" d="287744" r="1"></S>
+            <S t="104071168" d="288768"></S>
+            <S t="104359936" d="287744" r="2"></S>
+            <S t="105223168" d="288768"></S>
+            <S t="105511936" d="287744" r="2"></S>
+            <S t="106375168" d="288768"></S>
+            <S t="106663936" d="287744" r="2"></S>
+            <S t="107527168" d="288768"></S>
+            <S t="107815936" d="287744" r="2"></S>
+            <S t="108679168" d="288768"></S>
+            <S t="108967936" d="287744" r="2"></S>
+            <S t="109831168" d="288768"></S>
+            <S t="110119936" d="287744" r="2"></S>
+            <S t="110983168" d="288768"></S>
+            <S t="111271936" d="287744" r="2"></S>
+            <S t="112135168" d="288768"></S>
+            <S t="112423936" d="287744" r="2"></S>
+            <S t="113287168" d="288768"></S>
+            <S t="113575936" d="287744" r="2"></S>
+            <S t="114439168" d="288768"></S>
+            <S t="114727936" d="287744" r="2"></S>
+            <S t="115591168" d="288768"></S>
+            <S t="115879936" d="287744" r="2"></S>
+            <S t="116743168" d="288768"></S>
+            <S t="117031936" d="287744" r="2"></S>
+            <S t="117895168" d="288768"></S>
+            <S t="118183936" d="287744" r="2"></S>
+            <S t="119047168" d="288768"></S>
+            <S t="119335936" d="287744" r="2"></S>
+            <S t="120199168" d="288768"></S>
+            <S t="120487936" d="287744" r="2"></S>
+            <S t="121351168" d="288768"></S>
+            <S t="121639936" d="287744" r="2"></S>
+            <S t="122503168" d="288768"></S>
+            <S t="122791936" d="287744" r="1"></S>
+            <S t="123367424" d="211968"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="5" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1687201" codecs="avc1.640028" height="540" id="6" width="960">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="489309" codecs="avc1.640028" height="360" id="7" width="640">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2317570" codecs="avc1.640028" height="576" id="8" width="1024">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="961137" codecs="avc1.640028" height="432" id="9" width="768">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3273459" codecs="avc1.640028" height="720" id="10" width="1280">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="4965291" codecs="avc1.640028" height="1080" id="11" width="1920">
+        <SegmentTemplate presentationTimeOffset="51603552" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="361" timescale="24000">
+          <SegmentTimeline>
+            <S t="51603552" d="144144" r="69"></S>
+            <S t="61693632" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="5" duration="PT26.651624999S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="da" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="367" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="2574572" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_da/seg_$Number$.m4s" startNumber="432" timescale="1000">
+          <SegmentTimeline>
+            <S t="2574572" d="6000" r="4"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="fi" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="359" codecs="wvtt" id="2">
+        <SegmentTemplate presentationTimeOffset="2574572" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_fi/seg_$Number$.m4s" startNumber="432" timescale="1000">
+          <SegmentTimeline>
+            <S t="2574572" d="6000" r="4"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="sv" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="371" codecs="wvtt" id="3">
+        <SegmentTemplate presentationTimeOffset="2574572" initialization="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/vtt_init.m4v" media="MADAMSECRETARY_502_23_FULL_HDCBSMAD502A_sv/seg_$Number$.m4s" startNumber="432" timescale="1000">
+          <SegmentTimeline>
+            <S t="2574572" d="6000" r="4"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="en" contentType="audio">
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="134350" codecs="mp4a.40.2" id="4">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="123579456" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3_aac_128/seg_$Number$.m4s" startNumber="432" timescale="48000">
+          <SegmentTimeline>
+            <S t="123579392" d="288768"></S>
+            <S t="123868160" d="287744" r="1"></S>
+            <S t="124443648" d="288768"></S>
+            <S t="124732416" d="126318"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1063494" codecs="avc1.640028" height="540" id="5" width="960">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_1500/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="397815" codecs="avc1.640028" height="360" id="6" width="640">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_375/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1410834" codecs="avc1.640028" height="576" id="7" width="1024">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_2100/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="718617" codecs="avc1.640028" height="432" id="8" width="768">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_750/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1967745" codecs="avc1.640028" height="720" id="9" width="1280">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_3000/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2614715" codecs="avc1.640028" height="1080" id="10" width="1920">
+        <SegmentTemplate presentationTimeOffset="61789728" initialization="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/init.m4v" media="CBS_MADAM_SECRETARY_502_AA_6CH_30M_720720_4500/seg_$Number$.m4s" startNumber="432" timescale="24000">
+          <SegmentTimeline>
+            <S t="61789728" d="144144" r="3"></S>
+            <S t="62366304" d="63063"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

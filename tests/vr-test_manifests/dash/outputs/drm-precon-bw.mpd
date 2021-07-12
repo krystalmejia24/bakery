@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT1358.2318115234375S" minBufferTime="PT2S">
+  <BaseURL>https://vod-gcs-cedexis.cbsaavideo.com/intl_vms/2021/05/27/1902237251849/705381_cenc_precon_dash/</BaseURL>
+  <Period id="0" duration="PT32.031999999S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="DD+" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="194317" codecs="ec-3" id="0">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"></AudioChannelConfiguration>
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/seg_$Number$.m4s" startNumber="1" timescale="48000">
+          <SegmentTimeline>
+            <S t="0" d="288768"></S>
+            <S t="288768" d="287232"></S>
+            <S t="576000" d="288768"></S>
+            <S t="864768" d="287232"></S>
+            <S t="1152000" d="288768"></S>
+            <S t="1440768" d="96768"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="Dolby Digital" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="386317" codecs="ac-3" id="1">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="6"></AudioChannelConfiguration>
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/seg_$Number$.m4s" startNumber="1" timescale="48000">
+          <SegmentTimeline>
+            <S t="0" d="288768"></S>
+            <S t="288768" d="287232"></S>
+            <S t="576000" d="288768"></S>
+            <S t="864768" d="287232"></S>
+            <S t="1152000" d="288768"></S>
+            <S t="1440768" d="96768"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="en" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="129545" codecs="mp4a.40.2" id="2">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/seg_$Number$.m4s" startNumber="1" timescale="48000">
+          <SegmentTimeline>
+            <S t="0" d="288768"></S>
+            <S t="288768" d="287744" r="2"></S>
+            <S t="1152000" d="288768"></S>
+            <S t="1440768" d="96256"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1042" codecs="wvtt" id="3">
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/vtt_init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/seg_$Number$.m4s" startNumber="1" timescale="1000">
+          <SegmentTimeline>
+            <S t="0" d="6000" r="4"></S>
+            <S t="30000" d="2031"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3592869" codecs="avc1.640028" height="720" id="5" width="1280">
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="4"></S>
+            <S t="720720" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5681666" codecs="avc1.640028" height="1080" id="7" width="1920">
+        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/seg_$Number$.m4s" startNumber="1" timescale="24000">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="4"></S>
+            <S t="720720" d="48048"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet mimeType="image/jpeg" id="5" contentType="image">
+      <SegmentTemplate duration="320" media="$RepresentationID$/tile_$Number$.jpg" startNumber="1"></SegmentTemplate>
+      <Representation bandwidth="30306" height="720" id="thumb_160x90" width="640">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+      <Representation bandwidth="110549" height="1440" id="thumb_320x180" width="1280">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="1" duration="PT10M46.646S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1032" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="32031" initialization="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/vtt_init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/seg_$Number$.m4s" startNumber="7" timescale="1000">
+          <SegmentTimeline>
+            <S t="32031" d="6000" r="106"></S>
+            <S t="674031" d="4647"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="DD+" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="194409" codecs="ec-3" id="1">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="1537535" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/seg_$Number$.m4s" startNumber="7" timescale="48000">
+          <SegmentTimeline>
+            <S t="1537536" d="288768"></S>
+            <S t="1826304" d="287232"></S>
+            <S t="2113536" d="288768"></S>
+            <S t="2402304" d="287232"></S>
+            <S t="2689536" d="288768"></S>
+            <S t="2978304" d="287232"></S>
+            <S t="3265536" d="288768"></S>
+            <S t="3554304" d="287232"></S>
+            <S t="3841536" d="288768"></S>
+            <S t="4130304" d="287232"></S>
+            <S t="4417536" d="288768"></S>
+            <S t="4706304" d="287232"></S>
+            <S t="4993536" d="288768"></S>
+            <S t="5282304" d="287232"></S>
+            <S t="5569536" d="288768"></S>
+            <S t="5858304" d="287232"></S>
+            <S t="6145536" d="288768"></S>
+            <S t="6434304" d="287232"></S>
+            <S t="6721536" d="288768"></S>
+            <S t="7010304" d="287232"></S>
+            <S t="7297536" d="288768"></S>
+            <S t="7586304" d="287232"></S>
+            <S t="7873536" d="288768"></S>
+            <S t="8162304" d="287232"></S>
+            <S t="8449536" d="288768"></S>
+            <S t="8738304" d="287232"></S>
+            <S t="9025536" d="288768"></S>
+            <S t="9314304" d="287232"></S>
+            <S t="9601536" d="288768"></S>
+            <S t="9890304" d="287232"></S>
+            <S t="10177536" d="288768"></S>
+            <S t="10466304" d="287232"></S>
+            <S t="10753536" d="288768"></S>
+            <S t="11042304" d="287232"></S>
+            <S t="11329536" d="288768"></S>
+            <S t="11618304" d="287232"></S>
+            <S t="11905536" d="288768"></S>
+            <S t="12194304" d="287232"></S>
+            <S t="12481536" d="288768"></S>
+            <S t="12770304" d="287232"></S>
+            <S t="13057536" d="288768"></S>
+            <S t="13346304" d="287232"></S>
+            <S t="13633536" d="288768"></S>
+            <S t="13922304" d="287232"></S>
+            <S t="14209536" d="288768"></S>
+            <S t="14498304" d="287232"></S>
+            <S t="14785536" d="288768"></S>
+            <S t="15074304" d="287232"></S>
+            <S t="15361536" d="288768"></S>
+            <S t="15650304" d="287232"></S>
+            <S t="15937536" d="288768"></S>
+            <S t="16226304" d="287232"></S>
+            <S t="16513536" d="288768"></S>
+            <S t="16802304" d="287232"></S>
+            <S t="17089536" d="288768"></S>
+            <S t="17378304" d="287232"></S>
+            <S t="17665536" d="288768"></S>
+            <S t="17954304" d="287232"></S>
+            <S t="18241536" d="288768"></S>
+            <S t="18530304" d="287232"></S>
+            <S t="18817536" d="288768"></S>
+            <S t="19106304" d="287232"></S>
+            <S t="19393536" d="288768"></S>
+            <S t="19682304" d="287232"></S>
+            <S t="19969536" d="288768"></S>
+            <S t="20258304" d="287232"></S>
+            <S t="20545536" d="288768"></S>
+            <S t="20834304" d="287232"></S>
+            <S t="21121536" d="288768"></S>
+            <S t="21410304" d="287232"></S>
+            <S t="21697536" d="288768"></S>
+            <S t="21986304" d="287232"></S>
+            <S t="22273536" d="288768"></S>
+            <S t="22562304" d="287232"></S>
+            <S t="22849536" d="288768"></S>
+            <S t="23138304" d="287232"></S>
+            <S t="23425536" d="288768"></S>
+            <S t="23714304" d="287232"></S>
+            <S t="24001536" d="288768"></S>
+            <S t="24290304" d="287232"></S>
+            <S t="24577536" d="288768"></S>
+            <S t="24866304" d="287232"></S>
+            <S t="25153536" d="288768"></S>
+            <S t="25442304" d="287232"></S>
+            <S t="25729536" d="288768"></S>
+            <S t="26018304" d="287232"></S>
+            <S t="26305536" d="288768"></S>
+            <S t="26594304" d="287232"></S>
+            <S t="26881536" d="288768"></S>
+            <S t="27170304" d="287232"></S>
+            <S t="27457536" d="288768"></S>
+            <S t="27746304" d="287232"></S>
+            <S t="28033536" d="288768"></S>
+            <S t="28322304" d="287232"></S>
+            <S t="28609536" d="288768"></S>
+            <S t="28898304" d="287232"></S>
+            <S t="29185536" d="288768"></S>
+            <S t="29474304" d="287232"></S>
+            <S t="29761536" d="288768"></S>
+            <S t="30050304" d="287232"></S>
+            <S t="30337536" d="288768"></S>
+            <S t="30626304" d="287232"></S>
+            <S t="30913536" d="288768"></S>
+            <S t="31202304" d="287232"></S>
+            <S t="31489536" d="288768"></S>
+            <S t="31778304" d="287232"></S>
+            <S t="32065536" d="288768"></S>
+            <S t="32354304" d="222720"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="Dolby Digital" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="386409" codecs="ac-3" id="2">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="6"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="1537535" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/seg_$Number$.m4s" startNumber="7" timescale="48000">
+          <SegmentTimeline>
+            <S t="1537536" d="288768"></S>
+            <S t="1826304" d="287232"></S>
+            <S t="2113536" d="288768"></S>
+            <S t="2402304" d="287232"></S>
+            <S t="2689536" d="288768"></S>
+            <S t="2978304" d="287232"></S>
+            <S t="3265536" d="288768"></S>
+            <S t="3554304" d="287232"></S>
+            <S t="3841536" d="288768"></S>
+            <S t="4130304" d="287232"></S>
+            <S t="4417536" d="288768"></S>
+            <S t="4706304" d="287232"></S>
+            <S t="4993536" d="288768"></S>
+            <S t="5282304" d="287232"></S>
+            <S t="5569536" d="288768"></S>
+            <S t="5858304" d="287232"></S>
+            <S t="6145536" d="288768"></S>
+            <S t="6434304" d="287232"></S>
+            <S t="6721536" d="288768"></S>
+            <S t="7010304" d="287232"></S>
+            <S t="7297536" d="288768"></S>
+            <S t="7586304" d="287232"></S>
+            <S t="7873536" d="288768"></S>
+            <S t="8162304" d="287232"></S>
+            <S t="8449536" d="288768"></S>
+            <S t="8738304" d="287232"></S>
+            <S t="9025536" d="288768"></S>
+            <S t="9314304" d="287232"></S>
+            <S t="9601536" d="288768"></S>
+            <S t="9890304" d="287232"></S>
+            <S t="10177536" d="288768"></S>
+            <S t="10466304" d="287232"></S>
+            <S t="10753536" d="288768"></S>
+            <S t="11042304" d="287232"></S>
+            <S t="11329536" d="288768"></S>
+            <S t="11618304" d="287232"></S>
+            <S t="11905536" d="288768"></S>
+            <S t="12194304" d="287232"></S>
+            <S t="12481536" d="288768"></S>
+            <S t="12770304" d="287232"></S>
+            <S t="13057536" d="288768"></S>
+            <S t="13346304" d="287232"></S>
+            <S t="13633536" d="288768"></S>
+            <S t="13922304" d="287232"></S>
+            <S t="14209536" d="288768"></S>
+            <S t="14498304" d="287232"></S>
+            <S t="14785536" d="288768"></S>
+            <S t="15074304" d="287232"></S>
+            <S t="15361536" d="288768"></S>
+            <S t="15650304" d="287232"></S>
+            <S t="15937536" d="288768"></S>
+            <S t="16226304" d="287232"></S>
+            <S t="16513536" d="288768"></S>
+            <S t="16802304" d="287232"></S>
+            <S t="17089536" d="288768"></S>
+            <S t="17378304" d="287232"></S>
+            <S t="17665536" d="288768"></S>
+            <S t="17954304" d="287232"></S>
+            <S t="18241536" d="288768"></S>
+            <S t="18530304" d="287232"></S>
+            <S t="18817536" d="288768"></S>
+            <S t="19106304" d="287232"></S>
+            <S t="19393536" d="288768"></S>
+            <S t="19682304" d="287232"></S>
+            <S t="19969536" d="288768"></S>
+            <S t="20258304" d="287232"></S>
+            <S t="20545536" d="288768"></S>
+            <S t="20834304" d="287232"></S>
+            <S t="21121536" d="288768"></S>
+            <S t="21410304" d="287232"></S>
+            <S t="21697536" d="288768"></S>
+            <S t="21986304" d="287232"></S>
+            <S t="22273536" d="288768"></S>
+            <S t="22562304" d="287232"></S>
+            <S t="22849536" d="288768"></S>
+            <S t="23138304" d="287232"></S>
+            <S t="23425536" d="288768"></S>
+            <S t="23714304" d="287232"></S>
+            <S t="24001536" d="288768"></S>
+            <S t="24290304" d="287232"></S>
+            <S t="24577536" d="288768"></S>
+            <S t="24866304" d="287232"></S>
+            <S t="25153536" d="288768"></S>
+            <S t="25442304" d="287232"></S>
+            <S t="25729536" d="288768"></S>
+            <S t="26018304" d="287232"></S>
+            <S t="26305536" d="288768"></S>
+            <S t="26594304" d="287232"></S>
+            <S t="26881536" d="288768"></S>
+            <S t="27170304" d="287232"></S>
+            <S t="27457536" d="288768"></S>
+            <S t="27746304" d="287232"></S>
+            <S t="28033536" d="288768"></S>
+            <S t="28322304" d="287232"></S>
+            <S t="28609536" d="288768"></S>
+            <S t="28898304" d="287232"></S>
+            <S t="29185536" d="288768"></S>
+            <S t="29474304" d="287232"></S>
+            <S t="29761536" d="288768"></S>
+            <S t="30050304" d="287232"></S>
+            <S t="30337536" d="288768"></S>
+            <S t="30626304" d="287232"></S>
+            <S t="30913536" d="288768"></S>
+            <S t="31202304" d="287232"></S>
+            <S t="31489536" d="288768"></S>
+            <S t="31778304" d="287232"></S>
+            <S t="32065536" d="288768"></S>
+            <S t="32354304" d="222720"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="en" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="131072" codecs="mp4a.40.2" id="3">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="1537535" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/seg_$Number$.m4s" startNumber="7" timescale="48000">
+          <SegmentTimeline>
+            <S t="1537024" d="288768"></S>
+            <S t="1825792" d="287744"></S>
+            <S t="2113536" d="288768"></S>
+            <S t="2402304" d="287744" r="2"></S>
+            <S t="3265536" d="288768"></S>
+            <S t="3554304" d="287744" r="2"></S>
+            <S t="4417536" d="288768"></S>
+            <S t="4706304" d="287744" r="2"></S>
+            <S t="5569536" d="288768"></S>
+            <S t="5858304" d="287744" r="2"></S>
+            <S t="6721536" d="288768"></S>
+            <S t="7010304" d="287744" r="2"></S>
+            <S t="7873536" d="288768"></S>
+            <S t="8162304" d="287744" r="2"></S>
+            <S t="9025536" d="288768"></S>
+            <S t="9314304" d="287744" r="2"></S>
+            <S t="10177536" d="288768"></S>
+            <S t="10466304" d="287744" r="2"></S>
+            <S t="11329536" d="288768"></S>
+            <S t="11618304" d="287744" r="2"></S>
+            <S t="12481536" d="288768"></S>
+            <S t="12770304" d="287744" r="2"></S>
+            <S t="13633536" d="288768"></S>
+            <S t="13922304" d="287744" r="2"></S>
+            <S t="14785536" d="288768"></S>
+            <S t="15074304" d="287744" r="2"></S>
+            <S t="15937536" d="288768"></S>
+            <S t="16226304" d="287744" r="2"></S>
+            <S t="17089536" d="288768"></S>
+            <S t="17378304" d="287744" r="2"></S>
+            <S t="18241536" d="288768"></S>
+            <S t="18530304" d="287744" r="2"></S>
+            <S t="19393536" d="288768"></S>
+            <S t="19682304" d="287744" r="2"></S>
+            <S t="20545536" d="288768"></S>
+            <S t="20834304" d="287744" r="2"></S>
+            <S t="21697536" d="288768"></S>
+            <S t="21986304" d="287744" r="2"></S>
+            <S t="22849536" d="288768"></S>
+            <S t="23138304" d="287744" r="2"></S>
+            <S t="24001536" d="288768"></S>
+            <S t="24290304" d="287744" r="2"></S>
+            <S t="25153536" d="288768"></S>
+            <S t="25442304" d="287744" r="2"></S>
+            <S t="26305536" d="288768"></S>
+            <S t="26594304" d="287744" r="2"></S>
+            <S t="27457536" d="288768"></S>
+            <S t="27746304" d="287744" r="2"></S>
+            <S t="28609536" d="288768"></S>
+            <S t="28898304" d="287744" r="2"></S>
+            <S t="29761536" d="288768"></S>
+            <S t="30050304" d="287744" r="2"></S>
+            <S t="30913536" d="288768"></S>
+            <S t="31202304" d="287744" r="2"></S>
+            <S t="32065536" d="288768"></S>
+            <S t="32354304" d="222208"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3696381" codecs="avc1.640028" height="720" id="5" width="1280">
+        <SegmentTemplate presentationTimeOffset="768767" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/seg_$Number$.m4s" startNumber="7" timescale="24000">
+          <SegmentTimeline>
+            <S t="768768" d="144144" r="106"></S>
+            <S t="16192176" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5495426" codecs="avc1.640028" height="1080" id="7" width="1920">
+        <SegmentTemplate presentationTimeOffset="768767" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/seg_$Number$.m4s" startNumber="7" timescale="24000">
+          <SegmentTimeline>
+            <S t="768768" d="144144" r="106"></S>
+            <S t="16192176" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet mimeType="image/jpeg" id="5" contentType="image">
+      <SegmentTemplate duration="320" media="$RepresentationID$/tile_$Number$.jpg" startNumber="2"></SegmentTemplate>
+      <Representation bandwidth="34128" height="720" id="thumb_160x90" width="640">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+      <Representation bandwidth="122279" height="1440" id="thumb_320x180" width="1280">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="2" duration="PT10M46.646S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1100" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="678678" initialization="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/vtt_init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/seg_$Number$.m4s" startNumber="115" timescale="1000">
+          <SegmentTimeline>
+            <S t="678678" d="6000" r="106"></S>
+            <S t="1320678" d="4646"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="DD+" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="194412" codecs="ec-3" id="1">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="32576544" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/seg_$Number$.m4s" startNumber="115" timescale="48000">
+          <SegmentTimeline>
+            <S t="32577024" d="288768"></S>
+            <S t="32865792" d="287232"></S>
+            <S t="33153024" d="288768"></S>
+            <S t="33441792" d="287232"></S>
+            <S t="33729024" d="288768"></S>
+            <S t="34017792" d="287232"></S>
+            <S t="34305024" d="288768"></S>
+            <S t="34593792" d="287232"></S>
+            <S t="34881024" d="288768"></S>
+            <S t="35169792" d="287232"></S>
+            <S t="35457024" d="288768"></S>
+            <S t="35745792" d="287232"></S>
+            <S t="36033024" d="288768"></S>
+            <S t="36321792" d="287232"></S>
+            <S t="36609024" d="288768"></S>
+            <S t="36897792" d="287232"></S>
+            <S t="37185024" d="288768"></S>
+            <S t="37473792" d="287232"></S>
+            <S t="37761024" d="288768"></S>
+            <S t="38049792" d="287232"></S>
+            <S t="38337024" d="288768"></S>
+            <S t="38625792" d="287232"></S>
+            <S t="38913024" d="288768"></S>
+            <S t="39201792" d="287232"></S>
+            <S t="39489024" d="288768"></S>
+            <S t="39777792" d="287232"></S>
+            <S t="40065024" d="288768"></S>
+            <S t="40353792" d="287232"></S>
+            <S t="40641024" d="288768"></S>
+            <S t="40929792" d="287232"></S>
+            <S t="41217024" d="288768"></S>
+            <S t="41505792" d="287232"></S>
+            <S t="41793024" d="288768"></S>
+            <S t="42081792" d="287232"></S>
+            <S t="42369024" d="288768"></S>
+            <S t="42657792" d="287232"></S>
+            <S t="42945024" d="288768"></S>
+            <S t="43233792" d="287232"></S>
+            <S t="43521024" d="288768"></S>
+            <S t="43809792" d="287232"></S>
+            <S t="44097024" d="288768"></S>
+            <S t="44385792" d="287232"></S>
+            <S t="44673024" d="288768"></S>
+            <S t="44961792" d="287232"></S>
+            <S t="45249024" d="288768"></S>
+            <S t="45537792" d="287232"></S>
+            <S t="45825024" d="288768"></S>
+            <S t="46113792" d="287232"></S>
+            <S t="46401024" d="288768"></S>
+            <S t="46689792" d="287232"></S>
+            <S t="46977024" d="288768"></S>
+            <S t="47265792" d="287232"></S>
+            <S t="47553024" d="288768"></S>
+            <S t="47841792" d="287232"></S>
+            <S t="48129024" d="288768"></S>
+            <S t="48417792" d="287232"></S>
+            <S t="48705024" d="288768"></S>
+            <S t="48993792" d="287232"></S>
+            <S t="49281024" d="288768"></S>
+            <S t="49569792" d="287232"></S>
+            <S t="49857024" d="288768"></S>
+            <S t="50145792" d="287232"></S>
+            <S t="50433024" d="288768"></S>
+            <S t="50721792" d="287232"></S>
+            <S t="51009024" d="288768"></S>
+            <S t="51297792" d="287232"></S>
+            <S t="51585024" d="288768"></S>
+            <S t="51873792" d="287232"></S>
+            <S t="52161024" d="288768"></S>
+            <S t="52449792" d="287232"></S>
+            <S t="52737024" d="288768"></S>
+            <S t="53025792" d="287232"></S>
+            <S t="53313024" d="288768"></S>
+            <S t="53601792" d="287232"></S>
+            <S t="53889024" d="288768"></S>
+            <S t="54177792" d="287232"></S>
+            <S t="54465024" d="288768"></S>
+            <S t="54753792" d="287232"></S>
+            <S t="55041024" d="288768"></S>
+            <S t="55329792" d="287232"></S>
+            <S t="55617024" d="288768"></S>
+            <S t="55905792" d="287232"></S>
+            <S t="56193024" d="288768"></S>
+            <S t="56481792" d="287232"></S>
+            <S t="56769024" d="288768"></S>
+            <S t="57057792" d="287232"></S>
+            <S t="57345024" d="288768"></S>
+            <S t="57633792" d="287232"></S>
+            <S t="57921024" d="288768"></S>
+            <S t="58209792" d="287232"></S>
+            <S t="58497024" d="288768"></S>
+            <S t="58785792" d="287232"></S>
+            <S t="59073024" d="288768"></S>
+            <S t="59361792" d="287232"></S>
+            <S t="59649024" d="288768"></S>
+            <S t="59937792" d="287232"></S>
+            <S t="60225024" d="288768"></S>
+            <S t="60513792" d="287232"></S>
+            <S t="60801024" d="288768"></S>
+            <S t="61089792" d="287232"></S>
+            <S t="61377024" d="288768"></S>
+            <S t="61665792" d="287232"></S>
+            <S t="61953024" d="288768"></S>
+            <S t="62241792" d="287232"></S>
+            <S t="62529024" d="288768"></S>
+            <S t="62817792" d="287232"></S>
+            <S t="63105024" d="288768"></S>
+            <S t="63393792" d="221184"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="Dolby Digital" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="386412" codecs="ac-3" id="2">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="6"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="32576544" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/seg_$Number$.m4s" startNumber="115" timescale="48000">
+          <SegmentTimeline>
+            <S t="32577024" d="288768"></S>
+            <S t="32865792" d="287232"></S>
+            <S t="33153024" d="288768"></S>
+            <S t="33441792" d="287232"></S>
+            <S t="33729024" d="288768"></S>
+            <S t="34017792" d="287232"></S>
+            <S t="34305024" d="288768"></S>
+            <S t="34593792" d="287232"></S>
+            <S t="34881024" d="288768"></S>
+            <S t="35169792" d="287232"></S>
+            <S t="35457024" d="288768"></S>
+            <S t="35745792" d="287232"></S>
+            <S t="36033024" d="288768"></S>
+            <S t="36321792" d="287232"></S>
+            <S t="36609024" d="288768"></S>
+            <S t="36897792" d="287232"></S>
+            <S t="37185024" d="288768"></S>
+            <S t="37473792" d="287232"></S>
+            <S t="37761024" d="288768"></S>
+            <S t="38049792" d="287232"></S>
+            <S t="38337024" d="288768"></S>
+            <S t="38625792" d="287232"></S>
+            <S t="38913024" d="288768"></S>
+            <S t="39201792" d="287232"></S>
+            <S t="39489024" d="288768"></S>
+            <S t="39777792" d="287232"></S>
+            <S t="40065024" d="288768"></S>
+            <S t="40353792" d="287232"></S>
+            <S t="40641024" d="288768"></S>
+            <S t="40929792" d="287232"></S>
+            <S t="41217024" d="288768"></S>
+            <S t="41505792" d="287232"></S>
+            <S t="41793024" d="288768"></S>
+            <S t="42081792" d="287232"></S>
+            <S t="42369024" d="288768"></S>
+            <S t="42657792" d="287232"></S>
+            <S t="42945024" d="288768"></S>
+            <S t="43233792" d="287232"></S>
+            <S t="43521024" d="288768"></S>
+            <S t="43809792" d="287232"></S>
+            <S t="44097024" d="288768"></S>
+            <S t="44385792" d="287232"></S>
+            <S t="44673024" d="288768"></S>
+            <S t="44961792" d="287232"></S>
+            <S t="45249024" d="288768"></S>
+            <S t="45537792" d="287232"></S>
+            <S t="45825024" d="288768"></S>
+            <S t="46113792" d="287232"></S>
+            <S t="46401024" d="288768"></S>
+            <S t="46689792" d="287232"></S>
+            <S t="46977024" d="288768"></S>
+            <S t="47265792" d="287232"></S>
+            <S t="47553024" d="288768"></S>
+            <S t="47841792" d="287232"></S>
+            <S t="48129024" d="288768"></S>
+            <S t="48417792" d="287232"></S>
+            <S t="48705024" d="288768"></S>
+            <S t="48993792" d="287232"></S>
+            <S t="49281024" d="288768"></S>
+            <S t="49569792" d="287232"></S>
+            <S t="49857024" d="288768"></S>
+            <S t="50145792" d="287232"></S>
+            <S t="50433024" d="288768"></S>
+            <S t="50721792" d="287232"></S>
+            <S t="51009024" d="288768"></S>
+            <S t="51297792" d="287232"></S>
+            <S t="51585024" d="288768"></S>
+            <S t="51873792" d="287232"></S>
+            <S t="52161024" d="288768"></S>
+            <S t="52449792" d="287232"></S>
+            <S t="52737024" d="288768"></S>
+            <S t="53025792" d="287232"></S>
+            <S t="53313024" d="288768"></S>
+            <S t="53601792" d="287232"></S>
+            <S t="53889024" d="288768"></S>
+            <S t="54177792" d="287232"></S>
+            <S t="54465024" d="288768"></S>
+            <S t="54753792" d="287232"></S>
+            <S t="55041024" d="288768"></S>
+            <S t="55329792" d="287232"></S>
+            <S t="55617024" d="288768"></S>
+            <S t="55905792" d="287232"></S>
+            <S t="56193024" d="288768"></S>
+            <S t="56481792" d="287232"></S>
+            <S t="56769024" d="288768"></S>
+            <S t="57057792" d="287232"></S>
+            <S t="57345024" d="288768"></S>
+            <S t="57633792" d="287232"></S>
+            <S t="57921024" d="288768"></S>
+            <S t="58209792" d="287232"></S>
+            <S t="58497024" d="288768"></S>
+            <S t="58785792" d="287232"></S>
+            <S t="59073024" d="288768"></S>
+            <S t="59361792" d="287232"></S>
+            <S t="59649024" d="288768"></S>
+            <S t="59937792" d="287232"></S>
+            <S t="60225024" d="288768"></S>
+            <S t="60513792" d="287232"></S>
+            <S t="60801024" d="288768"></S>
+            <S t="61089792" d="287232"></S>
+            <S t="61377024" d="288768"></S>
+            <S t="61665792" d="287232"></S>
+            <S t="61953024" d="288768"></S>
+            <S t="62241792" d="287232"></S>
+            <S t="62529024" d="288768"></S>
+            <S t="62817792" d="287232"></S>
+            <S t="63105024" d="288768"></S>
+            <S t="63393792" d="221184"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="en" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="131035" codecs="mp4a.40.2" id="3">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="32576544" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/seg_$Number$.m4s" startNumber="115" timescale="48000">
+          <SegmentTimeline>
+            <S t="32576512" d="288768"></S>
+            <S t="32865280" d="287744" r="1"></S>
+            <S t="33440768" d="288768"></S>
+            <S t="33729536" d="287744" r="2"></S>
+            <S t="34592768" d="288768"></S>
+            <S t="34881536" d="287744" r="2"></S>
+            <S t="35744768" d="288768"></S>
+            <S t="36033536" d="287744" r="2"></S>
+            <S t="36896768" d="288768"></S>
+            <S t="37185536" d="287744" r="2"></S>
+            <S t="38048768" d="288768"></S>
+            <S t="38337536" d="287744" r="2"></S>
+            <S t="39200768" d="288768"></S>
+            <S t="39489536" d="287744" r="2"></S>
+            <S t="40352768" d="288768"></S>
+            <S t="40641536" d="287744" r="2"></S>
+            <S t="41504768" d="288768"></S>
+            <S t="41793536" d="287744" r="2"></S>
+            <S t="42656768" d="288768"></S>
+            <S t="42945536" d="287744" r="2"></S>
+            <S t="43808768" d="288768"></S>
+            <S t="44097536" d="287744" r="2"></S>
+            <S t="44960768" d="288768"></S>
+            <S t="45249536" d="287744" r="2"></S>
+            <S t="46112768" d="288768"></S>
+            <S t="46401536" d="287744" r="2"></S>
+            <S t="47264768" d="288768"></S>
+            <S t="47553536" d="287744" r="2"></S>
+            <S t="48416768" d="288768"></S>
+            <S t="48705536" d="287744" r="2"></S>
+            <S t="49568768" d="288768"></S>
+            <S t="49857536" d="287744" r="2"></S>
+            <S t="50720768" d="288768"></S>
+            <S t="51009536" d="287744" r="2"></S>
+            <S t="51872768" d="288768"></S>
+            <S t="52161536" d="287744" r="2"></S>
+            <S t="53024768" d="288768"></S>
+            <S t="53313536" d="287744" r="2"></S>
+            <S t="54176768" d="288768"></S>
+            <S t="54465536" d="287744" r="2"></S>
+            <S t="55328768" d="288768"></S>
+            <S t="55617536" d="287744" r="2"></S>
+            <S t="56480768" d="288768"></S>
+            <S t="56769536" d="287744" r="2"></S>
+            <S t="57632768" d="288768"></S>
+            <S t="57921536" d="287744" r="2"></S>
+            <S t="58784768" d="288768"></S>
+            <S t="59073536" d="287744" r="2"></S>
+            <S t="59936768" d="288768"></S>
+            <S t="60225536" d="287744" r="2"></S>
+            <S t="61088768" d="288768"></S>
+            <S t="61377536" d="287744" r="2"></S>
+            <S t="62240768" d="288768"></S>
+            <S t="62529536" d="287744" r="2"></S>
+            <S t="63392768" d="223232"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3891053" codecs="avc1.640028" height="720" id="5" width="1280">
+        <SegmentTemplate presentationTimeOffset="16288272" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/seg_$Number$.m4s" startNumber="115" timescale="24000">
+          <SegmentTimeline>
+            <S t="16288272" d="144144" r="106"></S>
+            <S t="31711680" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5764741" codecs="avc1.640028" height="1080" id="7" width="1920">
+        <SegmentTemplate presentationTimeOffset="16288272" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/seg_$Number$.m4s" startNumber="115" timescale="24000">
+          <SegmentTimeline>
+            <S t="16288272" d="144144" r="106"></S>
+            <S t="31711680" d="96096"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet mimeType="image/jpeg" id="5" contentType="image">
+      <SegmentTemplate duration="320" media="$RepresentationID$/tile_$Number$.jpg" startNumber="5"></SegmentTemplate>
+      <Representation bandwidth="35727" height="720" id="thumb_160x90" width="640">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+      <Representation bandwidth="129750" height="1440" id="thumb_320x180" width="1280">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+  <Period id="3" duration="PT32.907874999S">
+    <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"></Role>
+      <Representation mimeType="application/mp4" bandwidth="1035" codecs="wvtt" id="0">
+        <SegmentTemplate presentationTimeOffset="1325324" initialization="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/vtt_init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_1624474451/seg_$Number$.m4s" startNumber="223" timescale="1000">
+          <SegmentTimeline>
+            <S t="1325324" d="6000" r="4"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" segmentAlignment="true" lang="DD+" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="194638" codecs="ec-3" id="1">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="63615552" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_1_eac3_192/seg_$Number$.m4s" startNumber="223" timescale="48000">
+          <SegmentTimeline>
+            <S t="63614976" d="288768" r="1"></S>
+            <S t="64192512" d="287232"></S>
+            <S t="64479744" d="288768"></S>
+            <S t="64768512" d="287232"></S>
+            <S t="65055744" d="142848"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" segmentAlignment="true" lang="Dolby Digital" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="386638" codecs="ac-3" id="2">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="6"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="63615552" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_2_ac3_384/seg_$Number$.m4s" startNumber="223" timescale="48000">
+          <SegmentTimeline>
+            <S t="63614976" d="288768" r="1"></S>
+            <S t="64192512" d="287232"></S>
+            <S t="64479744" d="288768"></S>
+            <S t="64768512" d="287232"></S>
+            <S t="65055744" d="142848"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" segmentAlignment="true" lang="en" contentType="audio">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation mimeType="audio/mp4" audioSamplingRate="48000" bandwidth="131076" codecs="mp4a.40.2" id="3">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"></AudioChannelConfiguration>
+        <SegmentTemplate presentationTimeOffset="63615552" initialization="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_en-US_705367_3_aac_128/seg_$Number$.m4s" startNumber="223" timescale="48000">
+          <SegmentTimeline>
+            <S t="63616000" d="287744"></S>
+            <S t="63903744" d="288768"></S>
+            <S t="64192512" d="287744" r="2"></S>
+            <S t="65055744" d="142336"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
+      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
+        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
+        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
+      </ContentProtection>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3430808" codecs="avc1.640028" height="720" id="5" width="1280">
+        <SegmentTemplate presentationTimeOffset="31807776" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/seg_$Number$.m4s" startNumber="223" timescale="24000">
+          <SegmentTimeline>
+            <S t="31807776" d="144144" r="4"></S>
+            <S t="32528496" d="69069"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5311140" codecs="avc1.640028" height="1080" id="7" width="1920">
+        <SegmentTemplate presentationTimeOffset="31807776" initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/seg_$Number$.m4s" startNumber="223" timescale="24000">
+          <SegmentTimeline>
+            <S t="31807776" d="144144" r="4"></S>
+            <S t="32528496" d="69069"></S>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet mimeType="image/jpeg" id="5" contentType="image">
+      <SegmentTemplate duration="320" media="$RepresentationID$/tile_$Number$.jpg" startNumber="8"></SegmentTemplate>
+      <Representation bandwidth="20415" height="720" id="thumb_160x90" width="640">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+      <Representation bandwidth="76461" height="1440" id="thumb_320x180" width="1280">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

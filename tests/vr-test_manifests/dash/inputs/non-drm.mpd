@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated with https://github.com/google/shaka-packager version 562040e000-release-->
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" profiles="urn:mpeg:dash:profile:isoff-live:2011" minBufferTime="PT2S" type="static" mediaPresentationDuration="PT128.08628845214844S">
+  <Period id="0">
+    <AdaptationSet id="0" contentType="video" maxWidth="1920" maxHeight="1080" frameRate="24000/1001" segmentAlignment="true" par="16:9">
+      <Representation id="0" bandwidth="1705739" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="960" height="540">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_1500/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_1500/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation id="1" bandwidth="3394426" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1280" height="720">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_3000/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_3000/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation id="2" bandwidth="2443839" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1024" height="576">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_2100/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_2100/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation id="3" bandwidth="469616" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="640" height="360">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_375/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_375/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation id="4" bandwidth="954198" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="768" height="432">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_750/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_750/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+      <Representation id="5" bandwidth="4931939" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <SegmentTemplate timescale="24000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_4500/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_4500/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="144144" r="20"/>
+            <S t="3027024" d="47047"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" contentType="audio" lang="en" segmentAlignment="true">
+      <Representation id="6" bandwidth="135348" codecs="mp4a.40.2" mimeType="audio/mp4" audioSamplingRate="48000">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+        <SegmentTemplate timescale="48000" initialization="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_3_aac_128/init.m4v" media="PARAMOUNT_WolfofWallStreetThe_36001_1920x1080_Trailer_R_8CH_705352_3_aac_128/seg_$Number$.m4s" startNumber="1">
+          <SegmentTimeline>
+            <S t="0" d="288768"/>
+            <S t="288768" d="287744" r="2"/>
+            <S t="1152000" d="288768"/>
+            <S t="1440768" d="287744" r="2"/>
+            <S t="2304000" d="288768"/>
+            <S t="2592768" d="287744" r="2"/>
+            <S t="3456000" d="288768"/>
+            <S t="3744768" d="287744" r="2"/>
+            <S t="4608000" d="288768"/>
+            <S t="4896768" d="287744" r="2"/>
+            <S t="5760000" d="288768"/>
+            <S t="6048768" d="99373"/>
+          </SegmentTimeline>
+        </SegmentTemplate>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

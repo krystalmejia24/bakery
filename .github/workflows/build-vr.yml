@@ -1,0 +1,101 @@
+on:
+  push:
+    branches: [ master ]
+    tags: [ v*.*.* ]
+  pull_request:
+    branches: [ master ]
+
+name: VideoRobot-Bakery Build
+
+env:
+  DOCKER_IMAGE: "bakery"
+  
+jobs:
+  GCP_DEV_BUILD:
+    name: GCP_DEV_BUILD
+    # Run only on merge to master or pull request against master.
+    if: ${{ ! contains(github.ref, 'refs/tags/v') }}
+    runs-on: ubuntu-latest
+    environment: VR-Bakery-Dev
+    env:
+      DOCKER_TAG: "dev"
+      GCP_PROJECT_NAME: "i-vidbot-dev"
+    strategy:
+      matrix:
+        go-version: [1.16.x]
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: Install Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Verify build and test
+        run: |
+          make clean || echo "Attempted cleaning workspace."
+          make all
+      - name: Set short-sha
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Build and tag image
+        run: |
+          docker build -f Dockerfile -t $DOCKER_IMAGE:$DOCKER_TAG .
+          docker tag $DOCKER_IMAGE:$DOCKER_TAG gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE:$DOCKER_TAG
+          docker tag $DOCKER_IMAGE:$DOCKER_TAG gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE:$DOCKER_TAG-${{ steps.vars.outputs.sha_short }}    
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ env.GCP_PROJECT_NAME }}
+          service_account_key: ${{ secrets.GCP_VR_APP_CREDENTIAL }}
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker -q
+        
+      - name: push to GCR
+        run: docker push --all-tags gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE
+
+  GCP_PROD_BUILD:
+    name: GCP_PROD_BUILD
+    # Run only on tags.
+    if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+    runs-on: ubuntu-latest
+    environment: VR-Bakery-Prod
+    env:
+      DOCKER_TAG: "release"
+      GCP_PROJECT_NAME: "i-cbsent-vidbot-prod"
+    strategy:
+      matrix:
+        go-version: [1.16.x]
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: Install Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Verify build and test
+        run: |
+          make clean || echo "Attempted cleaning workspace."
+          make all
+      - name: Set short-sha
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: build PR for build safety
+        run: |
+          docker build -f Dockerfile -t $DOCKER_IMAGE:$DOCKER_TAG .
+          docker tag $DOCKER_IMAGE:$DOCKER_TAG gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE:$DOCKER_TAG
+          docker tag $DOCKER_IMAGE:$DOCKER_TAG gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE:$DOCKER_TAG-${{ steps.vars.outputs.sha_short }}    
+
+      - name: Setup Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ env.GCP_PROJECT_NAME }}
+          service_account_key: ${{ secrets.GCP_VR_APP_CREDENTIAL }}
+
+      - name: Authorize Docker push
+        run: gcloud auth configure-docker -q
+        
+      - name: push to GCR
+        run: docker push --all-tags gcr.io/$GCP_PROJECT_NAME/$DOCKER_IMAGE

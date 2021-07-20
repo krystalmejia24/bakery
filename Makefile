@@ -10,16 +10,16 @@ WEBSERVER=./cmd/http
 all: test build
 
 build: 
-	$(GOBUILD) -o $(BINARY_NAME) -v $(WEBSERVER)
+	$(GOBUILD) -mod=vendor -o $(BINARY_NAME) -v $(WEBSERVER)
 
 test: 
-	$(GOTEST) -v -race -count=1 ./...
+	$(GOTEST) -mod=vendor -v -race -count=1 ./...
 
 test_cover:
-	GOFLAGS=-p=8 $(GOTEST) -v -count 1 ./... -race -coverprofile=coverage.txt -covermode=atomic
+	GOFLAGS=-p=8 $(GOTEST) -mod=vendor -v -count 1 ./... -race -coverprofile=coverage.txt -covermode=atomic
 
 clean: 
-	$(GOCLEAN) ./...
+	$(GOCLEAN) -mod=vendor ./...
 	rm -f $(BINARY_NAME)
 
 run:

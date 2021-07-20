@@ -17,25 +17,34 @@ Bakery is a proxy and filter for HLS and DASH manifests.
 
 #### Export the environment variables:
 
-Please reach out to the [Propeller](https://cbsinteractive.github.io/propeller) team for configuring your access prior to working with propeller origin channels. 
-
-    $ export BAKERY_CLIENT_TIMEOUT=5s 
+    $ export BAKERY_CLIENT_TIMEOUT=5s
     $ export BAKERY_HTTP_PORT=:8082
+    $ export BAKERY_ENABLE_AUTH=false
     $ export BAKERY_ORIGIN_HOST="https://streaming.cbs.com"
-    $ export BAKERY_PROPELLER_HOST="http://propeller.com"
-    $ export BAKERY_PROPELLER_CREDS="usr:pw"
-    $ export BAKERY_ENABLE_XRAY=false
-    $ export BAKERY_ENABLE_XRAY_PLUGINS=false #for local debugging, if XRAY is enabled, set this to false
 
 Note that `BAKERY_ORIGIN_HOST` will be the base URL of your manifest files.
 
-#### Setup a local AWS XRay Daemon
+#### Propeller
 
-If you want to enable XRAY to run on your local machine, you will need to run an xray daemon locally.
+To enable Propeller as an origin you can set the following:
 
-For help on setting up a local instance, check the AWS documentation [here](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-local.html)
+    $ export BAKERY_PROPELLER_ENABLED=true
+    $ export BAKERY_PROPELLER_HOST="http://propeller.com"
+    $ export BAKERY_PROPELLER_CREDS="usr:pw"
 
-Bakery will connect to the Daemon on the default port
+Please reach out to the [Propeller](https://cbsinteractive.github.io/propeller) team for configuring your access prior to working with propeller origin channels.
+
+
+#### AWS XRay
+
+If you want to enable XRAY to run on your local machine, you will need to run an xray daemon locally. For help on setting up a local instance, check the AWS documentation [here](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon-local.html)
+
+Once configured, you can enable the following environment variables:
+
+    $ export BAKERY_ENABLE_XRAY=true
+    $ export BAKERY_ENABLE_XRAY_PLUGINS=false #For local debugging you will want to set this to false
+
+When enabled, Bakery will connect to the Daemon on the default port
 
 #### Run the API:
 

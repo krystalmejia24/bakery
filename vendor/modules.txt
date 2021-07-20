@@ -65,11 +65,7 @@ github.com/cbsinteractive/pkg/xrayutil
 # github.com/cbsinteractive/propeller-go v0.0.0-20200828205819-d02e4f54c5bc
 ## explicit
 github.com/cbsinteractive/propeller-go/client
-# github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
-## explicit
 # github.com/davecgh/go-spew v1.1.1
-## explicit
-# github.com/go-sql-driver/mysql v1.5.0
 ## explicit
 # github.com/google/go-cmp v0.5.6
 ## explicit
@@ -79,7 +75,7 @@ github.com/google/go-cmp/cmp/internal/diff
 github.com/google/go-cmp/cmp/internal/flags
 github.com/google/go-cmp/cmp/internal/function
 github.com/google/go-cmp/cmp/internal/value
-# github.com/grafov/m3u8 v0.11.1 => github.com/cbsinteractive/m3u8 v0.11.2-0.20200411022055-4abfe1f82646
+# github.com/grafov/m3u8 v0.11.1 => github.com/cbsinteractive/m3u8 v0.11.2-0.20210702182805-556854f1e40f
 ## explicit
 github.com/grafov/m3u8
 # github.com/jmespath/go-jmespath v0.4.0
@@ -104,8 +100,6 @@ github.com/rs/zerolog/internal/json
 github.com/rs/zerolog/log
 # github.com/stretchr/testify v1.5.1
 ## explicit
-# github.com/zenazn/goji v0.9.0
-## explicit
 # github.com/zencoder/go-dash v0.0.0-20201006100653-2f93b14912b2 => github.com/cbsinteractive/go-dash v0.0.0-20200617014501-54010516d9b0
 ## explicit
 github.com/zencoder/go-dash/helpers/ptrs
@@ -114,4 +108,4 @@ github.com/zencoder/go-dash/mpd
 golang.org/x/xerrors
 golang.org/x/xerrors/internal
 # github.com/zencoder/go-dash => github.com/cbsinteractive/go-dash v0.0.0-20200617014501-54010516d9b0
-# github.com/grafov/m3u8 => github.com/cbsinteractive/m3u8 v0.11.2-0.20200411022055-4abfe1f82646
+# github.com/grafov/m3u8 => github.com/cbsinteractive/m3u8 v0.11.2-0.20210702182805-556854f1e40f

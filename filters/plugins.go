@@ -1,6 +1,6 @@
 package filters
 
-import "github.com/zencoder/go-dash/mpd"
+import "github.com/zencoder/go-dash/v3/mpd"
 
 type execPluginDASH func(manifest *mpd.MPD)
 

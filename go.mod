@@ -1,6 +1,6 @@
 module github.com/cbsinteractive/bakery
 
-replace github.com/zencoder/go-dash => github.com/cbsinteractive/go-dash v0.0.0-20200617014501-54010516d9b0
+replace github.com/zencoder/go-dash/v3 => github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210721024109-23330ac33a30
 
 replace github.com/grafov/m3u8 => github.com/cbsinteractive/m3u8 v0.11.2-0.20210702182805-556854f1e40f
 
@@ -18,5 +18,5 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/rs/zerolog v1.23.0
 	github.com/stretchr/testify v1.5.1 // indirect
-	github.com/zencoder/go-dash v0.0.0-20201006100653-2f93b14912b2
+	github.com/zencoder/go-dash/v3 v3.0.1
 )

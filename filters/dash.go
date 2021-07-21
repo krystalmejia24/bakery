@@ -10,7 +10,7 @@ import (
 
 	"github.com/cbsinteractive/bakery/config"
 	"github.com/cbsinteractive/bakery/parsers"
-	"github.com/zencoder/go-dash/mpd"
+	"github.com/zencoder/go-dash/v3/mpd"
 )
 
 type execFilter func(filters *parsers.MediaFilters, manifest *mpd.MPD)
@@ -19,7 +19,7 @@ type execFilter func(filters *parsers.MediaFilters, manifest *mpd.MPD)
 type DASHFilter struct {
 	originURL     string
 	originContent string
-	config          config.Config
+	config        config.Config
 }
 
 // NewDASHFilter is the DASH filter constructor
@@ -27,7 +27,7 @@ func NewDASHFilter(originURL, originContent string, c config.Config) *DASHFilter
 	return &DASHFilter{
 		originURL:     originURL,
 		originContent: originContent,
-		config:          c,
+		config:        c,
 	}
 }
 

@@ -20,8 +20,10 @@ func main() {
 	}
 
 	handler := c.SetupMiddleware().Then(handlers.LoadHandler(c))
+	hcHandler := c.SetupMiddleware().Then(&handlers.HealthcheckHandler{})
 
-	c.Logger.Info().Str("port", c.Listen).Str("hostname", c.Hostname).Msg("Starting Bakery")
+	c.Logger.Info().Str("port", c.Listen).Str("hostname", c.Hostname).Str("git_sha", handlers.GitSHA).Msg("Starting Bakery")
+	http.Handle(handlers.HealthcheckPath, c.Client.Tracer.Handle(tracing.FixedNamer("bakery"), hcHandler))
 	http.Handle("/", c.Client.Tracer.Handle(tracing.FixedNamer("bakery"), handler))
 	if err := http.ListenAndServe(c.Listen, nil); err != nil {
 		log.Fatal(err)

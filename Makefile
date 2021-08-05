@@ -7,10 +7,12 @@ GOTEST=$(GOCMD) test
 BINARY_NAME=bakery
 WEBSERVER=./cmd/http
 
+LDFLAGS = -ldflags "-X github.com/cbsinteractive/bakery/handlers.GitSHA=$(shell git rev-parse HEAD)"
+
 all: test build
 
 build: 
-	$(GOBUILD) -mod=vendor -o $(BINARY_NAME) -v $(WEBSERVER)
+	$(GOBUILD) -mod=vendor $(LDFLAGS) -o $(BINARY_NAME) -v $(WEBSERVER)
 
 test: 
 	$(GOTEST) -mod=vendor -v -race -count=1 ./...
@@ -23,4 +25,4 @@ clean:
 	rm -f $(BINARY_NAME)
 
 run:
-	$(GORUN) $(WEBSERVER)
+	$(GORUN) $(LDFLAGS) $(WEBSERVER)

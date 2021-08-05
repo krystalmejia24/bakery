@@ -56,7 +56,7 @@ func (c Config) getLogger() zerolog.Logger {
 		level = zerolog.DebugLevel
 	}
 
-	return zerolog.New(os.Stderr).
+	return zerolog.New(os.Stdout).
 		With().
 		Timestamp().
 		Logger().

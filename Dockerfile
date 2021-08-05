@@ -10,7 +10,7 @@ COPY go.sum .
 FROM build_base AS builder
 
 COPY . .
-RUN go build -mod=vendor -o bakery cmd/http/main.go
+RUN go build -mod=vendor -ldflags "-X github.com/cbsinteractive/bakery/handlers.GitSHA=$(git rev-parse HEAD)" -o bakery cmd/http/main.go
 
 FROM alpine:latest
 

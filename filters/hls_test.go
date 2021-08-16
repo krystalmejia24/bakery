@@ -1164,6 +1164,71 @@ http://existing.base/uri/link_13.m3u8
 			manifestContent:       manifestWithAllCodecsAndBandwidths,
 			expectManifestContent: manifestFilter4000To6000BandwidthAndNoAudio,
 		},
+		{
+			name: "BandwidthFilterPrefersAverageBandwidthFilterLow",
+			filters: &parsers.MediaFilters{
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Max: 800,
+					},
+				},
+			},
+			manifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=400,CODECS="avc1.77.30"
+http://existing.base/uri/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2000,AVERAGE-BANDWIDTH=900,CODECS="avc1.77.30"
+http://existing.base/uri/link_2.m3u8`,
+			expectManifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=400,CODECS="avc1.77.30"
+http://existing.base/uri/link_1.m3u8
+`,
+		},
+		{
+			name: "BandwidthFilterPrefersAverageBandwidthFilterHigh",
+			filters: &parsers.MediaFilters{
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 800,
+						Max: 4000,
+					},
+				},
+			},
+			manifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,AVERAGE-BANDWIDTH=400,CODECS="avc1.77.30"
+http://existing.base/uri/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2000,AVERAGE-BANDWIDTH=900,CODECS="avc1.77.30"
+http://existing.base/uri/link_2.m3u8`,
+			expectManifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2000,AVERAGE-BANDWIDTH=900,CODECS="avc1.77.30"
+http://existing.base/uri/link_2.m3u8
+`,
+		},
+		{
+			name: "BandwidthFilterFallsBackToBandwidthFilterHigh",
+			filters: &parsers.MediaFilters{
+				Videos: parsers.NestedFilters{
+					Bitrate: &parsers.Bitrate{
+						Min: 1200,
+						Max: 4000,
+					},
+				},
+			},
+			manifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=1000,CODECS="avc1.77.30"
+http://existing.base/uri/link_1.m3u8
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2000,CODECS="avc1.77.30"
+http://existing.base/uri/link_2.m3u8`,
+			expectManifestContent: `#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-STREAM-INF:PROGRAM-ID=0,BANDWIDTH=2000,CODECS="avc1.77.30"
+http://existing.base/uri/link_2.m3u8
+`,
+		},
 	}
 
 	for _, tt := range tests {

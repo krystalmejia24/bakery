@@ -181,7 +181,11 @@ func (h *HLSFilter) filterVariant(filters *parsers.MediaFilters, v *m3u8.Variant
 	}
 
 	if filters.Videos.Bitrate != nil || filters.Audios.Bitrate != nil {
-		if h.filterVariantBandwidth(int(v.VariantParams.Bandwidth), variantCodecs, filters) {
+		bw := v.AverageBandwidth
+		if bw == 0 {
+			bw = v.Bandwidth
+		}
+		if h.filterVariantBandwidth(int(bw), variantCodecs, filters) {
 			return true, nil
 		}
 	}

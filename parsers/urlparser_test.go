@@ -588,6 +588,15 @@ func TestURLParseUrl(t *testing.T) {
 			false,
 		},
 		{
+			"set path properly for propeller channel with explicit output and origin",
+			"/propeller/orgID/channelID/outputID/origin.m3u8",
+			MediaFilters{
+				Protocol: ProtocolHLS,
+			},
+			"/propeller/orgID/channelID/outputID/origin.m3u8",
+			false,
+		},
+		{
 			"ensure DeWeaved filter is set to true",
 			"dw(true)/some/path/to/manifest.m3u8",
 			MediaFilters{

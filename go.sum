@@ -7,6 +7,10 @@ github.com/aws/aws-xray-sdk-go v1.0.0-rc.15 h1:7XzuhQu1cTMaeKnBzEKpMG/d/wH214AoC
 github.com/aws/aws-xray-sdk-go v1.0.0-rc.15/go.mod h1:tmxq1c+yeEbMh39OmRFuXOrse5ajRlMmDXJ6LrCVsIs=
 github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210721024109-23330ac33a30 h1:wqVZHMLdo5GtNEkq1IjQ0UQB7DRX7iyd55mbMzoKOWw=
 github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210721024109-23330ac33a30/go.mod h1:tYn8oyvyz2uZva1LpDp+zktadhbOTNKYvgGBJs5ltQ0=
+github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210815175915-66e55d5fe3ff h1:HuuiUrxIF3iqMo/6kMr2vNdyqxaHMeChUHpUBoFEpx4=
+github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210815175915-66e55d5fe3ff/go.mod h1:tYn8oyvyz2uZva1LpDp+zktadhbOTNKYvgGBJs5ltQ0=
+github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210815181819-c356e550b00d h1:HOeyYuOBub+GQVrDnN3G/q0cwYwuZp8iqa5oIAeIq+w=
+github.com/cbsinteractive/go-dash/v3 v3.0.1-0.20210815181819-c356e550b00d/go.mod h1:tYn8oyvyz2uZva1LpDp+zktadhbOTNKYvgGBJs5ltQ0=
 github.com/cbsinteractive/m3u8 v0.11.2-0.20210702182805-556854f1e40f h1:3FCwsEjR740vohA8J1DlIkFCvdMHBIWEUySQTPW329c=
 github.com/cbsinteractive/m3u8 v0.11.2-0.20210702182805-556854f1e40f/go.mod h1:nqzOkfBiZJENr52zTVd/Dcl03yzphIMbJqkXGu+u080=
 github.com/cbsinteractive/pkg/tracing v0.0.0-20210104155054-0951c16e08d6 h1:zzr5KQaw4c/FMOnRfahJmO5yQhKYBWu4/h2XoPpnm5Q=

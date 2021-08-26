@@ -63,7 +63,7 @@ jobs:
     environment: VR-Bakery-Prod
     env:
       DOCKER_TAG: "release"
-      GCP_PROJECT_NAME: "i-cbsent-vidbot-prod"
+      GCP_PROJECT_NAME: "i-cbsent-video-prod"
     strategy:
       matrix:
         go-version: [1.16.x]

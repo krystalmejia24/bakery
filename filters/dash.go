@@ -319,7 +319,7 @@ func (d *DASHFilter) filterBandwidth(filters *parsers.MediaFilters, manifest *mp
 						}
 					}
 					if r.Width != nil {
-						if w := int(*r.Width); r.Width != nil && maxWidth < w {
+						if w := int(*r.Width); maxWidth < w {
 							maxWidth = w
 						}
 					}

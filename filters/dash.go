@@ -304,6 +304,7 @@ func (d *DASHFilter) filterBandwidth(filters *parsers.MediaFilters, manifest *mp
 			}
 
 			var filteredRepresentations []*mpd.Representation
+			var maxHeight, maxWidth int
 			for _, r := range as.Representations {
 				if r.Bandwidth == nil {
 					continue
@@ -311,10 +312,31 @@ func (d *DASHFilter) filterBandwidth(filters *parsers.MediaFilters, manifest *mp
 
 				if inRange(bitrate.Min, bitrate.Max, int(*r.Bandwidth)) {
 					filteredRepresentations = append(filteredRepresentations, r)
+
+					if r.Height != nil {
+						if h := int(*r.Height); maxHeight < h {
+							maxHeight = h
+						}
+					}
+					if r.Width != nil {
+						if w := int(*r.Width); maxWidth < w {
+							maxWidth = w
+						}
+					}
 				}
 			}
 
 			as.Representations = filteredRepresentations
+
+			if maxHeight > 0 {
+				maxHeightStr := strconv.Itoa(maxHeight)
+				as.MaxHeight = &maxHeightStr
+			}
+			if maxWidth > 0 {
+				maxWidthStr := strconv.Itoa(maxWidth)
+				as.MaxWidth = &maxWidthStr
+			}
+
 			if len(as.Representations) != 0 {
 				filteredAdaptationSets = append(filteredAdaptationSets, as)
 			}

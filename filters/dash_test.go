@@ -717,9 +717,9 @@ func TestDASHFilter_FilterContent_bitrate(t *testing.T) {
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" mediaPresentationDuration="PT6M16S" minBufferTime="PT1.97S">
   <BaseURL>http://existing.base/url/</BaseURL>
   <Period>
-    <AdaptationSet id="0" lang="en" contentType="video">
-      <Representation bandwidth="2048" codecs="avc" id="0"></Representation>
-      <Representation bandwidth="4096" codecs="avc" id="1"></Representation>
+    <AdaptationSet id="0" lang="en" maxWidth="960" maxHeight="540" contentType="video">
+      <Representation bandwidth="2048" codecs="avc" height="360" id="0" width="640"></Representation>
+      <Representation bandwidth="4096" codecs="avc" height="540" id="1" width="960"></Representation>
     </AdaptationSet>
     <AdaptationSet id="1" lang="en" contentType="audio">
       <Representation bandwidth="256" codecs="ac-3" id="0"></Representation>
@@ -733,8 +733,8 @@ func TestDASHFilter_FilterContent_bitrate(t *testing.T) {
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" mediaPresentationDuration="PT6M16S" minBufferTime="PT1.97S">
   <BaseURL>http://existing.base/url/</BaseURL>
   <Period>
-    <AdaptationSet id="0" lang="en" contentType="video">
-      <Representation bandwidth="4096" codecs="avc" id="1"></Representation>
+    <AdaptationSet id="0" lang="en" maxWidth="960" maxHeight="540" contentType="video">
+      <Representation bandwidth="4096" codecs="avc" height="540" id="1" width="960"></Representation>
     </AdaptationSet>
   </Period>
 </MPD>
@@ -744,8 +744,8 @@ func TestDASHFilter_FilterContent_bitrate(t *testing.T) {
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" mediaPresentationDuration="PT6M16S" minBufferTime="PT1.97S">
   <BaseURL>http://existing.base/url/</BaseURL>
   <Period>
-    <AdaptationSet id="0" lang="en" contentType="video">
-      <Representation bandwidth="4096" codecs="avc" id="1"></Representation>
+    <AdaptationSet id="0" lang="en" maxWidth="960" maxHeight="540" contentType="video">
+      <Representation bandwidth="4096" codecs="avc" height="540" id="1" width="960"></Representation>
     </AdaptationSet>
     <AdaptationSet id="1" lang="en" contentType="audio">
       <Representation bandwidth="256" codecs="ac-3" id="0"></Representation>
@@ -759,8 +759,8 @@ func TestDASHFilter_FilterContent_bitrate(t *testing.T) {
 <MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" type="static" mediaPresentationDuration="PT6M16S" minBufferTime="PT1.97S">
   <BaseURL>http://existing.base/url/</BaseURL>
   <Period>
-    <AdaptationSet id="0" lang="en" contentType="video">
-      <Representation bandwidth="2048" codecs="avc" id="0"></Representation>
+    <AdaptationSet id="0" lang="en" maxWidth="640" maxHeight="360" contentType="video">
+      <Representation bandwidth="2048" codecs="avc" height="360" id="0" width="640"></Representation>
     </AdaptationSet>
     <AdaptationSet id="1" lang="en" contentType="audio">
       <Representation bandwidth="256" codecs="ac-3" id="0"></Representation>

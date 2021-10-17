@@ -15,30 +15,30 @@ import (
 func LoadHandler(c config.Config) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-
+		ctx := r.Context()
 		// parse all the filters from the URL
-		masterManifestPath, mediaFilters, err := parsers.URLParse(r.URL.Path)
+		masterManifestPath, mediaFilters, err := parsers.URLParse(ctx, c, r.URL.Path)
 		if err != nil {
 			e := NewErrorResponse("failed parsing filters", err)
-			e.HandleError(r.Context(), w, http.StatusBadRequest)
+			e.HandleError(ctx, w, http.StatusBadRequest)
 			return
 		}
 
 		//configure origin from path
-		o, err := origin.Configure(r.Context(), c, masterManifestPath)
+		o, err := origin.Configure(ctx, c, masterManifestPath)
 		if err != nil {
 			e := NewErrorResponse("failed configuring origin", err)
-			e.HandleError(r.Context(), w, http.StatusInternalServerError)
+			e.HandleError(ctx, w, http.StatusInternalServerError)
 			return
 		}
 
-		logging.UpdateCtx(r.Context(), logging.Params{"playbackURL": o.GetPlaybackURL()})
+		logging.UpdateCtx(ctx, logging.Params{"playbackURL": o.GetPlaybackURL()})
 
 		// fetch manifest from origin
-		contentInfo, err := o.FetchOriginContent(r.Context(), c.Client)
+		contentInfo, err := o.FetchOriginContent(ctx, c.Client)
 		if err != nil {
 			e := NewErrorResponse("failed fetching manifest", err)
-			e.HandleError(r.Context(), w, http.StatusInternalServerError)
+			e.HandleError(ctx, w, http.StatusInternalServerError)
 			return
 		}
 
@@ -57,7 +57,7 @@ func LoadHandler(c config.Config) http.Handler {
 			}
 			err := fmt.Errorf("fetching manifest: returning http status of %v", contentInfo.Status)
 			e := NewErrorResponse("manifest origin error", err)
-			e.HandleError(r.Context(), w, contentInfo.Status)
+			e.HandleError(ctx, w, contentInfo.Status)
 			return
 		}
 
@@ -77,10 +77,10 @@ func LoadHandler(c config.Config) http.Handler {
 		}
 
 		// apply the filters to the origin manifest
-		filteredManifest, err := f.FilterContent(r.Context(), mediaFilters)
+		filteredManifest, err := f.FilterContent(ctx, mediaFilters)
 		if err != nil {
 			e := NewErrorResponse("failed to filter manifest", err)
-			e.HandleError(r.Context(), w, http.StatusInternalServerError)
+			e.HandleError(ctx, w, http.StatusInternalServerError)
 			return
 		}
 

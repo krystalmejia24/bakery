@@ -1,6 +1,7 @@
 package parsers
 
 import (
+	"context"
 	"fmt"
 	"math"
 	"path"
@@ -8,7 +9,17 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/cbsinteractive/bakery/config"
 )
+
+// DeviceCapabilites is a struct that carries the capabilites advertised by the clients
+type DeviceCapabilites struct {
+	Device       string `json:",omitempty"`
+	Manufacturer string `json:",omitempty"`
+	Model        string `json:",omitempty"`
+	Chipset      string `json:",omitempty"`
+}
 
 // MediaFilters is a struct that carry all the information passed via url
 type MediaFilters struct {
@@ -23,6 +34,7 @@ type MediaFilters struct {
 	FrameRate              []string      `json:",omitempty"`
 	DeWeave                bool          `json:",omitempty"`
 	PreventHTTPStatusError bool          `json:",omitempty"`
+	RemoteFilters          bool          `json:"protocol"`
 	Protocol               Protocol      `json:"protocol"`
 }
 
@@ -97,7 +109,7 @@ func keyError(key string, e error) (string, *MediaFilters, error) {
 // all the filters that needs to be applied to the
 // master manifest. It will also return the master manifest
 // url without the filters.
-func URLParse(urlpath string) (string, *MediaFilters, error) {
+func URLParse(ctx context.Context, c config.Config, urlpath string) (string, *MediaFilters, error) {
 	mf := new(MediaFilters)
 	parts := strings.Split(urlpath, "/")
 	re := urlParseRegexp
@@ -113,7 +125,15 @@ func URLParse(urlpath string) (string, *MediaFilters, error) {
 		return keyError("Protocol", fmt.Errorf("unsupported protocol"))
 	}
 
+	// todo(km) if using query params to advertise device capabilities, extract them here and
+	// apply them to the DeviceCapabilities struct where we can store information such as
+	// device os, manufacturer, model, chipset etc that will be used to translate to set of media filters.
+	// May need to extend Media Filters to support more codecs and some DRM configurations
+
 	for _, part := range parts {
+		if part == "rdc" { //remote-device-config
+			mf.RemoteFilters = true
+		}
 		// FindStringSubmatch should return a slice with
 		// the full string, the key and filters (3 elements).
 		// If it doesn't match, it means that the path is part
@@ -217,6 +237,13 @@ func URLParse(urlpath string) (string, *MediaFilters, error) {
 	}
 
 	mf.normalizeBitrateFilter()
+
+	if mf.RemoteFilters {
+		//should we fail the entire request or return the manifest as is?
+		if err := mf.getRemoteFilters(ctx, c, DeviceCapabilites{Model: "AFTMM"}); err != nil {
+			return masterManifestPath, mf, fmt.Errorf("setting remote filters: %w", err)
+		}
+	}
 
 	return masterManifestPath, mf, nil
 }

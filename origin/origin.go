@@ -36,8 +36,8 @@ type OriginContentInfo struct {
 }
 
 const (
-	PropellerOrigin    = "propeller"
-	DeviceConfigOrigin = "dc"
+	PropellerOrigin          = "propeller"
+	RemoteDeviceConfigOrigin = "rdc"
 )
 
 //Configure will return proper Origin interface
@@ -46,8 +46,8 @@ func Configure(ctx context.Context, c config.Config, path string) (Origin, error
 		return configurePropeller(ctx, c, path)
 	}
 
-	if strings.Contains(path, DeviceConfigOrigin) {
-		return configureDAI(ctx, path)
+	if strings.Contains(path, RemoteDeviceConfigOrigin) {
+		return configureRemoteDeviceConfig(ctx, c, path)
 	}
 
 	// check if path is base64 encoded url

@@ -1,11 +1,13 @@
 package parsers
 
 import (
+	"context"
 	"encoding/json"
 	"math"
 	"reflect"
 	"testing"
 
+	"github.com/cbsinteractive/bakery/config"
 	"github.com/google/go-cmp/cmp"
 )
 
@@ -661,7 +663,7 @@ func TestURLParseUrl(t *testing.T) {
 	for _, test := range tests {
 		test := test
 		t.Run(test.name, func(t *testing.T) {
-			masterManifestPath, output, err := URLParse(test.input)
+			masterManifestPath, output, err := URLParse(context.Background(), config.Config{}, test.input)
 			if !test.expectedErr && err != nil {
 				t.Errorf("Did not expect an error returned, got: %v", err)
 				return

@@ -15,14 +15,15 @@ import (
 
 // Config holds all the configuration for this service
 type Config struct {
-	Listen      string `envconfig:"HTTP_PORT" default:":8080"`
-	LogLevel    string `envconfig:"LOG_LEVEL" default:"debug"`
-	OriginHost  string `envconfig:"ORIGIN_HOST"`
-	Hostname    string `envconfig:"HOSTNAME"  default:"localhost"`
-	OriginKey   string `encovnfig:"ORIGIN_KEY" default:"x-bakery-origin-token"`
-	OriginToken string `envconfig:"ORIGIN_TOKEN"`
-	AuthEnabled bool   `envconfig:"ENABLE_AUTH" default:"false"`
-	Logger      zerolog.Logger
+	Listen             string `envconfig:"HTTP_PORT" default:":8080"`
+	LogLevel           string `envconfig:"LOG_LEVEL" default:"debug"`
+	OriginHost         string `envconfig:"ORIGIN_HOST"`
+	Hostname           string `envconfig:"HOSTNAME"  default:"localhost"`
+	OriginKey          string `encovnfig:"ORIGIN_KEY" default:"x-bakery-origin-token"`
+	OriginToken        string `envconfig:"ORIGIN_TOKEN"`
+	AuthEnabled        bool   `envconfig:"ENABLE_AUTH" default:"false"`
+	RemoteDeviceConfig string `envconfig:"REMOTE_DEVICE_CONFIG"`
+	Logger             zerolog.Logger
 	Tracer
 	Client
 	Propeller

@@ -1,27 +1,16 @@
-FROM golang:1.13-alpine3.10 AS build_base
-
-ARG SSH_PRIVATE_KEY
+FROM golang:1.16.5-alpine3.13 AS build_base
 
 RUN apk add --no-cache ca-certificates curl git openssh build-base
-
-RUN mkdir -p ~/.ssh && umask 0077 && echo "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa \
-	&& git config --global url."git@github.com:".insteadOf https://github.com/ \
-	&& ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-RUN go env -w "GONOSUMDB=github.com/cbsinteractive"
 
 WORKDIR /bakery
 
 COPY go.mod .
 COPY go.sum .
 
-RUN rm ~/.ssh/id_rsa
-RUN rm ~/.ssh/known_hosts
-
 FROM build_base AS builder
 
 COPY . .
-RUN go build -mod=vendor -o bakery cmd/http/main.go
+RUN go build -mod=vendor -ldflags "-X github.com/cbsinteractive/bakery/handlers.GitSHA=$(git rev-parse HEAD)" -o bakery cmd/http/main.go
 
 FROM alpine:latest
 

@@ -47,6 +47,31 @@ To request a Propeller output via Bakery:
 
 **Note** Outputs are not currently enabled for DASH but a feature implementation is in the backlog. To prioritize this feature, feel free to reach out on slack!
 
+### Explicit Origins
+
+To have Bakery use a specific origin url for the output, add another path item specifying the origin to be used:
+
+    http://bakery.dev.cbsi.video/propeller/<org-id>/<channel-id>/<output-id>/<origin>.m3u8
+
+Supported values for `origin` include
+
+|**origin**|**description**|
+|----------|---------------|
+| dai      | ad-supported stream from Google DAI|
+| captions | auto-captioned stream from Dictate |
+| cdn      | raw cdn stream url |
+
+#### Origin Fallback
+
+If you're not sure what origins are available for your channel, or to gracefully handle channel configuration
+changes that may remove or add origins while the channel is running, you can optionally specify multiple origins
+in this last path element. The `-` delimiter separates multiple origins. If the path defines more than one origin,
+Bakery will loop through the origins in order and choose the first valid origin found on the channel.
+
+For example, in order to specify a Bakery url that prefers an auto-captioned stream, but falls back to the CDN origin
+if auto-captions is disabled on the channel, you'd construct the url:
+
+        http://bakery.dev.cbsi.video/propeller/<org-id>/<channel-id>/<output-id>/captions-cdn.m3u8
 
 ## Help
 

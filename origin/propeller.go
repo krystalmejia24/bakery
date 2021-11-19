@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
+	"strings"
 
 	"github.com/cbsinteractive/bakery/config"
 	"github.com/cbsinteractive/bakery/logging"
@@ -16,11 +17,17 @@ const (
 	clipIDKey    = "clipID"
 	channelIDKey = "channelID"
 	outputIDKey  = "outputID"
+	originCfg    = "originCfg"
+
+	originCDN      = "cdn"
+	originCaptions = "captions"
+	originDAI      = "dai"
 )
 
 // propellerPaths defines the multiple path formats allowed for propeller entities in Bakery
 var propellerPaths = []*regexp.Regexp{
 	regexp.MustCompile(`/propeller/(?P<` + orgIDKey + `>.+)/clip/(?P<` + clipIDKey + `>.+).m3u8`),
+	regexp.MustCompile(`/propeller/(?P<` + orgIDKey + `>.+)/(?P<` + channelIDKey + `>.+)/(?P<` + outputIDKey + `>.+)/(?P<` + originCfg + `>.+).(m3u8|mpd)`),
 	regexp.MustCompile(`/propeller/(?P<` + orgIDKey + `>.+)/(?P<` + channelIDKey + `>.+)/(?P<` + outputIDKey + `>.+).(m3u8|mpd)`),
 	regexp.MustCompile(`/propeller/(?P<` + orgIDKey + `>.+)/(?P<` + channelIDKey + `>.+).(m3u8|mpd)`),
 }
@@ -37,6 +44,10 @@ type Propeller struct {
 //
 // Return error if 'path' doesn't match with any of propellerPaths
 func configurePropeller(ctx context.Context, c config.Config, path string) (Origin, error) {
+	if !c.Propeller.IsEnabled() {
+		return &Propeller{}, errors.New("propeller orgin is not enabled")
+	}
+
 	logging.UpdateCtx(ctx, logging.Params{"origin": "propeller"})
 
 	urlValues, err := parsePropellerPath(path)
@@ -49,13 +60,18 @@ func configurePropeller(ctx context.Context, c config.Config, path string) (Orig
 	outputID := urlValues[outputIDKey]
 	clipID := urlValues[clipIDKey]
 
+	var origins []string
+	if cfg := urlValues[originCfg]; cfg != "" {
+		origins = strings.Split(cfg, "-")
+	}
+
 	var getter urlGetter
 	if clipID != "" {
 		logging.UpdateCtx(ctx, logging.Params{orgIDKey: orgID, clipIDKey: clipID})
 		getter = &clipURLGetter{orgID: orgID, clipID: clipID}
 	} else if outputID != "" {
 		logging.UpdateCtx(ctx, logging.Params{orgIDKey: orgID, channelIDKey: channelID, outputIDKey: outputID})
-		getter = &outputURLGetter{orgID: orgID, channelID: channelID, outputID: outputID}
+		getter = &outputURLGetter{orgID: orgID, channelID: channelID, outputID: outputID, origins: origins}
 	} else {
 		logging.UpdateCtx(ctx, logging.Params{orgIDKey: orgID, channelIDKey: channelID})
 		getter = &channelURLGetter{orgID: orgID, channelID: channelID}
@@ -85,7 +101,7 @@ func (p *Propeller) FetchOriginContent(ctx context.Context, c config.Client) (Or
 	return fetch(ctx, c, p.URL)
 }
 
-// parsePropellerPath matches path against all proellerPaths patterns and return a map
+// parsePropellerPath matches path against all propellerPaths patterns and return a map
 // of values extracted from that url
 //
 // Return error if path does not match with any url
@@ -162,6 +178,7 @@ type outputURLGetter struct {
 	orgID     string
 	channelID string
 	outputID  string
+	origins   []string
 }
 
 func (g *outputURLGetter) GetURL(ctx context.Context, client propellerClient) (string, error) {
@@ -177,6 +194,12 @@ func (g *outputURLGetter) GetURL(ctx context.Context, client propellerClient) (s
 }
 
 func (g *outputURLGetter) getURL(channel *propeller.Channel, output *propeller.ChannelOutput) (string, error) {
+	if origins := g.origins; len(origins) > 0 {
+		return urlForOrigins(output, origins)
+	}
+
+	// todo(ts): all the following should be removed in favor of a default list of origins
+	// if none are set following the logic at the beginning of this function
 	if output.AdsURL != "" && channel.Status == "running" {
 		if g.orgID == "uefahda8" {
 			return output.PlaybackURL, nil
@@ -190,6 +213,30 @@ func (g *outputURLGetter) getURL(channel *propeller.Channel, output *propeller.C
 		return output.PlaybackURL, nil
 	}
 	return "", fmt.Errorf("Channel output not ready")
+}
+
+func urlForOrigins(output *propeller.ChannelOutput, origins []string) (string, error) {
+	for _, o := range origins {
+		switch o {
+		case originDAI:
+			if u := output.AdsURL; u != "" {
+				return u, nil
+			}
+		case originCaptions:
+			if u := output.CaptionsURL; u != "" {
+				return u, nil
+			}
+		case originCDN:
+			if u := output.PlaybackURL; u != "" {
+				return u, nil
+			}
+		default:
+			return "", fmt.Errorf("unsupported origin %q, must be one of (%s, %s, %s)", o,
+				originDAI, originCaptions, originCDN)
+		}
+	}
+
+	return "", fmt.Errorf("could not find url to play from origins %q", origins)
 }
 
 // handleGetUrlChannelNotFound is an error handler used when trying to GET a channel

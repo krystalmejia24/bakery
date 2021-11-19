@@ -233,6 +233,7 @@ func TestPropeller_outputURLGetter(t *testing.T) {
 	tests := []struct {
 		name         string
 		channels     []propeller.Channel
+		origins      []string
 		expectURL    string
 		expectErrStr string
 	}{
@@ -291,6 +292,30 @@ func TestPropeller_outputURLGetter(t *testing.T) {
 			expectURL: "playback-url.com",
 		},
 		{
+			name:      "ExplicitOriginAds",
+			channels:  []propeller.Channel{{Outputs: []propeller.ChannelOutput{{ID: "out123", AdsURL: "ad-url", CaptionsURL: "captions-url", PlaybackURL: "cdn-url"}}}},
+			origins:   []string{originDAI, originCaptions, originCDN},
+			expectURL: "ad-url",
+		},
+		{
+			name:      "ExplicitOriginCDN",
+			channels:  []propeller.Channel{{Outputs: []propeller.ChannelOutput{{ID: "out123", AdsURL: "ad-url", CaptionsURL: "captions-url", PlaybackURL: "cdn-url"}}}},
+			origins:   []string{originCDN},
+			expectURL: "cdn-url",
+		},
+		{
+			name:      "ExplicitOriginFallbackToCaptionsMissingDAI",
+			channels:  []propeller.Channel{{Outputs: []propeller.ChannelOutput{{ID: "out123", CaptionsURL: "captions-url", PlaybackURL: "cdn-url"}}}},
+			origins:   []string{originDAI, originCaptions},
+			expectURL: "captions-url",
+		},
+		{
+			name:         "ExplicitOriginInvalidOrigin",
+			channels:     []propeller.Channel{{Outputs: []propeller.ChannelOutput{{ID: "out123", CaptionsURL: "captions-url", PlaybackURL: "cdn-url"}}}},
+			origins:      []string{"abc"},
+			expectErrStr: `unsupported origin "abc", must be one of (dai, captions, cdn)`,
+		},
+		{
 			name: "When ads, captions, and playbackURL are NOT set, error is thrown",
 			channels: []propeller.Channel{
 				{ID: "ch123", Outputs: []propeller.ChannelOutput{{}}},
@@ -303,7 +328,7 @@ func TestPropeller_outputURLGetter(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			for _, channel := range tc.channels {
 				client := &mockPropellerClient{getChannel: channel}
-				getter := &outputURLGetter{orgID: "org", channelID: "ch123", outputID: "out123"}
+				getter := &outputURLGetter{orgID: "org", channelID: "ch123", outputID: "out123", origins: tc.origins}
 				u, err := getter.GetURL(context.Background(), client)
 
 				if err != nil && tc.expectErrStr == "" {

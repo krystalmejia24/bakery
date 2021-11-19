@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated with https://github.com/google/shaka-packager version v2.5.1-9f11077768-release-->
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" minBufferTime="PT2S" type="static" mediaPresentationDuration="PT7606.9326171875S">
+  <Period id="0">
+    <AdaptationSet id="0" contentType="audio" lang="en" subsegmentAlignment="true">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="5c40204b-dbe4-49ac-a1c6-fa35388e1f7c"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBTAHkAQgBBAFgATwBUAGIAcgBFAG0AaAB4AHYAbwAxAE8ASQA0AGYAZgBBAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+ADAAMwBrAEwANwBiADYAVwBqAFoANAA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AUwB5AEIAQQBYAE8AVABiAHIARQBtAGgAeAB2AG8AMQBPAEkANABmAGYAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgAwADMAawBMADcAYgA2AFcAagBaADQAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Representation id="0" bandwidth="194262" codecs="ec-3" mimeType="audio/mp4" audioSamplingRate="48000">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"/>
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_Stream_0_audio_en-US_1015507_1_imf_eac3_192.mp4</BaseURL>
+        <SegmentBase indexRange="1479-16726" timescale="48000">
+          <Initialization range="0-1478"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="1" bandwidth="770262" codecs="ec-3" mimeType="audio/mp4" audioSamplingRate="48000">
+        <AudioChannelConfiguration schemeIdUri="tag:dolby.com,2014:dash:audio_channel_configuration:2011" value="F801"/>
+        <SupplementalProperty schemeIdUri="tag:dolby.com,2018:dash:EC3_ExtensionType:2018" value="JOC"/>
+        <SupplementalProperty schemeIdUri="tag:dolby.com,2018:dash:EC3_ExtensionComplexityIndex:2018" value="16"/>
+        <BaseURL>Star_Trek_2009_34850_3840x2160_ATMOS_en-US_1015507_2_imf_atmos-eac3_768.mp4</BaseURL>
+        <SegmentBase indexRange="1480-16727" timescale="48000">
+          <Initialization range="0-1479"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" contentType="audio" lang="en" subsegmentAlignment="true">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="5c40204b-dbe4-49ac-a1c6-fa35388e1f7c"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBTAHkAQgBBAFgATwBUAGIAcgBFAG0AaAB4AHYAbwAxAE8ASQA0AGYAZgBBAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+ADAAMwBrAEwANwBiADYAVwBqAFoANAA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AUwB5AEIAQQBYAE8AVABiAHIARQBtAGgAeAB2AG8AMQBPAEkANABmAGYAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgAwADMAawBMADcAYgA2AFcAagBaADQAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Representation id="2" bandwidth="131651" codecs="mp4a.40.2" mimeType="audio/mp4" audioSamplingRate="48000">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_Stream_1_audio_en-US_1015507_3_imf_aac_128.mp4</BaseURL>
+        <SegmentBase indexRange="1566-16813" timescale="48000">
+          <Initialization range="0-1565"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="2" contentType="audio" lang="en" subsegmentAlignment="true">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="5c40204b-dbe4-49ac-a1c6-fa35388e1f7c"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBTAHkAQgBBAFgATwBUAGIAcgBFAG0AaAB4AHYAbwAxAE8ASQA0AGYAZgBBAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+ADAAMwBrAEwANwBiADYAVwBqAFoANAA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AUwB5AEIAQQBYAE8AVABiAHIARQBtAGgAeAB2AG8AMQBPAEkANABmAGYAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgAwADMAawBMADcAYgA2AFcAagBaADQAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Accessibility schemeIdUri="urn:tva:metadata:cs:AudioPurposeCS:2007" value="1"/>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="description"/>
+      <Representation id="3" bandwidth="129538" codecs="mp4a.40.2" mimeType="audio/mp4" audioSamplingRate="48000">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="2"/>
+        <BaseURL>StarTrek2009_ENG_DVS_1CH_Downmix_BUILD_Stream_0_audio_en-US_1015507_4_imf_dvs_128.mp4</BaseURL>
+        <SegmentBase indexRange="1530-16777" timescale="48000">
+          <Initialization range="0-1529"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="3" contentType="video" maxWidth="3840" maxHeight="2160" frameRate="24000/1001" subsegmentAlignment="true" par="16:9">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="0d581772-e442-4362-8784-cff96c90e065"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBjAGgAZABZAEQAVQBMAGsAWQBrAE8ASABoAE0ALwA1AGIASgBEAGcAWgBRAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AHkASQBjAEQATQAxADAAMQBhAEIAcwA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AYwBoAGQAWQBEAFUATABrAFkAawBPAEgAaABNAC8ANQBiAEoARABnAFoAUQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgB5AEkAYwBEAE0AMQAwADEAYQBCAHMAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Representation id="4" bandwidth="970547" codecs="dvhe.05.01" mimeType="video/mp4" sar="1:1" width="640" height="360">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_625.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="5" bandwidth="1612447" codecs="dvhe.05.01" mimeType="video/mp4" sar="1:1" width="960" height="540">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_1100.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="6" bandwidth="3384755" codecs="dvhe.05.01" mimeType="video/mp4" sar="1:1" width="1280" height="720">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_2400.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="7" bandwidth="6945976" codecs="dvhe.05.03" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_5010.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="8" bandwidth="10120618" codecs="dvhe.05.05" mimeType="video/mp4" sar="1:1" width="2560" height="1440">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_7500.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="9" bandwidth="13544183" codecs="dvhe.05.06" mimeType="video/mp4" sar="1:1" width="3840" height="2160">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_9900.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="10" bandwidth="20285528" codecs="dvhe.05.06" mimeType="video/mp4" sar="1:1" width="3840" height="2160">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_DoVi_1015507_15000.mp4</BaseURL>
+        <SegmentBase indexRange="1622-16869" timescale="24000">
+          <Initialization range="0-1621"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="4" contentType="video" maxWidth="3840" maxHeight="2160" frameRate="24000/1001" subsegmentAlignment="true" par="16:9">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="0d581772-e442-4362-8784-cff96c90e065"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBjAGgAZABZAEQAVQBMAGsAWQBrAE8ASABoAE0ALwA1AGIASgBEAGcAWgBRAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AHkASQBjAEQATQAxADAAMQBhAEIAcwA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AYwBoAGQAWQBEAFUATABrAFkAawBPAEgAaABNAC8ANQBiAEoARABnAFoAUQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgB5AEkAYwBEAE0AMQAwADEAYQBCAHMAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <Representation id="11" bandwidth="896669" codecs="hvc1.2.4.L63.90" mimeType="video/mp4" sar="1:1" width="640" height="360">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_610.mp4</BaseURL>
+        <SegmentBase indexRange="1692-16939" timescale="24000">
+          <Initialization range="0-1691"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="12" bandwidth="1424993" codecs="hvc1.2.4.L90.90" mimeType="video/mp4" sar="1:1" width="960" height="540">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_1000.mp4</BaseURL>
+        <SegmentBase indexRange="1692-16939" timescale="24000">
+          <Initialization range="0-1691"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="13" bandwidth="3113151" codecs="hvc1.2.4.L93.90" mimeType="video/mp4" sar="1:1" width="1280" height="720">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_2300.mp4</BaseURL>
+        <SegmentBase indexRange="1693-16940" timescale="24000">
+          <Initialization range="0-1692"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="14" bandwidth="6414902" codecs="hvc1.2.4.L120.90" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_4800.mp4</BaseURL>
+        <SegmentBase indexRange="1692-16939" timescale="24000">
+          <Initialization range="0-1691"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="15" bandwidth="9448371" codecs="hvc1.2.4.L150.90" mimeType="video/mp4" sar="1:1" width="2560" height="1440">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_7000.mp4</BaseURL>
+        <SegmentBase indexRange="1694-16941" timescale="24000">
+          <Initialization range="0-1693"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="16" bandwidth="12936306" codecs="hvc1.2.4.L150.90" mimeType="video/mp4" sar="1:1" width="3840" height="2160">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_9500.mp4</BaseURL>
+        <SegmentBase indexRange="1695-16942" timescale="24000">
+          <Initialization range="0-1694"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="17" bandwidth="20138118" codecs="hvc1.2.4.H150.90" mimeType="video/mp4" sar="1:1" width="3840" height="2160">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HDR10plus_1015507_14900.mp4</BaseURL>
+        <SegmentBase indexRange="1695-16942" timescale="24000">
+          <Initialization range="0-1694"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="5" contentType="video" maxWidth="960" maxHeight="540" frameRate="24000/1001" subsegmentAlignment="true" par="16:9">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="ce60d218-cd60-42fd-a79d-2dceaef51fc4"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBHAE4ASgBnAHoAbQBEAE4ALwBVAEsAbgBuAFMAMwBPAHIAdgBVAGYAeABBAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AHoAYgA5AEIAZQBoAFQAMQB4AFAAawA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4ARwBOAEoAZwB6AG0ARABOAC8AVQBLAG4AbgBTADMATwByAHYAVQBmAHgAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgB6AGIAOQBCAGUAaABUADEAeABQAGsAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <SupplementalProperty schemeIdUri="urn:mpeg:dash:adaptation-set-switching:2016" value="6"/>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
+      <Representation id="18" bandwidth="835675" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="640" height="360">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HEVC_1015507_4000_1015507_380.mp4</BaseURL>
+        <SegmentBase indexRange="1615-16862" timescale="24000">
+          <Initialization range="0-1614"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="19" bandwidth="1746133" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="960" height="540">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HEVC_1015507_4000_1015507_800.mp4</BaseURL>
+        <SegmentBase indexRange="1615-16862" timescale="24000">
+          <Initialization range="0-1614"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="6" contentType="video" maxWidth="1920" maxHeight="1080" frameRate="24000/1001" subsegmentAlignment="true" par="16:9">
+      <ContentProtection value="cenc" schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="c41ae47b-3332-49a3-adc8-d141a7615fcc"/>
+      <ContentProtection value="MSPR 2.0" schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95">
+        <cenc:pssh>AAACJnBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAgYGAgAAAQABAPwBPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgBlACsAUQBhAHgARABJAHoAbwAwAG0AdAB5AE4ARgBCAHAAMgBGAGYAegBBAD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AHAAeQBXAFgAMQBvAFEAdQB6AFYAdwA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AC8ARABBAFQAQQA+ADwALwBXAFIATQBIAEUAQQBEAEUAUgA+AA==</cenc:pssh>
+        <mspr:pro>BgIAAAEAAQD8ATwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AZQArAFEAYQB4AEQASQB6AG8AMABtAHQAeQBOAEYAQgBwADIARgBmAHoAQQA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBwAHkAVwBYADEAbwBRAHUAegBWAHcAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</mspr:pro>
+      </ContentProtection>
+      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
+        <cenc:pssh>AAAAbnBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAAE4SEFxAIEvb5Emsocb6NTiOH3wSEMQa5HszMkmjrcjRQadhX8wSEM5g0hjNYEL9p50tzq71H8QSEA1YF3LkQkNih4TP+WyQ4GVI49yVmwY=</cenc:pssh>
+      </ContentProtection>
+      <SupplementalProperty schemeIdUri="urn:mpeg:dash:adaptation-set-switching:2016" value="5"/>
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="main"/>
+      <Representation id="20" bandwidth="3505897" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1280" height="720">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HEVC_1015507_4000_1015507_1600.mp4</BaseURL>
+        <SegmentBase indexRange="1614-16861" timescale="24000">
+          <Initialization range="0-1613"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="21" bandwidth="6291683" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HEVC_1015507_4000_1015507_2900.mp4</BaseURL>
+        <SegmentBase indexRange="1616-16863" timescale="24000">
+          <Initialization range="0-1615"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="22" bandwidth="9658257" codecs="avc1.640028" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <BaseURL>Star_Trek_2009_34850_001_2D_FTR_VMASTER_ProRes_4444_XQ_3840x2160_2398_5_1_2_0_16x9LB_2_40_1_Txt_LtRt_12db_engAU_engPT_80516635_HEVC_1015507_4000_1015507_4600.mp4</BaseURL>
+        <SegmentBase indexRange="1616-16863" timescale="24000">
+          <Initialization range="0-1615"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="7" contentType="text" lang="en" subsegmentAlignment="true">
+      <Role schemeIdUri="urn:mpeg:dash:role:2011" value="subtitle"/>
+      <Representation id="23" bandwidth="222" mimeType="text/vtt">
+        <BaseURL>en.vtt</BaseURL>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="8" mimeType="image/jpeg" contentType="image">
+      <SegmentTemplate media="$RepresentationID$/tile_$Number$.jpg" duration="320" startNumber="1"/>
+      <Representation bandwidth="28970" id="thumb_160x90" width="640" height="720">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"/>
+      </Representation>
+      <Representation bandwidth="109409" id="thumb_320x180" width="1280" height="1440">
+        <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"/>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>

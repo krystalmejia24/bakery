@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT1358.23193359375S" minBufferTime="PT2S">
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT1358.23193359375S" minBufferTime="PT2S">
   <BaseURL>https://vod-gcs-cedexis.cbsaavideo.com/intl_vms/2021/05/27/1902237251849/705381_cenc_dash/</BaseURL>
   <Period id="0">
     <AdaptationSet id="0" segmentAlignment="true" lang="DD+" contentType="audio">
@@ -632,65 +632,7 @@
         </SegmentTemplate>
       </Representation>
     </AdaptationSet>
-    <AdaptationSet frameRate="24000/1001" id="4" segmentAlignment="true" par="16:9" maxWidth="1920" maxHeight="1080" contentType="video">
-      <ContentProtection schemeIdUri="urn:mpeg:dash:mp4protection:2011" cenc:default_KID="8b4c8bbc-9bdc-4982-9db5-0899830a1567" value="cenc"></ContentProtection>
-      <ContentProtection schemeIdUri="urn:uuid:edef8ba9-79d6-4ace-a3c8-27dcd51d21ed">
-        <cenc:pssh>AAAAWHBzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADgIARIQi0yLvJvcSYKdtQiZgwoVZyIgeUhIbllZYVV1MXFFTmVsWDhEbVh3Y3NEZUtTMHJDUzQ4AQ==</cenc:pssh>
-      </ContentProtection>
-      <ContentProtection schemeIdUri="urn:uuid:9a04f079-9840-4286-ab92-e65be0885f95" value="MSPR 2.0">
-        <mspr:pro>PAMAAAEAAQAyAzwAVwBSAE0ASABFAEEARABFAFIAIAB4AG0AbABuAHMAPQAiAGgAdAB0AHAAOgAvAC8AcwBjAGgAZQBtAGEAcwAuAG0AaQBjAHIAbwBzAG8AZgB0AC4AYwBvAG0ALwBEAFIATQAvADIAMAAwADcALwAwADMALwBQAGwAYQB5AFIAZQBhAGQAeQBIAGUAYQBkAGUAcgAiACAAdgBlAHIAcwBpAG8AbgA9ACIANAAuADAALgAwAC4AMAAiAD4APABEAEEAVABBAD4APABQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsARQBZAEwARQBOAD4AMQA2ADwALwBLAEUAWQBMAEUATgA+ADwAQQBMAEcASQBEAD4AQQBFAFMAQwBUAFIAPAAvAEEATABHAEkARAA+ADwALwBQAFIATwBUAEUAQwBUAEkATgBGAE8APgA8AEsASQBEAD4AdgBJAHQATQBpADkAeQBiAGcAawBtAGQAdABRAGkAWgBnAHcAbwBWAFoAdwA9AD0APAAvAEsASQBEAD4APABDAEgARQBDAEsAUwBVAE0APgBVAHoAKwBqAHYAUwBXAHgAeQBMAFEAPQA8AC8AQwBIAEUAQwBLAFMAVQBNAD4APABMAEEAXwBVAFIATAA+AGgAdAB0AHAAcwA6AC8ALwBjAGIAcwBpAC4AbABpAHYAZQAuAG8AdAB0AC4AaQByAGQAZQB0AG8ALgBjAG8AbQAvAHAAbABhAHkAcgBlAGEAZAB5AC8AcgBpAGcAaAB0AHMAbQBhAG4AYQBnAGUAcgAuAGEAcwBtAHgAPwBDAHIAbQBJAGQAPQBjAGIAcwBpACYAYQBtAHAAOwBBAGMAYwBvAHUAbgB0AEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AGMAbwBuAHQAZQBuAHQASQBkAD0AeQBIAEgAbgBZAFkAYQBVAHUAMQBxAEUATgBlAGwAWAA4AEQAbQBYAHcAYwBzAEQAZQBLAFMAMAByAEMAUwA0ADwALwBMAEEAXwBVAFIATAA+ADwALwBEAEEAVABBAD4APAAvAFcAUgBNAEgARQBBAEQARQBSAD4A</mspr:pro>
-        <cenc:pssh>AAADXHBzc2gAAAAAmgTweZhAQoarkuZb4IhflQAAAzw8AwAAAQABADIDPABXAFIATQBIAEUAQQBEAEUAUgAgAHgAbQBsAG4AcwA9ACIAaAB0AHQAcAA6AC8ALwBzAGMAaABlAG0AYQBzAC4AbQBpAGMAcgBvAHMAbwBmAHQALgBjAG8AbQAvAEQAUgBNAC8AMgAwADAANwAvADAAMwAvAFAAbABhAHkAUgBlAGEAZAB5AEgAZQBhAGQAZQByACIAIAB2AGUAcgBzAGkAbwBuAD0AIgA0AC4AMAAuADAALgAwACIAPgA8AEQAQQBUAEEAPgA8AFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBFAFkATABFAE4APgAxADYAPAAvAEsARQBZAEwARQBOAD4APABBAEwARwBJAEQAPgBBAEUAUwBDAFQAUgA8AC8AQQBMAEcASQBEAD4APAAvAFAAUgBPAFQARQBDAFQASQBOAEYATwA+ADwASwBJAEQAPgB2AEkAdABNAGkAOQB5AGIAZwBrAG0AZAB0AFEAaQBaAGcAdwBvAFYAWgB3AD0APQA8AC8ASwBJAEQAPgA8AEMASABFAEMASwBTAFUATQA+AFUAegArAGoAdgBTAFcAeAB5AEwAUQA9ADwALwBDAEgARQBDAEsAUwBVAE0APgA8AEwAQQBfAFUAUgBMAD4AaAB0AHQAcABzADoALwAvAGMAYgBzAGkALgBsAGkAdgBlAC4AbwB0AHQALgBpAHIAZABlAHQAbwAuAGMAbwBtAC8AcABsAGEAeQByAGUAYQBkAHkALwByAGkAZwBoAHQAcwBtAGEAbgBhAGcAZQByAC4AYQBzAG0AeAA/AEMAcgBtAEkAZAA9AGMAYgBzAGkAJgBhAG0AcAA7AEEAYwBjAG8AdQBuAHQASQBkAD0AYwBiAHMAaQAmAGEAbQBwADsAYwBvAG4AdABlAG4AdABJAGQAPQB5AEgASABuAFkAWQBhAFUAdQAxAHEARQBOAGUAbABYADgARABtAFgAdwBjAHMARABlAEsAUwAwAHIAQwBTADQAPAAvAEwAQQBfAFUAUgBMAD4APAAvAEQAQQBUAEEAPgA8AC8AVwBSAE0ASABFAEEARABFAFIAPgA=</cenc:pssh>
-      </ContentProtection>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="3891053" codecs="avc1.640028" height="720" id="4" width="1280">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_3000/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="2728970" codecs="avc1.640028" height="576" id="5" width="1024">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_2100/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_2100/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="495653" codecs="avc1.640028" height="360" id="6" width="640">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_375/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_375/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="5764741" codecs="avc1.640028" height="1080" id="7" width="1920">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_4500/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="1938883" codecs="avc1.640028" height="540" id="8" width="960">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_1500/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_1500/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-      <Representation sar="1:1" mimeType="video/mp4" bandwidth="960312" codecs="avc1.640028" height="432" id="9" width="768">
-        <SegmentTemplate initialization="NICKELODEON_THELOUDHOUSE_407_HD_705367_750/init.m4v" media="NICKELODEON_THELOUDHOUSE_407_HD_705367_750/seg_$Number$.m4s" startNumber="1" timescale="24000">
-          <SegmentTimeline>
-            <S t="0" d="144144" r="225"></S>
-            <S t="32576544" d="21021"></S>
-          </SegmentTimeline>
-        </SegmentTemplate>
-      </Representation>
-    </AdaptationSet>
-    <AdaptationSet mimeType="image/jpeg" id="5" contentType="image">
+    <AdaptationSet mimeType="image/jpeg" id="4" contentType="image">
       <SegmentTemplate duration="320" media="$RepresentationID$/tile_$Number$.jpg" startNumber="1"></SegmentTemplate>
       <Representation bandwidth="34002" height="720" id="thumb_160x90" width="640">
         <EssentialProperty schemeIdUri="http://dashif.org/guidelines/thumbnail_tile" value="4x8"></EssentialProperty>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT2601.2236328125S" minBufferTime="PT2S">
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:cenc="urn:mpeg:cenc:2013" xmlns:mspr="urn:microsoft:playready" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT2601.2236328125S" minBufferTime="PT2S">
   <BaseURL>https://vod-gcs-cedexis.cbsaavideo.com/intl_vms/2021/07/06/1918394435616/720704_cenc_precon_dash/</BaseURL>
   <Period id="0" duration="PT7M8.428S">
     <AdaptationSet id="0" segmentAlignment="true" lang="en" contentType="text">
